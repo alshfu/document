@@ -2,7 +2,7 @@
 <html lang="sv">
 <head>
     <meta charset="UTF-8">
-    <title>Kontohändelser 30230151051 SEK 2025-07-01 – 2026-08-22</title>
+    <title>Kontohändelser 30230012345 SEK 2025-07-01 – 2026-08-22</title>
     <style>
         * {
             margin: 0;
@@ -662,7 +662,7 @@
                 </svg>
             </div>
             <div class="created">
-                Skapad av BAROUDI,AHMAD<br>
+                Skapad av ANDERSSON,ANNA<br>
                 2026-08-22 17:49:57
             </div>
         </div>
@@ -684,11 +684,11 @@
                     </tr>
                     <tr>
                         <td class="lbl">Kontonummer:</td>
-                        <td>3023 01 51051</td>
+                        <td>3023 00 12345</td>
                     </tr>
                     <tr>
                         <td class="lbl">IBAN:</td>
-                        <td>SE1830000000030230151051</td>
+                        <td>SE1830000000030230012345</td>
                     </tr>
                     <tr>
                         <td class="lbl">BIC/SWIFT:</td>
@@ -755,7 +755,7 @@
             </tr>
             <tr>
                 <td>2026-08-08</td>
-                <td>Swish betalning MAGOMED TOVSULTANOV</td>
+                <td>Swish betalning ERIK JOHANSSON</td>
                 <td class="num">-5 000,00</td>
                 <td class="num">44 221,82</td>
             </tr>
@@ -800,13 +800,13 @@
             </tr>
             <tr class="odd">
                 <td>2026-07-28</td>
-                <td>Swish inbetalning MAGOMED TOVSULTAN</td>
+                <td>Swish inbetalning ERIK JOHANSSON</td>
                 <td class="num">49 957,00</td>
                 <td class="num">59 866,82</td>
             </tr>
             <tr>
                 <td>2026-07-28</td>
-                <td>Swish inbetalning AHMAD BAROUDI</td>
+                <td>Swish inbetalning ANNA ANDERSSON</td>
                 <td class="num">10 000,00</td>
                 <td class="num">9 909,82</td>
             </tr>
@@ -848,7 +848,7 @@
             </tr>
             <tr>
                 <td>2026-05-27</td>
-                <td>Swish inbetalning MUGUTDINOVA,DZHAN</td>
+                <td>Swish inbetalning NILSSON,LARS</td>
                 <td class="num">5 000,00</td>
                 <td class="num">5 034,42</td>
             </tr>
@@ -881,7 +881,7 @@
             </tr>
             <tr>
                 <td>2026-04-13</td>
-                <td>Swish betalning Olha Diakonova</td>
+                <td>Swish betalning Sara Eriksson</td>
                 <td class="num">-1 000,00</td>
                 <td class="num">610,65</td>
             </tr>
@@ -1008,7 +1008,7 @@
                 </svg>
             </div>
             <div class="created">
-                Skapad av BAROUDI,AHMAD<br>
+                Skapad av ANDERSSON,ANNA<br>
                 2026-08-22 17:49:57
             </div>
         </div>
@@ -2628,10 +2628,10 @@
     function defaultNordeaConfig() {
         const saved = loadNordeaConfig();
         const defaults = {
-            holder: 'BAROUDI,AHMAD',
-            account: '3023 01 51051',
+            holder: 'ANDERSSON,ANNA',
+            account: '3023 00 12345',
             clearing: '3023',
-            iban: 'SE1830000000030230151051',
+            iban: 'SE1830000000030230012345',
             bic: 'NDEASESS',
             from: '2025-07-01',
             to: '2026-08-22',
@@ -3799,10 +3799,10 @@
     let setupEscapeBound = false;
 
     function applyNordeaConfigToPage(config) {
-        const holder = config.holder || 'BAROUDI,AHMAD';
-        const account = config.account || '3023 01 51051';
+        const holder = config.holder || 'ANDERSSON,ANNA';
+        const account = config.account || '3023 00 12345';
         const clearing = config.clearing || '3023';
-        const iban = config.iban || 'SE1830000000030230151051';
+        const iban = config.iban || 'SE1830000000030230012345';
         const bic = config.bic || 'NDEASESS';
 
         document.title = 'Kontohändelser ' + account.replace(/\s/g, '') + ' SEK ' +
@@ -3852,10 +3852,10 @@
             '<div class="setup-modal-backdrop"></div>' +
             '<div class="setup-modal-content">' +
             '<h2>Kontoinställningar</h2>' +
-            '<label>Kontoinnehavare<input type="text" id="setup-holder" value="BAROUDI,AHMAD"></label>' +
+            '<label>Kontoinnehavare<input type="text" id="setup-holder" value="ANDERSSON,ANNA"></label>' +
             '<label>Clearingnummer<input type="text" id="setup-clearing" value="3023"></label>' +
-            '<label>Kontonummer<input type="text" id="setup-account" value="3023 01 51051"></label>' +
-            '<label>IBAN<input type="text" id="setup-iban" value="SE1830000000030230151051"></label>' +
+            '<label>Kontonummer<input type="text" id="setup-account" value="3023 00 12345"></label>' +
+            '<label>IBAN<input type="text" id="setup-iban" value="SE1830000000030230012345"></label>' +
             '<label>BIC/SWIFT<input type="text" id="setup-bic" value="NDEASESS"></label>' +
             '<label>Period från<input type="date" id="setup-from" value="2025-07-01"></label>' +
             '<label>Period till<input type="date" id="setup-to" value="2026-08-22"></label>' +
@@ -3984,10 +3984,10 @@
         const modal = createSetupModal();
         const config = defaultNordeaConfig();
 
-        document.getElementById('setup-holder').value = config.holder || 'BAROUDI,AHMAD';
+        document.getElementById('setup-holder').value = config.holder || 'ANDERSSON,ANNA';
         document.getElementById('setup-clearing').value = config.clearing || '3023';
-        document.getElementById('setup-account').value = config.account || '3023 01 51051';
-        document.getElementById('setup-iban').value = config.iban || 'SE1830000000030230151051';
+        document.getElementById('setup-account').value = config.account || '3023 00 12345';
+        document.getElementById('setup-iban').value = config.iban || 'SE1830000000030230012345';
         document.getElementById('setup-bic').value = config.bic || 'NDEASESS';
         document.getElementById('setup-from').value = isoDateString(config.from);
         document.getElementById('setup-to').value = isoDateString(config.to);
@@ -4042,10 +4042,10 @@
     }
 
     function readSetupForm() {
-        const holder = document.getElementById('setup-holder').value.trim() || 'BAROUDI,AHMAD';
+        const holder = document.getElementById('setup-holder').value.trim() || 'ANDERSSON,ANNA';
         const clearing = document.getElementById('setup-clearing').value.trim() || '3023';
-        const account = document.getElementById('setup-account').value.trim() || '3023 01 51051';
-        const iban = document.getElementById('setup-iban').value.trim() || 'SE1830000000030230151051';
+        const account = document.getElementById('setup-account').value.trim() || '3023 00 12345';
+        const iban = document.getElementById('setup-iban').value.trim() || 'SE1830000000030230012345';
         const bic = document.getElementById('setup-bic').value.trim() || 'NDEASESS';
         const from = document.getElementById('setup-from').value || '2025-07-01';
         const to = document.getElementById('setup-to').value || '2026-08-22';
