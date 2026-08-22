@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avtal om Överlåtelse av Hyreskontrakt</title>
+  <!-- Bootstrap CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <style>
+    /* Generella stilar */
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      color: #333;
+      background-color: #f9f9f9;
+    }
+    .container {
+      max-width: 800px;
+      background: #fff;
+      padding: 40px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.05);
+      border-radius: 8px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 22px;
+      margin-bottom: 30px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    h2 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #f0f0f0;
+      padding-bottom: 5px;
+      color: #2c3e50;
+    }
+    p {
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+    strong {
+      font-weight: 600;
+      color: #000;
+    }
+    ol {
+      padding-left: 20px;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+    li {
+      margin-bottom: 5px;
+    }
+    .signature-line {
+      border-bottom: 1px solid #000;
+      width: 100%;
+      display: inline-block;
+      margin-top: 25px; /* Space for signature */
+    }
+    .signature-block {
+      margin-bottom: 20px;
+      page-break-inside: avoid;
+    }
+
+    /* Flexbox för vertikal centrering på skärmen */
+    .page1, .page2, .page3 {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 80vh; /* Förhandsvisning på skärm */
+      padding-bottom: 20px;
+      border-bottom: 1px dashed #ddd; /* Visuell separator på skärm */
+    }
+    .page3 {
+      border-bottom: none;
+    }
+
+    /* Utskriftsstilar (Print) */
+    @media print {
+      @page {
+        size: A4;
+        margin: 15mm 15mm 15mm 15mm;
+      }
+      body {
+        background-color: #fff;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 11pt;
+        line-height: 1.3;
+        color: #000;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        width: 100%;
+        max-width: none;
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+        border-radius: 0;
+      }
+      h1 {
+        font-size: 18pt;
+        margin-bottom: 0.5cm;
+        color: #000;
+      }
+      h2 {
+        font-size: 13pt;
+        margin-top: 0.5cm;
+        margin-bottom: 0.3cm;
+        border-bottom: 1px solid #000;
+        color: #000;
+      }
+      p, li {
+        text-align: justify;
+      }
+
+      /* Sidbrytningar och Vertikal Centrering */
+      .page1, .page2, .page3 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Centrera vertikalt */
+        height: 26cm; /* Fast höjd för att fylla utskriftssidan (A4 minus marginaler) */
+        page-break-after: always;
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+      .page3 {
+        page-break-after: auto;
+      }
+
+      /* Kompaktare signaturer för utskrift */
+      .signature-block {
+        margin-bottom: 10px;
+      }
+      .signature-line {
+        margin-top: 15px;
+      }
+
+      /* Tvinga kolumner att fungera vid utskrift */
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .col-6 {
+        width: 50%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- SIDA 1: Titel och §1 Parter -->
+  <div class="page1">
+    <div>
+      <h1>AVTAL OM ÖVERLÅTELSE AV HYRESKONTRAKT (LOKAL)</h1>
+
+      <h2>§1 Parter</h2>
+      <div class="mb-3">
+        <p><strong>Hyresvärd:</strong><br>
+        Enver Grajcevci, 811112-2852<br>
+        Gustavsborgsvägen 18<br>
+        374 38 Karlshamn</p>
+      </div>
+      <div class="mb-3">
+        <p><strong>Nuvande hyresgäst (överlåtare):</strong><br>
+        Emilia Mazur, 19830930-4551<br>
+        Jasminvägen 6A<br>
+        374 52 Asarum</p>
+      </div>
+      <div class="mb-3">
+        <p><strong>Ny hyresgäst (övertagare):</strong><br>
+        Jowhar AB<br>
+        Organisationsnummer: 559203-2279<br>
+        Adress: AEK 598F BILLO106 46 Stockholm</p>
+      </div>
+      <div class="mb-3">
+        <p><strong>Borgensman:</strong><br>
+        Baroudi Ahmad, 19880715-7758<br>
+        Ronnebygatan 23, lgh 1002<br>
+        374 35 Karlshamn</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIDA 2: §2 till §6 -->
+  <div class="page2">
+    <div>
+      <h2>§2 Hyresobjekt</h2>
+      <p>Överlåtelsen avser hyreskontraktet för lokalen belägen på:<br>
+      Gustavsborgsvägen 20, 374 38 Karlshamn<br>
+      Verksamhet: Bilakuten<br>
+      (samt tillhörande utrymmen enligt ursprungligt lokalhyresavtal)</p>
+
+      <h2>§3 Överlåtelse</h2>
+      <p>Hyresvärden godkänner härmed att nuvarande hyresgäst överlåter hyreskontraktet till ny hyresgäst.<br>
+      Överlåtelsen träder i kraft den 1 Februari 2026.</p>
+
+      <h2>§4 Villkor</h2>
+      <ol>
+        <li>Ny hyresgäst övertar från och med överlåtelsedatumet samtliga rättigheter och skyldigheter enligt det ursprungliga lokalhyresavtalet.</li>
+        <li>Nuvande hyresgäst ansvarar för hyra, driftkostnader och övriga förpliktelser fram till och med den 31 Januari 2026.</li>
+        <li>Eventuell deposition, inventarier eller ersättning mellan parterna regleras genom separat överenskommelse.</li>
+        <li>Lokalen ska överlämnas i avtalat och gott skick vid gällande hyresavtal.</li>
+        <li>Den nya hyresgästen ansvarar för att verksamheten bedrivs i enlighet med lagar, tillstånd och myndighetskrav.</li>
+      </ol>
+
+      <h2>§5 Övrigt</h2>
+      <p>Detta avtal utgör ett tillägg till det ursprungliga lokalhyresavtalet. I övrigt gäller villkoren i detta oförändrat.<br>
+      Avtalet har upprättats i tre (3) likalydande exemplar, varav parterna tagit var sitt.</p>
+
+      <h2>§6</h2>
+      <p>Hyran samt hyrestidens längd och villkor förblir oförändrade i samband med denna överlåtelse. Det innebär att samma hyra och samma hyrestid som gäller enligt det ursprungliga lokalhyresavtalet fortsatter att gälla för den nya hyresgästen.</p>
+    </div>
+  </div>
+
+  <!-- SIDA 3: §7 Underskrift -->
+  <div class="page3">
+    <div>
+      <h2>§7 Underskrift</h2>
+      <p class="mb-3">Ort och datum: Karlshamn 2026/01/29</p>
+
+      <div class="row">
+        <div class="col-6 signature-block">
+          <p><strong>Hyresvärd:</strong><br>
+          Namn: Enver Grajcevci<br>
+          Personnummer: 811112-2852<br>
+          Adress: Gustavsborgsvägen 18, 374 38 Karlshamn<br>
+          Namnteckning: <span class="signature-line"></span></p>
+        </div>
+
+        <div class="col-6 signature-block">
+          <p><strong>Nuvande hyresgäst (överlåtare):</strong><br>
+          Namn: Emilia Mazur<br>
+          Personnummer: 19830930-4551<br>
+          Adress: Jasminvägen 6A, 374 52 Asarum<br>
+          Namnteckning: <span class="signature-line"></span></p>
+        </div>
+
+        <div class="col-6 signature-block">
+          <p><strong>Ny hyresgäst (övertagare):</strong><br>
+          Namn: Jowhar AB<br>
+          Organisationsnummer: 559203-2279<br>
+          Adress: AEK 598F BILLO106 46 Stockholm<br>
+          Namnteckning: <span class="signature-line"></span></p>
+        </div>
+
+        <div class="col-6 signature-block">
+          <p><strong>Borgensman:</strong><br>
+          Namn: Baroudi Ahmad<br>
+          Personnummer: 19880715-7758<br>
+          Adress: Ronnebygatan 23, lgh 1002, 374 35 Karlshamn<br>
+          Namnteckning: <span class="signature-line"></span></p>
+        </div>
+
+        <div class="col-6 signature-block">
+          <p><strong>Vittne</strong><br>
+          Namn: Kamer Gashi<br>
+          <br>
+          Namnteckning: <span class="signature-line"></span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS CDN -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aktiebok - Bil Akuten i Karlshamn AB</title>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #f3f4f6;
+            --border-color: #e5e7eb;
+            --text-color: #1f2937;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 40px 0;
+            color: var(--text-color);
+            font-size: 14px;
+        }
+
+        .doc-container {
+            background-color: white;
+            /* Landscape dimensioner */
+            max-width: 280mm;
+            margin: 0 auto;
+            padding: 20mm;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            min-height: 210mm; /* A4 Landscape height */
+        }
+
+        h1 {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #6b7280;
+            margin-bottom: 40px;
+            font-size: 16px;
+        }
+
+        .company-info {
+            background-color: var(--accent-color);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            border: 1px solid var(--border-color);
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+            gap: 20px;
+        }
+
+        .info-group strong {
+            display: block;
+            color: var(--primary-color);
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        h2 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        th {
+            text-align: left;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px;
+            font-size: 12px;
+            text-transform: uppercase;
+            white-space: nowrap; /* Förhindra radbrytning i rubriker */
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: middle;
+            white-space: nowrap; /* Förhindra radbrytning i celler (datum mm) */
+        }
+
+        /* Låt beskrivande celler bryta rad om det behövs, men inte datum/namn om möjligt */
+        td.wrap-text {
+            white-space: normal;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-active {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-historical {
+            background-color: #e5e7eb;
+            color: #374151;
+        }
+
+        .footer {
+            margin-top: 60px;
+            text-align: center;
+            font-size: 11px;
+            color: #9ca3af;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+
+        .print-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+        }
+
+        @media print {
+            @page {
+                size: landscape; /* Tvinga liggande utskrift */
+                margin: 10mm;
+            }
+            body { background-color: white; padding: 0; }
+            .doc-container {
+                box-shadow: none;
+                margin: 0;
+                width: 100%;
+                max-width: 100%;
+                padding: 0;
+            }
+            .print-btn { display: none; }
+            th { background-color: #eee !important; color: black !important; border-bottom: 2px solid black; }
+        }
+    </style>
+</head>
+<body>
+
+    <button onclick="window.print()" class="btn btn-primary print-btn d-print-none">🖨️ Skriv ut Aktiebok</button>
+
+    <div class="doc-container">
+
+        <h1>Aktiebok</h1>
+        <div class="subtitle">Enligt 5 kap. aktiebolagslagen (2005:551)</div>
+
+        <div class="company-info">
+            <div class="info-group">
+                <strong>Bolagsnamn</strong>
+                Bil Akuten i Karlshamn AB
+            </div>
+            <div class="info-group">
+                <strong>Organisationsnummer</strong>
+                559329-6774
+            </div>
+            <div class="info-group">
+                <strong>Säte</strong>
+                Karlshamn
+            </div>
+            <div class="info-group">
+                <strong>Totalt antal aktier</strong>
+                500 st
+            </div>
+        </div>
+
+        <!-- Nuvarande Ägare -->
+        <h2>Aktuell Ägarförteckning (per 2025-11-30)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 15%;">Aktie nr</th>
+                    <th style="width: 35%;">Aktieägare</th>
+                    <th style="width: 25%;">Personnummer</th>
+                    <th style="width: 25%;">Innehav</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1 - 500</td>
+                    <td><strong>Kurre Nura</strong></td>
+                    <td>880914-9571</td>
+                    <td>100 % (500 aktier)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Historik -->
+        <h2>Transaktionshistorik / Tidigare Ägare</h2>
+        <p class="text-muted small">Nedan redovisas historiken över ägandet där varje ordinarie styrelseledamot har innehaft 100% av aktierna under sin mandatperiod.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Datum</th>
+                    <th>Händelse</th>
+                    <th>Förvärvare (Ny ägare)</th>
+                    <th>Personnummer</th>
+                    <th>Överlåtare (Säljare)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Kurre tar över -->
+                <tr>
+                    <td>2025-11-30</td>
+                    <td><span class="status-badge status-active">Överlåtelse</span></td>
+                    <td><strong>Kurre Nura</strong></td>
+                    <td>880914-9571</td>
+                    <td>Emilia Teresa Mazur</td>
+                </tr>
+
+                <!-- Emilia tar över från Gülsen -->
+                <tr>
+                    <td>2024-08-07</td>
+                    <td><span class="status-badge status-historical">Överlåtelse</span></td>
+                    <td><strong>Emilia Teresa Mazur</strong></td>
+                    <td>19830930-5145</td>
+                    <td>Gülsen Yildirim</td>
+                </tr>
+
+                <!-- Gülsen tar över från Bager -->
+                <tr>
+                    <td>2022-02-03</td>
+                    <td><span class="status-badge status-historical">Överlåtelse</span></td>
+                    <td><strong>Gülsen Yildirim</strong></td>
+                    <td>19830915-0764</td>
+                    <td>Bager Sersap</td>
+                </tr>
+
+                <!-- Bager bildar/startar -->
+                <tr>
+                    <td>2021-08-06</td>
+                    <td><span class="status-badge status-historical">Nybildning</span></td>
+                    <td><strong>Bager Sersap</strong></td>
+                    <td>19691013-4672</td>
+                    <td>-</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="footer">
+            Utskriven från digital aktiebok: <span id="printDate"></span>
+        </div>
+
+    </div>
+
+    <script>
+        // Sätt dagens datum i footern
+        document.getElementById('printDate').textContent = new Date().toISOString().split('T')[0];
+    </script>
+</body>
+</html>

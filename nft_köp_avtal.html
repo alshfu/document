@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Köpeavtal för Digital Konst (NFT)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+
+        .a4-page {
+            width: 210mm;
+            height: 297mm;
+            padding: 12mm 15mm;
+            margin: 10mm auto;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media print {
+            body {
+                background-color: white;
+                margin: 0;
+            }
+            .a4-page {
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+
+        .section-title {
+            border-bottom: 1.5px solid #111827;
+            padding-bottom: 0.2rem;
+            margin-bottom: 0.6rem;
+            margin-top: 1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            color: #111827;
+        }
+
+        .sub-header {
+            font-weight: 700;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            color: #374151;
+            margin-top: 0.4rem;
+            display: block;
+        }
+
+        .small-legal-text {
+            font-size: 9.2px;
+            line-height: 1.3;
+            text-align: justify;
+            color: #4b5563;
+        }
+
+        .normal-text {
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .footer-note {
+            font-size: 8px;
+            color: #9ca3af;
+            text-align: center;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body class="py-4">
+
+    <div class="no-print fixed top-4 right-4 z-50">
+        <button onclick="window.print()" class="bg-blue-900 hover:bg-black text-white font-bold py-2 px-6 rounded shadow-lg transition duration-200 flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5zm6 8H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z"/>
+                <path d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+            </svg>
+            Skriv ut Avtal
+        </button>
+    </div>
+
+    <!-- SIDA 1 -->
+    <div class="a4-page">
+        <div class="flex justify-between items-start mb-8 border-b-4 border-black pb-4">
+            <div>
+                <h1 style="font-family: 'Playfair Display', serif;" class="text-3xl font-bold uppercase tracking-tighter italic">KÖPEAVTAL</h1>
+                <p class="text-xs tracking-widest uppercase font-semibold text-blue-800">Digital Tillgång & Certifierat Samlarobjekt</p>
+            </div>
+            <div class="text-right">
+                <p class="text-[10px] uppercase text-gray-400 font-bold">Referensnummer</p>
+                <p class="font-mono text-sm font-bold text-gray-800">GSW-2026-PF-001</p>
+                <p class="text-[10px] uppercase text-gray-400 font-bold mt-1">Datum</p>
+                <p class="font-semibold text-sm">2026-02-05</p>
+            </div>
+        </div>
+
+        <div class="section-title">1. Kontrahenter (Parter)</div>
+        <div class="grid grid-cols-2 gap-10 mb-8 normal-text">
+            <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-blue-900">
+                <p class="font-bold text-[10px] uppercase text-blue-900 mb-1 tracking-widest">Säljare (Överlåtare)</p>
+                <p class="font-bold text-lg text-gray-900">Golden Summer Week AB</p>
+                <p class="text-gray-600">Org.nr: 559519-3284</p>
+                <p class="text-gray-600">Ormängsgatan 47 A, Lgh 1403</p>
+                <p class="text-gray-600">165 56 Hässelby</p>
+                <p class="pt-2 text-[11px] font-semibold text-gray-700">Representant: Ahmad Baoudi (VD)</p>
+            </div>
+            <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-gray-400">
+                <p class="font-bold text-[10px] uppercase text-gray-500 mb-1 tracking-widest">Köpare (Förvärvare)</p>
+                <p class="font-bold text-lg text-gray-900">Emilia Teresa Mazur</p>
+                <p class="text-gray-600">Personnr: 19830930-5145</p>
+                <p class="text-gray-600">Jasminvägen 6 A, lgh 1003</p>
+                <p class="text-gray-600">374 52 Asarum</p>
+            </div>
+        </div>
+
+        <div class="section-title">2. Definition av Avtalsobjekt</div>
+        <div class="mb-8 normal-text">
+            <p class="mb-4">Överlåtelsen avser en unik kryptografisk pollett (NFT) på den publika blockkedjan, vilken fungerar som ett oförfalskbart digitalt certifikat för innehavet av:</p>
+            <div class="grid grid-cols-3 gap-6 bg-slate-50 p-4 rounded border border-slate-200">
+                <div>
+                    <p class="text-[9px] uppercase text-gray-400 font-bold">Serie</p>
+                    <p class="font-bold text-sm">Golden Summer Vinyl</p>
+                </div>
+                <div>
+                    <p class="text-[9px] uppercase text-gray-400 font-bold">Representation</p>
+                    <p class="font-bold text-sm">Pink Floyd "The Wall"</p>
+                </div>
+                <div>
+                    <p class="text-[9px] uppercase text-gray-400 font-bold">Unicitet</p>
+                    <p class="font-bold text-sm">1/1000 Unik Batch</p>
+                </div>
+            </div>
+            <p class="mt-4 text-xs italic text-gray-500">Objektet förvärvas i befintligt skick ("as is") vad avser dess digitala metadata och länkade innehåll vid tidpunkten för transaktionen.</p>
+        </div>
+
+        <div class="section-title">3. Likvid och Fiskala Bestämmelser</div>
+        <div class="mb-8 normal-text">
+            <div class="flex items-center justify-between p-4 bg-blue-50 rounded border border-blue-100 mb-4">
+                <span class="text-blue-900 uppercase text-xs font-black tracking-widest">Överenskommen Köpeskilling:</span>
+                <div>
+                    <span class="text-2xl font-black text-blue-900">67 500 SEK</span>
+                    <p class="text-[10px] text-right text-blue-700 italic">Varav 25 % moms: 13 500 SEK</p>
+                </div>
+            </div>
+            <p class="text-gray-600 mb-2">Likviden skall erläggas utan avdrag för transaktionsavgifter till <strong>Bankgiro: 5500-7755</strong>. Säljaren förbehåller sig äganderätten till objektet intill dess full likvid registrerats å Säljarens konto.</p>
+        </div>
+
+        <div class="section-title">4. Exekvering av Leverans (Wallet Transfer)</div>
+        <div class="normal-text space-y-4">
+            <div class="p-4 bg-slate-900 rounded-lg">
+                <div class="flex flex-col gap-2">
+                    <span class="text-[9px] text-slate-500 uppercase font-bold tracking-widest">Mottagande Adress (Köparens Destination)</span>
+                    <span class="font-mono text-xs text-blue-400 break-all bg-black p-2 rounded border border-slate-800">0x4fD823948721AecDe7615243c92</span>
+                    <p class="text-[10px] text-slate-400 italic">Viktigt: Köparen bekräftar härmed att ovanstående adress är korrekt och under Köparens exklusiva kontroll.</p>
+                </div>
+            </div>
+            <p class="text-xs text-gray-600 leading-relaxed">Säljarens leveransplikt anses fullgjord vid det ögonblick transaktionen har bekräftats på blockkedjan ("on-chain confirmation"). Säljaren friskriver sig från allt ansvar för felaktigt angivna adresser eller tekniska fel i Köparens infrastruktur.</p>
+        </div>
+
+        <div class="footer-note">
+            Sida 1/2 — Upprättat i digitalt original — GSW-2026-PF-001
+        </div>
+    </div>
+
+    <!-- SIDA 2 -->
+    <div class="a4-page">
+        <div class="flex justify-between items-center mb-4 border-b pb-2">
+            <span class="text-[10px] font-bold uppercase text-gray-400 tracking-widest italic">Allmänna Villkor & Juridisk Bilaga</span>
+            <span class="text-[10px] font-bold uppercase text-gray-400 font-mono">ID: GSW-2026-PF-001 / PG 2</span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-x-6 small-legal-text">
+            <!-- Kolumn 1 -->
+            <div class="space-y-4">
+                <section>
+                    <div class="section-title !mt-0 !mb-1">5. Regulatoriska Ramverk (MiCA & TFR)</div>
+                    <span class="sub-header">5.1 Tillgångsklassificering</span>
+                    <p>Köparen bekräftar att förvärvet sker av en unik tillgång som faller utanför ramen för finansiella instrument. Objektet är inte avsett för fraktionering eller vinstdelning.</p>
+                    <span class="sub-header">5.2 Travel Rule & Identitetskontroll</span>
+                    <p>Säljaren efterlever EU 2023/1113. All data rörande överföringen arkiveras i fem (5) år och tillgängliggörs för tillsynsmyndigheter vid anmodan.</p>
+                    <span class="sub-header">5.3 DAC8 Rapporteringsplikt</span>
+                    <p>Transaktionen är föremål för automatisk informationsutbyte mellan skattemyndigheter inom EU. Säljaren är legalt förhindrad att undanhålla transaktionsdata.</p>
+                    <span class="sub-header">5.4 Administrativ Giltighet</span>
+                    <p>Inga muntliga löften utanför detta skriftliga dokument äger giltighet. Detta utgör den fullständiga regleringen mellan parterna.</p>
+                </section>
+
+                <section>
+                    <div class="section-title !mb-1">6. Immaterialrätt & Nyttjandebegränsning</div>
+                    <span class="sub-header">6.1 Distinktion mellan Token och Upphovsrätt</span>
+                    <p>Äganderätten till NFT:n innebär ej äganderätt till Pink Floyds varumärken eller originalverk. Köparen erhåller endast en digital besittningsrätt till certifikatet.</p>
+                    <span class="sub-header">6.2 Licentia Utendi (Nyttjanderätt)</span>
+                    <p>Köparen ges en evig, icke-exklusiv rätt att visa verket privat. All kommersiell användning är strängeligen förbjuden.</p>
+                    <span class="sub-header">6.3 Caveat Emptor</span>
+                    <p>Köparen är medveten om att rättigheter till vinylomslag ofta innehas av tredje part. Säljaren garanterar endast rätten att sälja den digitala avbildningen som samlarobjekt.</p>
+                </section>
+
+                <section>
+                    <div class="section-title !mb-1">7. AML & Due Diligence-protokoll</div>
+                    <span class="sub-header">7.1 Ursprungskontroll</span>
+                    <p>Köparen garanterar att medlen härrör från legala källor. Säljaren förbehåller sig rätten att annullera transaktionen vid misstanke om penningtvätt.</p>
+                    <span class="sub-header">7.2 PEP-verifiering</span>
+                    <p>Köparen intygar att denne inte är en person i politiskt utsatt ställning (PEP) eller omfattas av internationella sanktionslistor.</p>
+                </section>
+            </div>
+
+            <!-- Kolumn 2 -->
+            <div class="space-y-4">
+                <section>
+                    <div class="section-title !mt-0 !mb-1">8. Ångerrättens Preklusion</div>
+                    <span class="sub-header">8.1 Samtycke till Omedelbar Prestation</span>
+                    <p>Genom signering begär Köparen uttryckligen att leveransprocessen påbörjas omedelbart. Köparen erkänner att detta medför att ångerrätten förloras.</p>
+                    <span class="sub-header">8.2 Distansavtalslagens Undantag</span>
+                    <p>I enlighet med 2 kap. 11 § 11 p. DAL (2005:59) upphör ångerrätten när leverans av digitalt innehåll påbörjats med konsumentens samtycke.</p>
+                </section>
+
+                <section>
+                    <div class="section-title !mb-1">9. Riskexponering & Tekniska Friskrivningar</div>
+                    <span class="sub-header">9.1 Marknadsmässig Volatilitet</span>
+                    <p>Värdet på NFT-objekt är spekulativt. Säljaren lämnar inga garantier rörande framtida marknadsvärde.</p>
+                    <span class="sub-header">9.2 Kryptografisk Irreversibilitet</span>
+                    <p>En transaktion på blockkedjan är tekniskt oåterkallelig. Felaktig adressering innebär permanent förlust för Köparen.</p>
+                    <span class="sub-header">9.3 Privat Nyckel (Private Key)</span>
+                    <p>Innehavaren bär det exklusiva ansvaret för sin privata nyckel. Säljaren kan aldrig återställa en förlorad tillgång.</p>
+                </section>
+
+                <section>
+                    <div class="section-title !mb-1">10. Jurisdiktion & Tvistlösning</div>
+                    <span class="sub-header">10.1 Lagval</span>
+                    <p>Detta avtal skall tillämpas i enlighet med svensk materiell rätt. Tvister avgörs av allmän domstol med Stockholms tingsrätt som första instans.</p>
+                    <span class="sub-header">10.2 Force Majeure</span>
+                    <p>Säljaren är befriad från påföljd vid omständighet utanför Säljarens kontroll, såsom nätverksavbrott eller myndighetsåtgärd.</p>
+                </section>
+            </div>
+        </div>
+
+        <!-- BINDANDE SIGNERING VIA BANKID (FLYTTAD TILL BOTTEN) -->
+        <div class="mt-auto pt-4 border-t-2 border-black">
+            <p class="text-[10px] uppercase font-bold text-center mb-8 tracking-[0.2em] text-blue-900">Bindande signering via BankID</p>
+
+            <div class="grid grid-cols-2 gap-16 mb-4">
+                <div class="text-center">
+                    <div class="border-b border-gray-300 mb-2 h-10 flex items-end justify-center">
+                        <span class="text-[8px] text-gray-300 italic uppercase tracking-tighter">Verifieras digitalt</span>
+                    </div>
+                    <p class="text-[11px] font-bold uppercase tracking-tight text-gray-900">Ahmad Baoudi</p>
+                    <p class="text-[8px] text-gray-400 uppercase">För Golden Summer Week AB</p>
+                </div>
+                <div class="text-center">
+                    <div class="border-b border-gray-300 mb-2 h-10 flex items-end justify-center">
+                        <span class="text-[8px] text-gray-300 italic uppercase tracking-tighter">Verifieras digitalt</span>
+                    </div>
+                    <p class="text-[11px] font-bold uppercase tracking-tight text-gray-900">Emilia Teresa Mazur</p>
+                    <p class="text-[8px] text-gray-400 uppercase">Köpare</p>
+                </div>
+            </div>
+
+            <div class="footer-note italic mt-4 border-t border-gray-50 pt-2">
+                Genom den kommande BankID-verifieringen bekräftar parterna att de läst, förstått och accepterat samtliga villkor i detta avtal.
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

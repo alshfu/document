@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faktura 2025-001-A - Detaljerad</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="no-print">
+        <button onclick="window.print()" class="btn">🖨️ Skriv ut / Spara som PDF</button>
+    </div>
+
+    <div class="container">
+        <div class="content-wrapper invoice-print-padding">
+            <!-- Header -->
+            <div class="header">
+                <div>
+                    <div class="company-name">Bil Akuten i Karlshamn AB</div>
+                    <div style="margin-top: 5px; color: var(--subtle-text-color);">Org.nr: 559329-6774</div>
+                </div>
+                <div class="invoice-details-box">
+                    <div class="invoice-title">FAKTURA</div>
+                    <div class="invoice-meta"><strong>Fakturanummer:</strong> 2025-001-A</div>
+                    <div class="invoice-meta"><strong>Fakturadatum:</strong> 2025-11-27</div>
+                    <div class="invoice-meta"><strong>Leveransdatum:</strong> 2025-11-27</div>
+                    <div class="invoice-meta"><strong>Bilaga:</strong> 3</div>
+                </div>
+            </div>
+
+            <!-- Adresser -->
+            <div class="addresses">
+                <div class="address-box">
+                    <div class="address-label">Säljare</div>
+                    <div class="address-content">
+                        Emilia Teresa Mazur<br>
+                        Bil Akuten i Karlshamn AB<br>
+                        Gustavsborgsvägen 20<br>
+                        374 38 Karlshamn
+                    </div>
+                </div>
+                <div class="address-box">
+                    <div class="address-label">Fakturamottagare</div>
+                    <div class="address-content">
+                        Ahmad Baroudi<br>
+                        <strong>Jowhar AB</strong><br>
+                        Gustavsborgsvägen 20<br>
+                        374 38 Karlshamn
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabell -->
+            <table class="items-table">
+                <thead>
+                    <tr>
+                        <th style="width: 55%;">Beskrivning</th>
+                        <th style="width: 15%;">Kategori</th>
+                        <th style="width: 10%;" class="text-end">Moms</th>
+                        <th style="width: 20%;" class="text-end">Belopp (SEK)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="item-title">Tvåpelarlyft Twin Busch</span></td>
+                        <td>Verkstad</td>
+                        <td class="text-end">25%</td>
+                        <td class="text-end">99 000,00</td>
+                    </tr>
+                    <tr>
+                        <td><span class="item-title">Tvåpelarlyft BASIC Line (4000KG)</span></td>
+                        <td>Verkstad</td>
+                        <td class="text-end">25%</td>
+                        <td class="text-end">80 000,00</td>
+                    </tr>
+                    <tr>
+                        <td><span class="item-title">Svetsutrustning KEMPO Weld / KEMPPI</span></td>
+                        <td>Verkstad</td>
+                        <td class="text-end">25%</td>
+                        <td class="text-end">30 000,00</td>
+                    </tr>
+                    <tr>
+                        <td><span class="item-title">Motorlyft (Hopfällbar modell)</span></td>
+                        <td>Verkstad</td>
+                        <td class="text-end">25%</td>
+                        <td class="text-end">4 000,00</td>
+                    </tr>
+                    <tr>
+                        <td><span class="item-title">Domkraft (Pallbock, hydraulisk)</span></td>
+                        <td>Verkstad</td>
+                        <td class="text-end">25%</td>
+                        <td class="text-end">2 400,00</td>
+                    </tr>
+                    <tr>
+                        <td><span class="item-title">Däckmonteringsmaskin FULDA / BUDDY 40</span></td>
+                        <td>Däckservice</td>
+                        <td class="text-end">25%</td>
+                        <td class="text-end">35 000,00</td>
+                    </tr>
+                    <tr>
+                        <td><span class="item-title">Hjulbalanseringsmaskin Profiline / Butler</span></td>
+                        <td>Däckservice</td>
+                        <td class="text-end">25%</td>
+                        <td class="text-end">25 000,00</td>
+                    </tr>
+                    <tr>
+                        <td><span class="item-title">Verktygsvagn/Skåp (Blå/Svart utförande)</span></td>
+                        <td>Inventarier</td>
+                        <td class="text-end">25%</td>
+                        <td class="text-end">4 000,00</td>
+                    </tr>
+                    <tr>
+                        <td><span class="item-title">Diverse handverktyg/Verktygstavla (parti)</span></td>
+                        <td>Inventarier</td>
+                        <td class="text-end">25%</td>
+                        <td class="text-end">10 000,00</td>
+                    </tr>
+                    <tr>
+                        <td><span class="item-title">Industridammsugare</span></td>
+                        <td>Inventarier</td>
+                        <td class="text-end">25%</td>
+                        <td class="text-end">3 000,00</td>
+                    </tr>
+                    <tr>
+                        <td><span class="item-title">Nya reservdelar/Filter (Bosch, Champion m.fl.)</span></td>
+                        <td>Lager (Bulk)</td>
+                        <td class="text-end">25%</td>
+                        <td class="text-end">50 000,00</td>
+                    </tr>
+                    <tr>
+                        <td><span class="item-title">Parti begagnade däck (sorterat)</span></td>
+                        <td>Lager (Bulk)</td>
+                        <td class="text-end">25%</td>
+                        <td class="text-end">80 000,00</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Totaler -->
+            <div class="totals-section">
+                <div class="totals-box">
+                    <div class="total-row">
+                        <span>Summa (Exkl. moms)</span>
+                        <span>422 400,00 kr</span>
+                    </div>
+                    <div class="total-row">
+                        <span>Moms (25%)</span>
+                        <span>105 600,00 kr</span>
+                    </div>
+                    <div class="total-row final">
+                        <span>ATT BETALA</span>
+                        <span>528 000,00 kr</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Betalningsinfo -->
+            <div class="payment-info">
+                <strong>Betalningsvillkor: Avbetalningsplan (6 mån)</strong><br>
+                Denna faktura regleras genom månatliga delbetalningar enligt överlåtelseavtal daterat 2025-11-27.
+                Hela momsbeloppet är avdragsgillt i samband med fakturadatum.
+            </div>
+        </div>
+        <!-- Footer -->
+        <div class="footer invoice-print-padding">
+            <div class="footer-col">
+                <strong>Adress</strong>
+                Bil Akuten i Karlshamn AB<br>
+                Gustavsborgsvägen 20<br>
+                374 38 Karlshamn
+            </div>
+            <div class="footer-col">
+                <strong>Företagsuppgifter</strong>
+                Org.nr: 559329-6774<br>
+                Godkänd för F-skatt<br>
+                Säte: Karlshamn
+            </div>
+            <div class="footer-col">
+                <strong>Betalning</strong>
+                Bankgiro: 5714-5005<br>
+                Mottagare: Bil Akuten AB
+            </div>
+            <div class="footer-col">
+                <strong>Referens</strong>
+                Överlåtelseavtal<br>
+                Bilaga 3
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

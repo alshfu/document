@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aktieöverlåtelseavtal och Protokoll för Extra Bolagsstämma</title>
+  <!-- Bootstrap CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <style>
+    /* Typsnitt som liknar skrivmaskin */
+    body {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 11pt;
+      line-height: 1.5;
+      color: #000;
+      background-color: #f5f5f5;
+    }
+    .container {
+      max-width: 210mm;
+      margin: 20px auto;
+      padding: 25mm 25mm 40mm 25mm; /* Extra padding i botten för sidfoten */
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border: 1px solid #ddd;
+      position: relative;
+      min-height: 297mm; /* Minst en A4 höjd */
+    }
+    h1, h2, h3 {
+      font-weight: bold;
+      margin-bottom: 0.8em;
+      text-transform: uppercase;
+    }
+    h1 { font-size: 16pt; text-align: center; border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 20px; }
+    h2 { font-size: 13pt; border-bottom: 1px solid #000; padding-bottom: 5px; margin-top: 20px; }
+    h3 { font-size: 11pt; margin-top: 15px; font-style: italic; }
+
+    p, li {
+      text-align: justify;
+      margin-bottom: 10px;
+    }
+
+    /* Sidfot för varje sida */
+    .page-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #fff;
+      border-top: 1px solid #000;
+      padding: 10px 20mm;
+      font-size: 9pt;
+      z-index: 1000;
+    }
+
+    /* Signaturer */
+    .signature-block {
+      margin-top: 30px;
+      margin-bottom: 20px;
+    }
+    .signature-line {
+      border-top: 1px solid #000;
+      margin-top: 40px;
+      padding-top: 5px;
+      display: block;
+      width: 90%;
+    }
+
+    .page-break {
+      page-break-before: always;
+      height: 1px;
+      display: block;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      border-bottom: 1px dashed #ccc; /* Visuell brytning på skärm */
+    }
+
+    /* Håll ihop innehåll vid utskrift */
+    .keep-together {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    /* Utskriftsstilar */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 20mm 20mm 30mm 20mm; /* Stor bottenmarginal för att ge plats åt fixed footer */
+      }
+      body {
+        background-color: #fff;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+        border: none;
+        min-height: auto;
+      }
+      .page-break {
+        border: none;
+        margin: 0;
+      }
+      /* Sidfoten ska visas på varje sida */
+      .page-footer {
+        position: fixed;
+        bottom: 0;
+      }
+      /* Dölj element som inte ska skrivas ut */
+      .no-print { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Sidfot som upprepas på varje sida -->
+<div class="page-footer">
+  <div class="row">
+    <div class="col-6">
+      Säljare (Sign): ______________
+    </div>
+    <div class="col-6">
+      Köpare (Sign): ______________
+    </div>
+  </div>
+  <div class="text-center mt-1" style="font-size: 8pt;">
+    Sida <span class="page-number"></span>
+  </div>
+</div>
+
+<div class="container">
+  <!-- SIDA 1 -->
+  <h1>Aktieöverlåtelseavtal</h1>
+  <p>Detta aktieöverlåtelseavtal (”Avtalet”) har detta datum ingåtts mellan:</p>
+
+  <div class="row mb-3">
+    <div class="col-12">
+      <ol>
+        <li><strong>SÄLJAREN</strong><br>
+          Namn: <strong>Emilia Teresa Mazur</strong><br>
+          Personnr: <strong>19830930-5145</strong><br>
+          Adress: <strong>Jasminvägen 6 A lgh 1003, 374 52 Asarum</strong>
+        </li>
+        <li class="mt-2"><strong>KÖPAREN</strong><br>
+          Namn: <strong>Abdulhadi Manla</strong><br>
+          Personnr: <strong>20070203-5353</strong><br>
+          Adress: <strong>Hantverkaregatan 17 B lgh 1001, 374 34 Karlshamn</strong>
+        </li>
+      </ol>
+    </div>
+  </div>
+  <p>(nedan kallad ”Säljaren”)</p>
+  <p>(nedan kallad ”Köparen”)</p>
+  <p>(Säljaren och Köparen benämns gemensamt ”Parterna”)</p>
+
+  <div class="page-break"></div>
+
+  <!-- SIDA 2 -->
+  <h2>1. BAKGRUND</h2>
+  <p>Säljaren äger samtliga aktier (”Aktierna”) i <strong>Halo Trades AB</strong>, org.nr <strong>559515-9590</strong> (”Bolaget”). Säljaren önskar överlåta och Köparen önskar förvärva Aktierna på de villkor som framgår av detta Avtal. Aktierna uppgår till totalt 500 aktier motsvarande Bolagets aktiekapital på 25 000 SEK.</p>
+
+  <h2>2. ÖVERLÅTELSE</h2>
+  <p>Säljaren överlåter och säljer härmed Aktierna till Köparen, och Köparen förvärvar Aktierna av Säljaren med tillträde på Tillträdesdagen (se punkt 4).</p>
+  <h2>3. KÖPESKILLING</h2>
+  <p>3.1 Köpeskillingen för Aktierna uppgår till 15 000 kr (”Köpeskillingen”).</p>
+  <p>3.2 Köpeskillingen ska erläggas via banköverföring på Tillträdesdagen enligt Säljarens anvisningar.</p>
+
+  <!-- SIDA 3 -->
+
+  <h2>4. TILLTRÄDE OCH SÄRSKILDA ÅTAGANDEN</h2>
+  <p>4.1 Tillträde till Aktierna sker den <strong>2026-02-10</strong> (”Tillträdesdagen”).</p>
+  <p>4.2 På Tillträdesdagen ska:</p>
+  <ul>
+    <li>(a) Köparen överföra Köpeskillingen till Säljaren.</li>
+    <li>(b) Säljaren överlämna aktiebrev (om sådana finns utfärdade) samt en uppdaterad aktiebok där Köparen införts som ägare.</li>
+    <li>(c) Säljaren överlämna SIE-fil innehållande Bolagets fullständiga bokföringsdata fram till Tillträdesdagen.</li>
+    <li>(d) En extra bolagsstämma hållas i syfte att (1) besluta om styrelseändring (entledigande av nuvarande ledamot och suppleant, nyval av ny ledamot Abdulhadi Manla och suppleant Svetlana Ljahova), samt (2) besluta om eventuell ändring av bolagsordningen avseende Bolagets firma och verksamhetsföremål (om tillämpligt).</li>
+  </ul>
+
+  <!-- SIDA 4 -->
+  <h3>4.3 Bankförbindelser och ansvarsfriskrivning</h3>
+  <p>Säljaren medger härmed Köparen dispositionsrätt till Bolagets bankkonton per Tillträdesdagen. Köparen är införstådd med att bankens fortsatta tjänster är villkorade av bankens KYC-prövning. Säljaren friskriver sig från ansvar om banken nekar Köparen eller Bolaget fortsatt kundstatus. Risken för detta åvilar efter Tillträdesdagen uteslutande Köparen.</p>
+
+  <h3>4.4 Förfarande vid överlämnande av bankbehörighet och registrering</h3>
+  <p>Säljaren åtar sig att genomföra följande i strikt ordning:</p>
+  <ol>
+    <li><strong>Tilldelning av bankbehörighet:</strong> Säljaren ska se till att Köparen erhåller administratörsbehörighet och dispositionsrätt.</li>
+    <li><strong>Registrering hos Bolagsverket:</strong> Efter full access till banken ska Köparen anmäla styrelseändring till Bolagsverket.</li>
+    <li><strong>Utträde ur banktjänst:</strong> Först när styrelseändringen är registrerad ska Säljaren meddela banken om sin avgång och avsäga sig sin behörighet.</li>
+  </ol>
+  <p><strong>Begränsning av nyttjanderätt:</strong> Köparen äger inte rätt att genomföra transaktioner förrän Säljaren har fullgjort punkt 3 ovan (kontaktat banken om ägarändringen).</p>
+
+  <h3>4.5 Ansvarsfördelning</h3>
+  <p>Säljaren ansvarar för Bolagets förhållanden fram till och med tillträdesdagen. Från och med tillträdesdagen övertar Köparen fullt ansvar för Bolaget och dess verksamhet.</p>
+
+  <div class="page-break"></div>
+
+  <!-- SIDA 5 -->
+  <h2>5. SÄLJARENS GARANTIER (BEGRÄNSADE)</h2>
+  <p>Säljaren garanterar att denne är rättmätig ägare till Aktierna, att de inte är pantsatta, att Bolaget är giltigt bildat samt att inga kända väsentliga tvister pågår.</p>
+
+  <h2>6. KÖPARENS UNDERSÖKNINGSPLIKT (DUE DILIGENCE)</h2>
+  <p>6.1 Köparen bekräftar att denne genomfört en undersökning av Bolaget och godtar dess skick.</p>
+  <p>6.2 Köparen vitsordar att denne har emottagit och godkänt samtliga räkenskapshandlingar fram till och med den _______________.</p>
+
+  <!-- SIDA 6 -->
+  <h2>7. ANSVARSBEGRÄNSNINGAR</h2>
+  <p>7.1 Krav på grund av garantibrott måste reklameras skriftligen senast 5 dagar från Tillträdesdagen.</p>
+  <p>7.2 Säljaren ansvarar inte för indirekta skador eller utebliven vinst.</p>
+
+  <h2>8. ÖVRIGA BESTÄMMELSER</h2>
+  <p>8.1 Detta Avtal utgör Parternas fullständiga överenskommelse och ersätter samtliga tidigare avtal rörande överlåtelsen av Aktierna.</p>
+  <p>8.2 Ändringar ska vara skriftliga och undertecknade av alla Parter.</p>
+  <p>8.3 Parterna förbinder sig till sekretess avseende Avtalets innehåll.</p>
+
+  <!-- SIDA 7 -->
+  <h2>9. TILLÄMPLIG LAG OCH TVIST</h2>
+  <p>9.1 Svensk lag ska tillämpas.</p>
+  <p>9.2 Tvist ska slutligt avgöras genom skiljedom enligt Stockholms Handelskammares regler för förenklat skiljeförfarande i <strong>Stockholm</strong>.</p>
+
+  <div class="keep-together">
+    <p class="mt-4">Detta Avtal har upprättats i två (2) likalydande exemplar, varav Parterna tagit var sitt.</p>
+
+    <div class="row signature-block">
+      <div class="col-6">
+        <strong>Säljaren:</strong>
+        <span class="signature-line">Emilia Teresa Mazur</span>
+      </div>
+      <div class="col-6">
+        <strong>Köparen:</strong>
+        <span class="signature-line">Abdulhadi Manla</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <h1>Protokoll fört vid Extra Bolagsstämma i Halo Trades AB (org.nr 559515-9590)</h1>
+  <p><strong>Datum:</strong> 2026-02-10</p>
+  <p><strong>Plats:</strong> ALEKÄRR 164, 442 91 Romelanda (eller via digitalt möte)</p>
+  <p><strong>Närvarande aktieägare:</strong> Emilia Teresa Mazur (500 aktier), Abdulhadi Manla (efter överlåtelse)</p>
+  <p><strong>Övriga närvarande:</strong> [Eventuella rådgivare eller vittnen]</p>
+
+  <ol>
+    <li><strong>Stämmans öppnande</strong><br> Stämman öppnades av styrelsens ordförande [Emilia Teresa Mazur].</li>
+    <li><strong>Val av ordförande och protokollförare</strong><br> [Emilia Teresa Mazur] valdes till ordförande vid stämman. Ordföranden utsåg [namn] till protokollförare.</li>
+  </ol>
+
+  <!-- SIDA 9 -->
+  <ol start="3">
+    <li><strong>Beslut om ändring av bolagsordning (firma och verksamhetsföremål)</strong><br> Stämman beslöt enhälligt att [specificera ändring, t.ex. ändra firma till ny firma och verksamhetsföremål till ny beskrivning]. Ändringen ska anmälas till Bolagsverket. (Om ingen ändring: Denna punkt utgår.)</li>
+    <li><strong>Beslut om styrelseändring</strong><br> Stämman beslöt enhälligt att:
+      <ul>
+        <li>Entlediga Emilia Teresa Mazur (personnr 19830930-5145) som ledamot.</li>
+        <li>Entlediga nuvarande suppleant (om tillämpligt).</li>
+        <li>Välja Abdulhadi Manla (personnr 20070203-5353, adress Hantverkaregatan 17 B lgh 1001, 374 34 Karlshamn) till ny ledamot.</li>
+        <li>Välja Svetlana Ljahova (personnr 19830425-0585, adress REGERINGSGATAN 15 LGH 1101, 374 34 KARLSHAM) till ny suppleant.</li>
+      </ul>
+      Ändringarna ska anmälas till Bolagsverket.
+    </li>
+    <li><strong>Stämmans avslutande</strong><br> Ordföranden konstaterade att inga övriga ärenden förelåg och förklarade stämman avslutad.</li>
+  </ol>
+
+  <div class="keep-together">
+    <p class="mt-4"><strong>Ort och datum som ovan</strong></p>
+
+    <div class="row signature-block">
+      <div class="col-6">
+        <strong>Ordförande:</strong>
+        <span class="signature-line">[Emilia Teresa Mazur]</span>
+      </div>
+      <div class="col-6">
+        <strong>Protokollförare:</strong>
+        <span class="signature-line">[Namn]</span>
+      </div>
+    </div>
+
+    <div class="row signature-block">
+      <div class="col-6">
+        <strong>Justeras:</strong>
+        <span class="signature-line">[Emilia Teresa Mazur]</span>
+      </div>
+      <div class="col-6">
+        <br>
+        <span class="signature-line">[Abdulhadi Manla]</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS CDN -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

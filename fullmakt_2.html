@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power of Attorney Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media print {
+            @page {
+                size: A4;
+                margin: 1.5cm;
+            }
+
+            body {
+                background-color: white;
+                -webkit-print-color-adjust: exact;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            .page-break {
+                page-break-before: always;
+                break-before: page;
+            }
+
+            .print-page {
+                height: 100vh; /* Force full height per page */
+                display: flex;
+                flex-direction: column;
+                /* justify-content: space-between; */
+                page-break-after: always; /* Ensure break after each page container */
+                break-inside: avoid; /* Prevent breaking inside the page container */
+                position: relative;
+            }
+
+            .print-page:last-child {
+                page-break-after: auto;
+            }
+
+            /* Ensure images and signature blocks don't break */
+            .signature-block, .stamp-block {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            .page-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                z-index: 50;
+                /* Keep stamps inside the printable A4 area */
+                padding: 1.5rem 2rem 3rem 2rem;
+                pointer-events: none;
+                overflow: hidden;
+            }
+        }
+
+        /* Screen preview styles */
+        .print-page {
+            min-height: 29.7cm; /* A4 height approximation for screen */
+            background: white;
+            margin-bottom: 2rem;
+            padding: 2.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-radius: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            /* justify-content: space-between; */
+            position: relative;
+        }
+
+        .page-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            z-index: 50;
+            pointer-events: none;
+            padding: 2.5rem;
+        }
+
+        @media print {
+            .print-page {
+                min-height: 0; /* Reset for print */
+                margin-bottom: 0;
+                padding: 0;
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+
+        /* Stamp must always stay inside its cell, even when rotated/shifted */
+        .stamp {
+            max-width: 70%;
+            max-height: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-8 font-sans print:bg-white print:p-0">
+
+<!-- PAGE 1: ENGLISH -->
+<div class="max-w-3xl mx-auto print-page print:w-full print:max-w-none">
+    <div class="relative z-10">
+        <h1 class="text-2xl font-bold text-center mb-6 uppercase tracking-wide">Power of Attorney</h1>
+
+        <p class="text-sm leading-relaxed mb-4 text-justify">
+            I, the undersigned <strong>Magomed Tovsultanov</strong>, personal identity number
+            <strong>20060916-9537</strong>, holder of Swedish passport number <strong>AA5913142</strong>
+            (issued on August 6, 2024, valid until August 6, 2029), acting as CEO for
+            <strong>TMR Bygg &amp; Renovering AB</strong> (Org. No: 559017-1137), hereby give my consent and
+            authorize the following person to manage the specified vehicle:
+        </p>
+
+        <div class="mb-4 border border-gray-200 p-3 rounded print:border-none print:p-0">
+            <h2 class="font-bold text-base mb-2 border-b border-gray-300 pb-1">Vehicle Details</h2>
+            <ul class="space-y-1 text-sm">
+                <li class="flex"><span class="font-semibold w-90">Make:</span> <span>Mercedes-Benz</span></li>
+                <li class="flex"><span class="font-semibold w-90">Model:</span>
+                    <span>GLE 450 EQ Boost 4-matic, 367 hp</span></li>
+                <li class="flex"><span class="font-semibold w-90">Year / Model Year:</span> <span>2020 / 2020</span>
+                </li>
+                <li class="flex"><span class="font-semibold w-90">Registration Number:</span> <span>SNK97A</span></li>
+                <li class="flex"><span class="font-semibold w-90">Chassis Number / VIN:</span>
+                    <span>WDC1671591A038110</span></li>
+            </ul>
+        </div>
+
+        <p class="text-sm leading-relaxed mb-4">
+            to the person listed below:
+        </p>
+
+        <div class="mb-4 border border-gray-200 p-3 rounded print:border-none print:p-0">
+            <h2 class="font-bold text-base mb-2 border-b border-gray-300 pb-1">Authorized Person</h2>
+            <ul class="space-y-1 text-sm">
+                <li class="flex"><span class="font-semibold w-90">Name:</span> <span>TOVSULTANOV RAKHMAN</span></li>
+                <li class="flex"><span class="font-semibold w-90">Date of Birth:</span> <span>April 17, 1983</span></li>
+                <li class="flex"><span class="font-semibold w-90">Personal Identity Number:</span>
+                    <span>19830417-2573</span></li>
+                <li class="flex"><span class="font-semibold w-90">Sex:</span> <span>Male</span></li>
+                <li class="flex"><span class="font-semibold w-90">Nationality:</span> <span>Russian Federation</span>
+                </li>
+                <li class="flex"><span class="font-semibold w-90">Passport Number:</span> <span>55 1079127</span></li>
+                <li class="flex"><span class="font-semibold w-90">Code of issuing State:</span> <span>RUS</span></li>
+                <li class="flex"><span class="font-semibold w-90">Place of Birth:</span>
+                    <span>CHECHENO-INGUSHETIA / USSR</span></li>
+                <li class="flex"><span class="font-semibold w-90">Address:</span>
+                    <span>Holländareplan 11 lgh 0901, 374 34 Karlshamn</span></li>
+            </ul>
+        </div>
+
+        <div class="mb-4 text-sm">
+            <h2 class="font-bold text-base mb-1">Owner's Address:</h2>
+            <p>
+                TMR Bygg &amp; Renovering AB<br>
+                EKBACKEN 3 A<br>
+                374 50 Asarum
+            </p>
+        </div>
+
+        <p class="text-sm leading-relaxed mb-6 text-justify">
+            This power of attorney is valid from <strong>July 30, 2025</strong>, to <strong>July 30, 2028</strong>,
+            and grants the authorized person the right to perform all actions related to the use, management, and
+            maintenance of the specified vehicle, including representing my interests before government authorities,
+            insurance companies, and service stations during the specified period. The authorized person is also granted
+            the right to drive the vehicle abroad, both within and outside the European Union.
+        </p>
+
+        <div class="grid grid-cols-2 gap-12 mb-8 signature-block">
+            <div>
+                <div class="border-b border-black w-full mb-1 h-8"></div>
+                <p class="text-xs font-semibold text-right">Signature (Owner)</p>
+            </div>
+            <div>
+                <div class="border-b border-black w-full mb-1 h-8"></div>
+                <p class="text-xs font-semibold text-right">Signature (Authorized Person)</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-overlay">
+        <div class="grid grid-cols-2 gap-12 stamp-block">
+            <div class="flex justify-center items-center h-32">
+                <img src="img/stamp_1.png" alt="Stamp 1" class="stamp h-28 object-contain">
+            </div>
+            <div class="flex justify-center items-center h-32">
+                <img src="img/stamp_2.png" alt="Stamp 2" class="stamp h-28 object-contain">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 2: RUSSIAN -->
+<div class="max-w-3xl mx-auto print-page page-break print:w-full print:max-w-none">
+    <div class="relative z-10">
+        <h1 class="text-2xl font-bold text-center mb-6 uppercase tracking-wide">ДОВЕРЕННОСТЬ</h1>
+
+        <p class="text-sm leading-relaxed mb-4 text-justify">
+            Я, нижеподписавшийся <strong>Магомед Товсултанов (Magomed Tovsultanov)</strong>, персональный номер
+            <strong>20060916-9537</strong>, владелец шведского паспорта номер <strong>AA5913142</strong>
+            (выдан 6 августа 2024 года, действителен до 6 августа 2029 года), действующий как
+            генеральный директор <strong>TMR Bygg &amp; Renovering AB</strong> (Рег. номер: 559017-1137),
+            настоящим даю свое согласие и уполномочиваю следующее лицо управлять указанным транспортным средством:
+        </p>
+
+        <div class="mb-4 border border-gray-200 p-3 rounded print:border-none print:p-0">
+            <h2 class="font-bold text-base mb-2 border-b border-gray-300 pb-1">Данные транспортного средства</h2>
+            <ul class="space-y-1 text-sm">
+                <li class="flex"><span class="font-semibold w-90">Марка:</span> <span>Mercedes-Benz</span></li>
+                <li class="flex"><span class="font-semibold w-90">Модель:</span>
+                    <span>GLE 450 EQ Boost 4-matic, 367 л.с.</span></li>
+                <li class="flex"><span class="font-semibold w-90">Год выпуска:</span> <span>2020 / 2020</span></li>
+                <li class="flex"><span class="font-semibold w-90">Регистрационный номер:</span> <span>SNK97A</span></li>
+                <li class="flex"><span class="font-semibold w-90">VIN:</span> <span>WDC1671591A038110</span></li>
+            </ul>
+        </div>
+
+        <p class="text-sm leading-relaxed mb-4">
+            следующему лицу:
+        </p>
+
+        <div class="mb-4 border border-gray-200 p-3 rounded print:border-none print:p-0">
+            <h2 class="font-bold text-base mb-2 border-b border-gray-300 pb-1">Уполномоченное лицо</h2>
+            <ul class="space-y-1 text-sm">
+                <li class="flex"><span class="font-semibold w-90">ФИО:</span>
+                    <span>ТОВСУЛТАНОВ РАХМАН ВИСАМУДИНОВИЧ (TOVSULTANOV RAKHMAN)</span></li>
+                <li class="flex"><span class="font-semibold w-90">Дата рождения:</span> <span>17.04.1983</span></li>
+                <li class="flex"><span class="font-semibold w-90">Персональный номер:</span>
+                    <span>19830417-2573</span></li>
+                <li class="flex"><span class="font-semibold w-90">Пол:</span> <span>Мужской / Male</span></li>
+                <li class="flex"><span class="font-semibold w-90">Гражданство:</span>
+                    <span>Российская Федерация / Russian Federation</span></li>
+                <li class="flex"><span class="font-semibold w-90">Номер паспорта:</span> <span>55 1079127</span></li>
+                <li class="flex"><span class="font-semibold w-90">Код государства:</span> <span>RUS</span></li>
+                <li class="flex"><span class="font-semibold w-90">Место рождения:</span>
+                    <span>ЧЕЧЕНО-ИНГУШЕТИЯ / USSR</span></li>
+                <li class="flex"><span class="font-semibold w-90">Адрес:</span>
+                    <span>Holländareplan 11 lgh 0901, 374 34 Karlshamn</span></li>
+            </ul>
+        </div>
+
+        <div class="mb-4 text-sm">
+            <h2 class="font-bold text-base mb-1">Адрес владельца:</h2>
+            <p>
+                TMR Bygg &amp; Renovering AB<br>
+                EKBACKEN 3 A<br>
+                374 50 Asarum
+            </p>
+        </div>
+
+        <p class="text-sm leading-relaxed mb-6 text-justify">
+            Настоящая доверенность действительна с <strong>30 июля 2025 года</strong> по <strong>30 июля 2028
+            года</strong> и предоставляет уполномоченному лицу право совершать все действия, связанные с использованием,
+            управлением и обслуживанием указанного транспортного средства, включая представление моих интересов в
+            государственных органах, страховых компаниях и на станциях технического обслуживания в течение указанного
+            периода. Уполномоченному лицу также предоставляется право выезжать на транспортном средстве за границу, как
+            в пределах, так и за пределами Европейского Союза.
+        </p>
+
+        <div class="grid grid-cols-2 gap-12 mb-8 signature-block">
+            <div>
+                <div class="border-b border-black w-full mb-1 h-8"></div>
+                <p class="text-xs font-semibold text-right">Подпись (Владелец)</p>
+            </div>
+            <div>
+                <div class="border-b border-black w-full mb-1 h-8"></div>
+                <p class="text-xs font-semibold text-right">Подпись (Уполномоченное лицо)</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-overlay">
+        <div class="grid grid-cols-2 gap-12 stamp-block">
+            <div class="flex justify-center items-center h-32">
+                <img src="img/stamp_1.png" alt="Stamp 1" class="stamp h-28 object-contain">
+            </div>
+            <div class="flex justify-center items-center h-32">
+                <img src="img/stamp_2.png" alt="Stamp 2" class="stamp h-28 object-contain">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 3: SWEDISH -->
+<div class="max-w-3xl mx-auto print-page page-break print:w-full print:max-w-none">
+    <div class="relative z-10">
+        <h1 class="text-2xl font-bold text-center mb-6 uppercase tracking-wide">FULLMAKT</h1>
+
+        <p class="text-sm leading-relaxed mb-4 text-justify">
+            Jag, undertecknad <strong>Magomed Tovsultanov</strong>, personnummer <strong>20060916-9537</strong>,
+            innehavare av svenskt pass nummer <strong>AA5913142</strong> (utfärdat den 6 augusti 2024, giltigt till
+            den 6 augusti 2029), som agerar som VD för <strong>TMR Bygg &amp; Renovering AB</strong>
+            (Org.nr: 559017-1137), ger härmed mitt samtycke och befullmäktigar följande person att förvalta det angivna
+            fordonet:
+        </p>
+
+        <div class="mb-4 border border-gray-200 p-3 rounded print:border-none print:p-0">
+            <h2 class="font-bold text-base mb-2 border-b border-gray-300 pb-1">Fordonsuppgifter</h2>
+            <ul class="space-y-1 text-sm">
+                <li class="flex"><span class="font-semibold w-90">Märke:</span> <span>Mercedes-Benz</span></li>
+                <li class="flex"><span class="font-semibold w-90">Modell:</span>
+                    <span>GLE 450 EQ Boost 4-matic, 367 hk</span></li>
+                <li class="flex"><span class="font-semibold w-90">Årsmodell:</span> <span>2020 / 2020</span></li>
+                <li class="flex"><span class="font-semibold w-90">Registreringsnummer:</span> <span>SNK97A</span></li>
+                <li class="flex"><span class="font-semibold w-90">Chassinummer / VIN:</span>
+                    <span>WDC1671591A038110</span></li>
+            </ul>
+        </div>
+
+        <p class="text-sm leading-relaxed mb-4">
+            till personen som anges nedan:
+        </p>
+
+        <div class="mb-4 border border-gray-200 p-3 rounded print:border-none print:p-0">
+            <h2 class="font-bold text-base mb-2 border-b border-gray-300 pb-1">Bemyndigad person</h2>
+            <ul class="space-y-1 text-sm">
+                <li class="flex"><span class="font-semibold w-90">Namn:</span> <span>TOVSULTANOV RAKHMAN</span></li>
+                <li class="flex"><span class="font-semibold w-90">Födelsedatum:</span> <span>17 april 1983</span></li>
+                <li class="flex"><span class="font-semibold w-90">Personnummer:</span> <span>19830417-2573</span></li>
+                <li class="flex"><span class="font-semibold w-90">Kön:</span> <span>Man / Male</span></li>
+                <li class="flex"><span class="font-semibold w-90">Nationalitet:</span>
+                    <span>Ryska federationen / Russian Federation</span></li>
+                <li class="flex"><span class="font-semibold w-90">Passnummer:</span> <span>55 1079127</span></li>
+                <li class="flex"><span class="font-semibold w-90">Landskod:</span> <span>RUS</span></li>
+                <li class="flex"><span class="font-semibold w-90">Födelseort:</span>
+                    <span>TJETJENO-INGUSJETIEN / USSR</span></li>
+                <li class="flex"><span class="font-semibold w-90">Adress:</span>
+                    <span>Holländareplan 11 lgh 0901, 374 34 Karlshamn</span></li>
+            </ul>
+        </div>
+
+        <div class="mb-4 text-sm">
+            <h2 class="font-bold text-base mb-1">Ägarens adress:</h2>
+            <p>
+                TMR Bygg &amp; Renovering AB<br>
+                EKBACKEN 3 A<br>
+                374 50 Asarum
+            </p>
+        </div>
+
+        <p class="text-sm leading-relaxed mb-6 text-justify">
+            Denna fullmakt är giltig från den <strong>30 juli 2025</strong> till den <strong>30 juli 2028</strong>
+            och ger den befullmäktigade personen rätt att utföra alla åtgärder som rör användning, förvaltning och
+            underhåll av det angivna fordonet, inklusive att företräda mina intressen inför myndigheter,
+            försäkringsbolag och verkstäder under den angivna perioden. Den befullmäktigade personen ges också rätt att
+            köra fordonet utomlands, både inom och utanför Europeiska unionen.
+        </p>
+
+        <div class="grid grid-cols-2 gap-12 mb-8 signature-block">
+            <div>
+                <div class="border-b border-black w-full mb-1 h-8"></div>
+                <p class="text-xs font-semibold text-right">Underskrift (Ägare)</p>
+            </div>
+            <div>
+                <div class="border-b border-black w-full mb-1 h-8"></div>
+                <p class="text-xs font-semibold text-right">Underskrift (Bemyndigad person)</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-overlay">
+        <div class="grid grid-cols-2 gap-12 stamp-block">
+            <div class="flex justify-center items-center h-32">
+                <img src="img/stamp_1.png" alt="Stamp 1" class="stamp h-28 object-contain">
+            </div>
+            <div class="flex justify-center items-center h-32">
+                <img src="img/stamp_2.png" alt="Stamp 2" class="stamp h-28 object-contain">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 4: ENGLISH COPY -->
+<div class="max-w-3xl mx-auto print-page page-break print:w-full print:max-w-none">
+    <div class="relative z-10">
+        <h1 class="text-2xl font-bold text-center mb-6 uppercase tracking-wide">Power of Attorney</h1>
+
+        <p class="text-sm leading-relaxed mb-4 text-justify">
+            I, the undersigned <strong>Magomed Tovsultanov</strong>, personal identity number
+            <strong>20060916-9537</strong>, holder of Swedish passport number <strong>AA5913142</strong>
+            (issued on August 6, 2024, valid until August 6, 2029), acting as CEO for
+            <strong>TMR Bygg &amp; Renovering AB</strong> (Org. No: 559017-1137), hereby give my consent and
+            authorize the following person to manage the specified vehicle:
+        </p>
+
+        <div class="mb-4 border border-gray-200 p-3 rounded print:border-none print:p-0">
+            <h2 class="font-bold text-base mb-2 border-b border-gray-300 pb-1">Vehicle Details</h2>
+            <ul class="space-y-1 text-sm">
+                <li class="flex"><span class="font-semibold w-90">Make:</span> <span>Mercedes-Benz</span></li>
+                <li class="flex"><span class="font-semibold w-90">Model:</span>
+                    <span>GLE 450 EQ Boost 4-matic, 367 hp</span></li>
+                <li class="flex"><span class="font-semibold w-90">Year / Model Year:</span> <span>2020 / 2020</span>
+                </li>
+                <li class="flex"><span class="font-semibold w-90">Registration Number:</span> <span>SNK97A</span></li>
+                <li class="flex"><span class="font-semibold w-90">Chassis Number / VIN:</span>
+                    <span>WDC1671591A038110</span></li>
+            </ul>
+        </div>
+
+        <p class="text-sm leading-relaxed mb-4">
+            to the person listed below:
+        </p>
+
+        <div class="mb-4 border border-gray-200 p-3 rounded print:border-none print:p-0">
+            <h2 class="font-bold text-base mb-2 border-b border-gray-300 pb-1">Authorized Person</h2>
+            <ul class="space-y-1 text-sm">
+                <li class="flex"><span class="font-semibold w-90">Name:</span> <span>TOVSULTANOV RAKHMAN</span></li>
+                <li class="flex"><span class="font-semibold w-90">Date of Birth:</span> <span>April 17, 1983</span></li>
+                <li class="flex"><span class="font-semibold w-90">Personal Identity Number:</span>
+                    <span>19830417-2573</span></li>
+                <li class="flex"><span class="font-semibold w-90">Sex:</span> <span>Male</span></li>
+                <li class="flex"><span class="font-semibold w-90">Nationality:</span> <span>Russian Federation</span>
+                </li>
+                <li class="flex"><span class="font-semibold w-90">Passport Number:</span> <span>55 1079127</span></li>
+                <li class="flex"><span class="font-semibold w-90">Code of issuing State:</span> <span>RUS</span></li>
+                <li class="flex"><span class="font-semibold w-90">Place of Birth:</span>
+                    <span>CHECHENO-INGUSHETIA / USSR</span></li>
+                <li class="flex"><span class="font-semibold w-90">Address:</span>
+                    <span>Holländareplan 11 lgh 0901, 374 34 Karlshamn</span></li>
+            </ul>
+        </div>
+
+        <div class="mb-4 text-sm">
+            <h2 class="font-bold text-base mb-1">Owner's Address:</h2>
+            <p>
+                TMR Bygg &amp; Renovering AB<br>
+                EKBACKEN 3 A<br>
+                374 50 Asarum
+            </p>
+        </div>
+
+        <p class="text-sm leading-relaxed mb-6 text-justify">
+            This power of attorney is valid from <strong>July 30, 2025</strong>, to <strong>July 30, 2028</strong>,
+            and grants the authorized person the right to perform all actions related to the use, management, and
+            maintenance of the specified vehicle, including representing my interests before government authorities,
+            insurance companies, and service stations during the specified period. The authorized person is also granted
+            the right to drive the vehicle abroad, both within and outside the European Union.
+        </p>
+
+        <div class="grid grid-cols-2 gap-12 mb-8 signature-block">
+            <div>
+                <div class="border-b border-black w-full mb-1 h-8"></div>
+                <p class="text-xs font-semibold text-right">Signature (Owner)</p>
+            </div>
+            <div>
+                <div class="border-b border-black w-full mb-1 h-8"></div>
+                <p class="text-xs font-semibold text-right">Signature (Authorized Person)</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-overlay">
+        <div class="grid grid-cols-2 gap-12 stamp-block">
+            <div class="flex justify-center items-center h-32">
+                <img src="img/stamp_1.png" alt="Stamp 1" class="stamp h-28 object-contain">
+            </div>
+            <div class="flex justify-center items-center h-32">
+                <img src="img/stamp_2.png" alt="Stamp 2" class="stamp h-28 object-contain">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Print Button (Hidden when printing) -->
+<div class="mt-6 text-center no-print pb-10">
+    <button onclick="window.print()"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded shadow transition duration-200">
+        Print Document
+    </button>
+</div>
+
+<script>
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const stamps = document.querySelectorAll('.stamp');
+
+        stamps.forEach(stamp => {
+            // Random rotation between -12 and 12 degrees
+            const rot = getRandomInt(-12, 12);
+            // Random horizontal shift between 0 and 1.5 rem (keeps stamp inside the page)
+            const pad = getRandomInt(0, 3) * 0.5;
+
+            stamp.style.transform = `rotate(${rot}deg) translateX(-${pad}rem)`;
+        });
+    });
+</script>
+</body>
+</html>

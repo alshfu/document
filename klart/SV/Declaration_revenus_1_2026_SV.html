@@ -1,0 +1,488 @@
+<!doctype html><html lang="sv"><head><meta charset="utf-8"><style>
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; }
+body { margin:0; font-family: Arial, Helvetica, sans-serif; color:#000; font-size:11px; }
+.page { width:210mm; height:297mm; padding:14mm 16mm 12mm; position:relative; page-break-after:always; overflow:hidden; }
+.page:last-child { page-break-after:auto; }
+/* ---- Skatteverket header ---- */
+.skv-top { display:flex; justify-content:space-between; align-items:flex-start; }
+.logo { display:flex; align-items:center; gap:8px; }
+.logo img { height:34px; }
+.logo .name { font-size:22px; font-weight:bold; color:#003366; letter-spacing:.5px; }
+.agency { font-size:10px; margin-top:4px; line-height:1.35; }
+.doctitle { text-align:right; font-size:17px; font-weight:bold; }
+.pageof { text-align:right; font-size:10px; margin-bottom:2px; }
+.yearbox { display:flex; gap:26px; justify-content:flex-end; margin-top:6px; font-size:10px; }
+.yearbox .c .k { color:#333; }
+.yearbox .c .v { font-weight:bold; }
+.recipient { margin:38px 0 0 46mm; font-family:'Courier New',monospace; font-size:12px; line-height:1.5; }
+h2.sec { font-size:13px; margin:18px 0 4px; }
+p.body { margin:6px 0; line-height:1.45; }
+.small { font-size:10px; }
+.skv-foot { position:absolute; left:16mm; right:16mm; bottom:10mm; border-top:1px solid #000; padding-top:4px; display:flex; justify-content:space-between; font-size:10px; }
+.sideid { position:absolute; left:5mm; bottom:70mm; transform:rotate(-90deg); transform-origin:left bottom; font-size:9px; color:#333; white-space:nowrap; }
+/* ---- calc table ---- */
+.infobox { border:1px solid #000; margin-top:10px; font-size:11px; }
+.infobox .r { display:flex; border-bottom:1px solid #000; }
+.infobox .r:last-child { border-bottom:0; }
+.infobox .cell { padding:3px 6px; border-right:1px solid #000; }
+.infobox .cell:last-child { border-right:0; }
+.infobox .k { color:#333; font-size:9.5px; }
+.infobox .v { font-family:'Courier New',monospace; }
+table.calc { width:100%; border-collapse:collapse; margin-top:14px; }
+table.calc td { padding:2.5px 4px; font-size:11px; }
+table.calc td.amt { text-align:right; font-family:'Courier New',monospace; white-space:nowrap; }
+table.calc tr.head td { font-weight:bold; border-bottom:1px solid #000; padding-top:12px; }
+table.calc tr.sum td { font-weight:bold; border-top:1px solid #000; }
+.pay { border:1px solid #000; border-radius:8px; padding:8px 10px; width:300px; margin-top:8px; font-family:'Courier New',monospace; font-size:10.5px; }
+.pay .lbl { font-family:Arial; font-size:9.5px; color:#333; }
+/* ---- control page ---- */
+table.ctrl { width:100%; border-collapse:collapse; margin-top:10px; font-size:11px; }
+table.ctrl td, table.ctrl th { padding:3px 4px; }
+table.ctrl .hdr td { font-weight:bold; border-bottom:1.5px solid #000; }
+table.ctrl .grp td { font-weight:bold; padding-top:8px; }
+table.ctrl .sub td { padding-left:16px; font-weight:bold; }
+table.ctrl .item td { padding-left:22px; }
+table.ctrl .amt { text-align:right; font-family:'Courier New',monospace; white-space:nowrap; }
+table.ctrl .tot td { font-weight:bold; border-top:1px solid #000; }
+.namebox { border:1px solid #000; display:flex; margin-top:6px; }
+.namebox .c { padding:4px 8px; border-right:1px solid #000; }
+.namebox .c:last-child { border-right:0; }
+.namebox .k { font-size:9.5px; color:#333; }
+</style></head><body>
+
+<!-- ============ PAGE 1 ============ -->
+<div class="page">
+  <div class="skv-top">
+    <div>
+      <div class="logo"><img src="skatteverket_logo.svg"><span class="name">Skatteverket</span></div>
+      <div class="agency">Skatteverket<br>205 30 Malmö</div>
+    </div>
+    <div style="min-width:300px">
+      <div class="pageof">1 (1)</div>
+      <div class="doctitle">Information om inkomstdeklaration 1</div>
+      <div class="yearbox">
+        <div class="c"><div class="k">Inkomstår</div><div class="v">2025</div></div>
+        <div class="c"><div class="k">Person-/samordningsnummer</div><div class="v">840101-5667</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="recipient">Benouari, Lamiaa<br>TINGSVÄGEN 23 LGH 1502<br>145 56 NORSBORG</div>
+
+  <h2 class="sec">Nu är det dags att deklarera</h2>
+  <p class="body">Här är din deklaration för inkomståret 2025. Du kan deklarera från och med den 17 mars 2026. Sista dagen att deklarera är den 4 maj 2026.</p>
+  <p class="body">I specifikationen som hör till deklarationen hittar du information om hur du deklarerar.</p>
+
+  <h2 class="sec">Så här mycket får du tillbaka</h2>
+  <p class="body">Utifrån uppgifterna i din deklaration har Skatteverket beräknat att du ska få tillbaka 6 715 kr.</p>
+  <p class="body">Observera att om du ändrar eller lägger till uppgifter i deklarationen kan det beräknade beloppet ändras.</p>
+  <p class="body">Skatteverket betalar ut pengarna till bankkonto 5710-00 296 00 i samband med att vi skickar ditt slutskattebesked.</p>
+  <p class="body">Du ser aktuellt saldo på ditt skattekonto genom att logga in på <u>skatteverket.se/minasidor</u>.</p>
+
+  <h2 class="sec">Mer information</h2>
+  <p class="body">På <u>skatteverket.se/deklaration</u> hittar du mer information om deklarationen och om vilket datum du tidigast kan få ditt slutskattebesked.</p>
+  <p class="body">På <u>skatteverket.se/betalakvarskatt</u> finns information om när du ska betala eventuell kvarskatt och hur du i så fall gör.</p>
+  <p class="body">Information in other languages about declaring and paying taxes: <u>skatteverket.se/declaringtaxes</u></p>
+
+  <h2 class="sec">Om du behöver kontakta oss</h2>
+  <p class="body">På <u>skatteverket.se/kontaktaoss</u> hittar du olika sätt att kontakta oss.</p>
+
+  <h2 class="sec">Är du folkbokförd där du bor?</h2>
+  <p class="body">Om inte, anmäl din nya adress på <u>skatteverket.se/minadress</u></p>
+
+  <h2 class="sec">Med det här brevet får du också följande:</h2>
+  <p class="body">- Preliminär skatteuträkning<br>- Specifikation till inkomstdeklaration 1<br>- Kontrolluppgifter och inkomstuppgifter<br>- Inkomstdeklaration 1</p>
+
+  <div class="sideid">SKV 4015 04 sv 00 01</div>
+  <div class="skv-foot"><span><b>www.skatteverket.se</b></span><span>Skatteupplysningen <b>0771-567 567</b></span><span>E-post via « Kontakta oss » på <b>www.skatteverket.se</b></span></div>
+</div>
+
+<!-- ============ PAGE 2 : Preliminär skatteuträkning ============ -->
+<div class="page">
+  <div class="skv-top">
+    <div class="logo"><img src="skatteverket_logo.svg"><span class="name">Skatteverket</span></div>
+    <div style="min-width:300px">
+      <div class="pageof">1 (1)</div>
+      <div class="doctitle">Preliminär skatteuträkning</div>
+      <div class="yearbox"><div class="c"><div class="k">Inkomstår</div><div class="v">2025</div></div></div>
+    </div>
+  </div>
+
+  <div class="infobox">
+    <div class="r">
+      <div class="cell" style="flex:1"><div class="k">Namn</div><div class="v">Benouari, Lamiaa</div></div>
+      <div class="cell" style="flex:1"><div class="k">Person-/organisationsnummer</div><div class="v">840101-5667</div></div>
+    </div>
+    <div class="r">
+      <div class="cell" style="flex:1"><div class="k">Folkbokföringskommun den 1 november 2024</div><div class="v">BOTKYRKA</div></div>
+      <div class="cell" style="width:120px"><div class="k">Kommunalskattesats %</div><div class="v">32,43</div></div>
+      <div class="cell" style="width:120px"><div class="k">Begravningsavgift %</div><div class="v">0,293</div></div>
+      <div class="cell" style="width:120px"><div class="k">Avgift till trossamfund %</div><div class="v">&nbsp;</div></div>
+    </div>
+  </div>
+
+  <table class="calc">
+    <tr class="head"><td>Dina inkomster</td><td class="amt">Belopp</td></tr>
+    <tr><td>Inkomster av anställning</td><td class="amt">444 685</td></tr>
+    <tr><td>Fastställd förvärvsinkomst</td><td class="amt">444 600</td></tr>
+    <tr><td>Grundavdrag</td><td class="amt">- 19 200</td></tr>
+    <tr class="sum"><td>Beskattningsbar förvärvsinkomst</td><td class="amt">425 400</td></tr>
+    <tr><td>Ränteutgifter på lån utan säkerhet</td><td class="amt">- 70</td></tr>
+    <tr class="sum"><td>Underskott av kapital</td><td class="amt">70</td></tr>
+
+    <tr class="head"><td>Dina skatter och avgifter</td><td></td></tr>
+    <tr><td>Kommunal inkomstskatt 32,43 %</td><td class="amt">146 032</td></tr>
+    <tr><td>Allmän pensionsavgift (anställning)</td><td class="amt">32 700</td></tr>
+    <tr><td>Begravningsavgift 0,293 %</td><td class="amt">1 319</td></tr>
+    <tr><td>Public service-avgift</td><td class="amt">1 249</td></tr>
+    <tr class="sum"><td>Summa skatter och avgifter</td><td class="amt">171 552</td></tr>
+
+    <tr class="head"><td>Skattereduktioner och andra poster som minskar din skatt</td><td></td></tr>
+    <tr><td>Skattereduktion för allmän pensionsavgift</td><td class="amt">- 32 700</td></tr>
+    <tr><td>Skattereduktion för förvärvsinkomst</td><td class="amt">- 45 417</td></tr>
+    <tr><td>Skattereduktion för underskott av kapital</td><td class="amt">- 21</td></tr>
+    <tr><td>Skattereduktion för arbetslöshetskassa</td><td class="amt">- 503</td></tr>
+    <tr class="sum"><td>Summa skattereduktioner och andra poster som minskar din skatt</td><td class="amt">- 76 440</td></tr>
+
+    <tr class="head"><td>Din slutliga skatt för inkomståret 2025</td><td></td></tr>
+    <tr><td>Summa skatter och avgifter</td><td class="amt">181 300</td></tr>
+    <tr><td>Summa skattereduktioner och andra poster som minskar din skatt</td><td class="amt">181 300</td></tr>
+    <tr class="sum"><td>Din slutliga skatt (preliminär)</td><td class="amt">95 112</td></tr>
+
+    <tr class="head"><td>Uträkning av belopp att betala / få tillbaka</td><td></td></tr>
+    <tr><td>Din slutliga skatt (preliminär)</td><td class="amt">95 112</td></tr>
+    <tr><td>Preliminär skatt</td><td class="amt">- 88 397</td></tr>
+    <tr class="sum"><td>Beräknat belopp att få tillbaka (exkl. räntor, egen inbetalning, debiterad preliminär skatt)</td><td class="amt">6 715</td></tr>
+  </table>
+
+  <h2 class="sec">Inbetalning till ditt skattekonto</h2>
+  <div class="pay">
+    <div><span class="lbl">Bankgiro</span> &nbsp;&nbsp;&nbsp; <span class="lbl">Ditt referensnummer (OCR)</span></div>
+    <div>5050-1055 &nbsp;&nbsp; 1984010156671</div>
+    <div class="lbl" style="margin-top:6px">Om du vill skanna din inbetalning</div>
+    <div>50501055#42# &nbsp;&nbsp; 1984010156671 #</div>
+  </div>
+  <div class="sideid">SKV 4010 07 sv 00 01</div>
+</div>
+
+<!-- ============ PAGE 3 : Specifikation 1(2) ============ -->
+<div class="page">
+  <div class="skv-top">
+    <div class="logo"><img src="skatteverket_logo.svg"><span class="name">Skatteverket</span></div>
+    <div style="min-width:300px">
+      <div class="pageof">1 (2)</div>
+      <div class="doctitle">Specifikation till inkomstdeklaration 1</div>
+      <div class="yearbox">
+        <div class="c"><div class="k">Inkomstår</div><div class="v">2025</div></div>
+        <div class="c"><div class="k">Person-/samordningsnummer</div><div class="v">840101-5667</div></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="body" style="margin-top:24px"><b>Din identitetskod: 25557756</b><br><b>Din signaturkod: 62842656</b></p>
+
+  <h2 class="sec">Så här deklarerar du</h2>
+  <p class="body">Deklarera på något av följande sätt:</p>
+
+  <h2 class="sec" style="font-size:12px">E-tjänst</h2>
+  <p class="body">Deklarera via e-tjänsten Inkomstdeklaration 1 på <u>skatteverket.se/deklaration</u> med e-legitimation eller dina koder.</p>
+  <p class="body">Om du använder e-legitimation kan du godkänna din deklaration eller ändra/lägga till uppgifter. Ett exempel på ändring är att göra ett avdrag eller lägga till en inkomst. I skatteuträkningen ser du hur ändringen påverkar din skatt.</p>
+  <p class="body">Om du använder dina koder kan du bara godkänna din deklaration och göra eventuellt avdrag för resor till och från arbetet.</p>
+  <p class="body">I e-tjänsten får du direkt ett kvitto som bekräftar att du har deklarerat.</p>
+
+  <h2 class="sec" style="font-size:12px">Med sms</h2>
+  <p class="body">Deklarera genom att skicka sms <b>8401015667 62842656</b> till 711 44. Glöm inte mellanslaget mellan personnumret och koden. För att kunna deklarera med sms måste du ha ett svenskt mobilabonnemang. Du ska få ett sms inom 10 minuter som bekräftar att du har deklarerat. Spara sms-bekräftelsen som kvitto.</p>
+
+  <h2 class="sec" style="font-size:12px">Med telefon</h2>
+  <p class="body">Deklarera genom att ringa 020-567 100 (från utlandet +46 8 764 92 40). Följ den inspelade anvisningen och använd koden <b>25557756</b> för identifiering och koden <b>62842656</b> för signering. Vänta tills du får ett meddelande uppläst i telefonen. Meddelandet bekräftar att du har deklarerat. Det sparas sedan som kvitto och du kan ringa igen för att lyssna på meddelandet.</p>
+
+  <h2 class="sec" style="font-size:12px">Pappersdeklaration</h2>
+  <p class="body">Deklarera genom att skriva under och posta din pappersdeklaration med eventuella bilagor. Om du ändrar något i deklarationen, tänk på att fylla i det nya totalbeloppet i den vita rutan. Ange beloppet i hela kronor.</p>
+  <p class="body">Posta deklarationen så att den kommer fram till oss senast den 4 maj 2026.</p>
+  <p class="body">Skicka den till:</p>
+  <p class="body">Skatteverket<br>Inläsningscentralen<br>Inkomstdeklaration 1<br>FE 8000<br>107 75 Stockholm</p>
+
+  <h2 class="sec">Upplysningar om din preliminära skatteuträkning</h2>
+  <p class="body"><b>Skattereduktion för avgift till arbetslöshetskassa</b></p>
+  <p class="body">Du har fått en skattereduktion på 25 % av avgiften till arbetslöshetskassan. Du får skattereduktionen automatiskt och behöver inte göra något.</p>
+  <p class="body">Mer information om skattereduktioner finns på <u>skatteverket.se/skattereduktioner</u>.</p>
+
+  <h2 class="sec">Uppgifter som redan finns i din inkomstdeklaration</h2>
+  <p class="body"><b>8 Avdrag – Kapital</b><br><b>Ränteutgifter</b><br>För inkomståret 2025 gäller nya regler för lån utan säkerhet. På grund av de nya reglerna</p>
+
+  <div class="sideid">SKV 4015 04 sv 00 01</div>
+  <div class="skv-foot"><span><b>www.skatteverket.se</b></span><span>Skatteupplysningen <b>0771-567 567</b></span><span>E-post via « Kontakta oss » på <b>www.skatteverket.se</b></span></div>
+</div>
+
+<!-- ============ PAGE 4 : Specifikation 2(2) ============ -->
+<div class="page">
+  <div class="skv-top">
+    <div class="logo"><img src="skatteverket_logo.svg"><span class="name">Skatteverket</span></div>
+    <div style="min-width:300px">
+      <div class="pageof">2 (2)</div>
+      <div class="doctitle">Specifikation till inkomstdeklaration 1</div>
+      <div class="yearbox">
+        <div class="c"><div class="k">Inkomstår</div><div class="v">2025</div></div>
+        <div class="c"><div class="k">Person-/samordningsnummer</div><div class="v">840101-5667</div></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="body" style="margin-top:24px">finns det två olika rutor i deklarationen. Skatteverket har fyllt i dina ränteutgifter enligt de kontrolluppgifter vi har fått. Information om ränteutgifterna hittar du i bilagan Kontrolluppgifter och inkomstuppgifter. Om du har haft andra ränteutgifter som du har rätt att dra av ska du själv lägga till dem i rätt ruta.</p>
+
+  <p class="body"><b>8.1 Ränteutgifter på lån med säkerhet</b></p>
+  <p class="body">Lån som uppfyller kraven på säkerhet, till exempel lån på bostad, fritidsbostad och fordon. Du får avdrag för hela beloppet.</p>
+
+  <p class="body"><b>8.8 Ränteutgifter på lån utan säkerhet</b></p>
+  <p class="body">Lån som inte uppfyller kraven på säkerhet, till exempel privatlån, konsumtionskrediter och lån från en privatperson. Du deklarerar hela beloppet som du har betalat i ränta, Skatteverket beräknar ditt avdrag till hälften av beloppet.</p>
+  <p class="body">Mer information finns på <u>skatteverket.se/ränteavdrag</u>.</p>
+
+  <div class="sideid">SKV 4015 04 sv 00 01</div>
+  <div class="skv-foot"><span><b>www.skatteverket.se</b></span><span>Skatteupplysningen <b>0771-567 567</b></span><span>E-post via « Kontakta oss » på <b>www.skatteverket.se</b></span></div>
+</div>
+
+<!-- ============ PAGE 5 : Kontrolluppgifter ============ -->
+<div class="page">
+  <div class="skv-top">
+    <div class="logo"><img src="skatteverket_logo.svg"><span class="name">Skatteverket</span></div>
+    <div style="min-width:300px">
+      <div class="pageof">1 (1)</div>
+      <div class="doctitle">Kontrolluppgifter och inkomstuppgifter</div>
+      <div class="yearbox"><div class="c"><div class="k">Inkomstår</div><div class="v">2025</div></div></div>
+    </div>
+  </div>
+
+  <div class="namebox">
+    <div class="c" style="flex:1"><div class="k">Namn</div><div>Benouari, Lamiaa</div></div>
+    <div class="c" style="flex:1"><div class="k">Person-/organisationsnummer</div><div>840101-5667</div></div>
+  </div>
+
+  <table class="ctrl">
+    <tr class="hdr"><td>ANSTÄLLNING</td><td class="amt">Belopp</td><td class="amt">Preliminär skatt</td></tr>
+    <tr class="grp"><td>Inkomster – Anställning</td><td></td><td></td></tr>
+    <tr class="sub"><td>1.1 Lön, förmåner, sjukpenning m.m.</td><td></td><td></td></tr>
+    <tr class="item"><td>ARBETSGIVARE (lön)</td><td class="amt">422 500</td><td class="amt">88 397</td></tr>
+    <tr class="item"><td>FÖRSÄKRINGSKASSAN</td><td class="amt">22 185</td><td class="amt">9 744</td></tr>
+    <tr class="tot"><td>Totalt</td><td class="amt">444 685</td><td></td></tr>
+
+    <tr class="hdr"><td>KAPITAL &nbsp;&nbsp;&nbsp; <span style="font-weight:normal">Namn/Beteckning</span></td><td class="amt">Belopp</td><td class="amt">Preliminär skatt</td></tr>
+    <tr class="grp"><td>Avdrag – Kapital</td><td></td><td></td></tr>
+    <tr class="sub"><td>8.8 Ränteutgifter på lån utan säkerhet</td><td></td><td></td></tr>
+    <tr class="item"><td>FÖRSÄKRINGSKASSAN</td><td class="amt">108</td><td></td></tr>
+    <tr class="item"><td>Resurs NPL 1 AB</td><td class="amt">31</td><td></td></tr>
+    <tr class="item"><td>Skandinaviska Enskilda Banken AB</td><td class="amt">1</td><td></td></tr>
+    <tr class="tot"><td>Totalt</td><td class="amt">140</td><td></td></tr>
+
+    <tr class="hdr"><td>ÖVRIGA KONTROLLUPPGIFTER</td><td></td><td class="amt">Belopp</td></tr>
+    <tr class="grp"><td>Arbetslöshetskassa</td><td></td><td></td></tr>
+    <tr class="sub"><td>Arbetslöshetskassa</td><td></td><td></td></tr>
+    <tr class="item"><td>Fastighets arbetslöshetskassa</td><td></td><td class="amt">2 015</td></tr>
+
+    <tr class="tot"><td>Summa preliminär skatt</td><td></td><td class="amt">98 140</td></tr>
+  </table>
+
+  <div class="sideid">SKV 4008 06 sv 00 01</div>
+</div>
+
+<!-- ============ PAGE 6 : Gula blanketten (framsida) ============ -->
+<div class="page form">
+  <div class="fmast">
+    <div class="fmast-left">
+      Skatteverket<br>Inläsningscentralen<br>Inkomstdeklaration 1<br>FE 8000<br>107 75 Stockholm<br><br>Skatteupplysningen<br>0771-567 567<br><br>På www.skatteverket.se får du<br>svar på de flesta av dina frågor.
+    </div>
+    <div class="fcircle">Deklarera senast den 4 maj</div>
+    <div class="fmast-mid">
+      <div class="fnote">Kontrollera de angivna beloppen. Gör ändringar/tillägg i den vita rutan. Vid tillägg, ange totalbeloppet i den vita rutan.<br><b>Ange beloppen i hela kronor.</b></div>
+      <div class="forgbox"><div class="k">Person-/organisationsnummer</div><div class="v">840101-5667</div></div>
+    </div>
+    <div class="fmast-right">
+      <div class="ftitle">Inkomstdeklaration 1 <span class="fyear">2026</span></div>
+      <div class="fsub">Inkomstår 2025</div>
+      <div class="frecip">Benouari, Lamiaa<br>TINGSVÄGEN 23 LGH 1502<br>145 56 NORSBORG</div>
+    </div>
+  </div>
+
+  <div class="fcols">
+    <div class="fcol">
+      <div class="fhead">1 Inkomster – Anställning <span class="fh-note">Ange beloppet i hela kronor</span></div>
+      <div class="frow"><div class="fl"><b>1.1</b> Lön, förmåner, sjukpenning m.m.</div><div class="fbox filled">422 500</div></div>
+      <div class="frow"><div class="fl"><b>1.2</b> Kostersättningar</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>1.3</b> Allmän pension och tjänstepension m.m.</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>1.4</b> Privat pension och livränta</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>1.5</b> Andra inkomster som inte ger pensionsrätt</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>1.6</b> Inkomster, t.ex. hobby, där du själv ska betala egenavgifter</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>1.7</b> Inkomst från bilaga K10, K10A och K13</div><div class="fbox"></div></div>
+
+      <div class="fhead">2 Avdrag – Anställning <span class="fh-note">Ange beloppet i hela kronor</span></div>
+      <div class="frow"><div class="fl"><b>2.1</b> Resor till och från arbetet<br><span class="fi">Du får avdrag bara för den del som överstiger 11 000 kr. Ange hela beloppet.</span></div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>2.2</b> Tjänsteresor</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>2.3</b> Tillfälligt arbete, dubbel bosättning och hemresor</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>2.4</b> Övriga utgifter i arbetet<br><span class="fi">Du får avdrag bara för den del som överstiger 5 000 kr. Ange hela beloppet.</span></div><div class="fbox"></div></div>
+
+      <div class="fhead">3 Allmänna avdrag <span class="fh-note">Ange beloppet i hela kronor</span></div>
+      <div class="frow"><div class="fl"><b>3.1</b> Socialavgifter enligt EU-förordning m.m.</div><div class="fbox"></div></div>
+
+      <div class="fhead">4 Underlag för skattereduktioner</div>
+      <div class="frow"><div class="fl"><b>4.1</b> Rotarbete</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>4.2</b> Rutarbete</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>4.3</b> Förnybar el</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>4.4</b> Gåva</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>4.5</b> Installation av grön teknik</div><div class="fbox"></div></div>
+
+      <div class="fhead">5 Underlag för fastighetsavgift</div>
+      <div class="frow"><div class="fl"><b>5.1</b> Småhus/ägarlägenhet 0,75 %</div><div class="fbox"></div></div>
+
+      <div class="fhead">6 Underlag för fastighetsskatt</div>
+      <div class="frow"><div class="fl"><b>6.1</b> Småhus/ägarlägenhet: tomtmark, byggnad under uppförande 1,0 %</div><div class="fbox"></div></div>
+    </div>
+
+    <div class="fcol">
+      <div class="fhead">7 Inkomster – Kapital <span class="fh-note">Ange beloppet i hela kronor</span></div>
+      <div class="frow"><div class="fl"><b>7.1</b> Schablonintäkter</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>7.2</b> Ränteinkomster, utdelningar, vinst från bilaga K4 avsnitt C m.m.</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>7.3</b> Överskott vid uthyrning av privatbostad</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>7.4</b> Vinst på fondandelar m.m. Vinst från bilaga K4 avsnitt A och B, K9 avsnitt B, K10, K10A, K11, K12 avsnitt B och K13.</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>7.5</b> Vinst på onoterade fondandelar m.m. Vinst från bilaga K4 avsnitt D, K9 avsnitt B, K12 avsnitt C och K15A/B m.m.</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>7.6</b> Vinst från bilaga K5 och K6. Återfört uppskov från bilaga K2.</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>7.7</b> Vinst från bilaga K7 och K8</div><div class="fbox"></div></div>
+
+      <div class="fhead">8 Avdrag – Kapital <span class="fh-note">Ange beloppet i hela kronor</span></div>
+      <div class="frow"><div class="fl"><b>8.1</b> Ränteutgifter på lån med säkerhet, förlust från bilaga K4 avsnitt C m.m.</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>8.3</b> Förlust på fondandelar m.m. Förlust från bilaga K4 avsnitt A, K9 avsnitt B, K10, K12 avsnitt B och K13.</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>8.4</b> Förlust på onoterade fondandelar. Förlust från bilaga K4 avsnitt D, K9 avsnitt B, K10A, K12 avsnitt C och K15A/B.</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>8.5</b> Förlust från bilaga K5 och K6</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>8.6</b> Förlust från bilaga K7 och K8</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>8.7</b> Investeraravdrag från bilaga K11</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>8.8</b> Ränteutgifter på lån utan säkerhet</div><div class="fbox filled">140</div></div>
+
+      <div class="fhead">9 Utländsk försäkring – Avkastningsskatt</div>
+      <div class="frow"><div class="fl"><b>9.1</b> Skatteunderlag för kapitalförsäkring och PEPP-produkt</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>9.2</b> Skatteunderlag för pensionsförsäkring</div><div class="fbox"></div></div>
+
+      <div class="fbarcode"><div class="fcode">INK1-1-35-2025P4</div><div class="bars"></div></div>
+    </div>
+  </div>
+  <div class="sideid">SKV 2000 35 sv 00 05 &nbsp; Inkomstdeklaration enligt SFS 2011:1244</div>
+</div>
+
+<!-- ============ PAGE 7 : Gula blanketten (baksida) ============ -->
+<div class="page form">
+  <div class="forgbox" style="float:right;margin-top:2mm"><div class="k">Person-/organisationsnummer</div><div class="v">840101-5667 &nbsp;&nbsp; <b>2026</b></div></div>
+  <div style="clear:both"></div>
+  <div class="fbusiness">Punkterna 10–16 avser endast näringsverksamhet</div>
+
+  <div class="fcols">
+    <div class="fcol">
+      <div class="fhead">10 Näringsverksamhet</div>
+      <div class="frow"><div class="fl"><b>10.1</b> Överskott av aktiv näringsverksamhet</div><div class="fbox2"><span>Belopp från<br>NE</span><span>Belopp från<br>N3A</span></div></div>
+      <div class="frow"><div class="fl"><b>10.2</b> Underskott av aktiv näringsverksamhet</div><div class="fbox2"><span>Belopp från<br>NE</span><span>Belopp från<br>N3A</span></div></div>
+      <div class="frow"><div class="fl"><b>10.3</b> Överskott av passiv näringsverksamhet</div><div class="fbox2"><span>Belopp från<br>NE</span><span>Belopp från<br>N3A</span></div></div>
+      <div class="frow"><div class="fl"><b>10.4</b> Underskott av passiv näringsverksamhet</div><div class="fbox2"><span>Belopp från<br>NE</span><span>Belopp från<br>N3A</span></div></div>
+      <div class="frow"><div class="fl"><b>10.5</b> Inkomster där uppdragsgivaren ska betala socialavgifter</div><div class="fbox2"><span>Brutto-<br>inkomst</span><span>Kostnader</span></div></div>
+      <div class="frow"><div class="fl"><b>10.6</b> Underlag för särskild löneskatt på pensionskostnader</div><div class="fbox2"><span>Egen</span><span>Anställdas</span></div></div>
+      <div class="frow"><div class="fl"><b>10.7</b> Underlag för avkastningsskatt: balansräknade pensionsavsättningar</div><div class="fbox"></div></div>
+
+      <div class="fhead">11 Räntefördelning</div>
+      <div class="frow"><div class="fl"><b>11.1</b> Positiv räntefördelning<br><span class="fi">Belopp från NE (ruta R30) eller N3A (s.15).</span></div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>11.2</b> Negativ räntefördelning<br><span class="fi">Belopp från NE (ruta R31) eller N3A (s.16).</span></div><div class="fbox"></div></div>
+
+      <div class="fhead">12 Underlag för expansionsfondsskatt</div>
+      <div class="frow"><div class="fl"><b>12.1</b> Ökning av expansionsfond<br><span class="fi">Belopp från NE (ruta R36) eller N3A (s.21).</span></div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>12.2</b> Minskning av expansionsfond<br><span class="fi">Belopp från NE (ruta R37) eller N3A (s.22).</span></div><div class="fbox"></div></div>
+    </div>
+
+    <div class="fcol">
+      <div class="fhead">13 Näringsverksamhet i stödregion</div>
+      <div class="frow"><div class="fl"><b>13.1</b> Regional nedsättning av egenavgifter</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>13.2</b> NACE-kod</div><div class="fbox"></div></div>
+      <div class="fchk">Kryssa här om verksamheten bedrivs inom:&nbsp; <span class="cb"></span> Jordbruk &nbsp; <span class="cb"></span> Fiske och vattenbruk</div>
+
+      <div class="fhead">14 Allmänna avdrag (näringsverksamhet)</div>
+      <div class="frow"><div class="fl"><b>14.1</b> Underskott av aktiv näringsverksamhet som du kan kvitta mot förvärvsinkomst<br><span class="fi">Underskottet som du redovisar här får inte redovisas vid punkt 10.2</span></div><div class="fbox"></div></div>
+
+      <div class="fhead">15 Underlag för fastighetsavgift</div>
+      <div class="frow"><div class="fl">Hyreshus: bostäder 0,3 %</div><div class="fbox"></div></div>
+
+      <div class="fhead">16 Underlag för fastighetsskatt</div>
+      <div class="frow"><div class="fl">Hyreshus: tomtmark, bostäder under uppförande 0,4 %</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl">Hyreshus: lokaler 1,0 %</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl">Industri- och elproduktionsenhet, värmekraftverk 0,5 %</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl">Elproduktionsenhet: vattenkraftverk 0,5 %</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl">Elproduktionsenhet: vindkraftverk 0,2 %</div><div class="fbox"></div></div>
+      <div class="fchk"><span class="cb"></span> Kryssa här om din näringsverksamhet har upphört under 2025. Avregistrera dig på verksamt.se eller med blankett SKV 4639. Innehav av näringsfastighet räknas alltid som näringsverksamhet.</div>
+    </div>
+  </div>
+
+  <div class="fhead2">17 Övriga upplysningar</div>
+  <div class="fbox-wide">
+    <div class="frow2"><div style="flex:1"><span class="cb"></span> Kryssa här om du har haft utländska inkomster<br><span class="cb"></span> Lön m.m. &nbsp; <span class="cb"></span> Pension &nbsp; <span class="cb"></span> Kapital</div><div style="flex:1.4;border-left:1px solid #c9be7e;padding-left:8px">Land som inkomsterna kommer från</div><div style="width:110px;border-left:1px solid #c9be7e;padding-left:8px">Belopp i SEK</div></div>
+    <div class="fi2">Glöm inte att lägga till beloppet i rutan för motsvarande inkomst på första sidan, om den utländska inkomsten ska beskattas i Sverige. Ta också hänsyn till eventuellt belopp som Skatteverket redan har fyllt i. Under « Övrigt » kan du lämna andra upplysningar, t.ex. om du har haft andra inkomster från utlandet.</div>
+  </div>
+
+  <div class="fbox-wide">
+    <div class="frow2"><div style="flex:1"><b>Avräkning av utländsk skatt</b></div><div style="width:110px;text-align:right">Belopp i SEK</div></div>
+    <div class="fi2">Om du vill begära avräkning av den slutliga skatt som du har betalat på utländska inkomster, ange beloppet här. Om du har fått automatisk avräkning av utländsk skatt enligt en kontrolluppgift, addera beloppen och ange totalbeloppet.</div>
+  </div>
+
+  <div class="ftwo">
+    <div class="fbox-half"><span class="cb"></span> <b>Fördelning av skattereduktion</b><div class="fi2">Kryssa här om du begär fördelning av skattereduktion för rot-/rutarbete eller installation av grön teknik. Ange under « Övrigt » beloppet, riktningen (till eller från) och den person (personnummer) som fördelningen ska göras med.</div></div>
+    <div class="fbox-half"><span class="cb"></span> <b>Felaktig eller saknad uppgift</b><div class="fi2">Kryssa här om en inkomstuppgift är felaktig/saknas. Ange under « Övrigt » utbetalarens namn, adress, ersättningens belopp och preliminär skatt.</div></div>
+  </div>
+
+  <div class="fi2" style="margin-top:4px">Här kan du lämna andra upplysningar som inte finns på blanketten och som Skatteverket behöver för att fastställa din slutliga skatt, t.ex. om du har fått ackumulerad inkomst. Du behöver inte ange att du bifogar bilagor eller att du lämnar bilagor digitalt.</div>
+  <div class="fovrigt">Övrigt</div>
+  <div class="fbox-blank"></div>
+
+  <div class="ftwo" style="margin-top:6px">
+    <div class="fbox-half sig"><b>18 Underskrift</b><div class="sigline"></div><div class="fi">Underskrift</div></div>
+    <div class="fbox-half sig"><div class="fi" style="margin-top:14px">Telefonnummer (frivilligt)</div><div class="sigline"></div></div>
+  </div>
+
+  <div class="fbarcode" style="margin-top:6px"><div class="fcode">INK1-2-35-2025P4</div><div class="bars"></div></div>
+  <div class="sideid">SKV 2000 35 sv 00 05 &nbsp; Samråd enligt SFS 1982:668 har skett med Näringslivets Regelnämnd.</div>
+</div>
+
+<style>
+.form { background:#f8f1c4; }
+.fmast { display:flex; gap:10px; font-size:8.5px; align-items:flex-start; position:relative; }
+.fmast-left { width:150px; line-height:1.35; }
+.fcircle { position:absolute; left:150px; top:0; width:70px; height:70px; border-radius:50%; background:#cfe0da; display:flex; align-items:center; justify-content:center; text-align:center; font-size:8.5px; font-weight:bold; padding:6px; }
+.fmast-mid { width:210px; margin-left:78px; }
+.fnote { border:1px solid #999; background:#fff; padding:4px; font-size:8px; line-height:1.3; }
+.forgbox { border:1px solid #333; background:#fff; padding:2px 6px; margin-top:6px; display:inline-block; }
+.forgbox .k { font-size:8px; color:#333; }
+.forgbox .v { font-family:'Courier New',monospace; font-size:12px; letter-spacing:1px; }
+.fmast-right { flex:1; text-align:left; padding-left:6px; }
+.ftitle { font-size:18px; font-weight:bold; }
+.fyear { float:right; }
+.fsub { font-size:11px; font-weight:bold; }
+.frecip { font-family:'Courier New',monospace; font-size:11px; margin-top:14px; line-height:1.5; }
+.fcols { display:flex; gap:10px; margin-top:12px; align-items:flex-start; }
+.fcol { flex:1; }
+.fhead { font-weight:bold; font-size:11px; margin:8px 0 2px; border-bottom:1px solid #b9ad63; padding-bottom:1px; }
+.fh-note { float:right; font-weight:normal; font-size:8px; }
+.frow { display:flex; align-items:flex-start; gap:6px; padding:3px 0; border-bottom:1px solid #e3d99e; }
+.fl { flex:1; font-size:9px; line-height:1.25; }
+.fi { font-style:italic; font-size:7.5px; color:#333; }
+.fbox { width:96px; min-height:20px; background:#fff; border:1px solid #b9ad63; font-family:'Courier New',monospace; text-align:right; padding:2px 4px; font-size:11px; }
+.fbox.filled { background:#fdfbe8; font-weight:bold; }
+.fbox2 { width:130px; display:flex; }
+.fbox2 span { flex:1; min-height:26px; background:#fff; border:1px solid #b9ad63; font-size:7px; padding:1px 2px; text-align:right; color:#555; }
+.fbarcode { margin-top:16px; text-align:right; }
+.fcode { font-family:'Courier New',monospace; font-size:9px; }
+.bars { height:34px; margin-top:2px; background:repeating-linear-gradient(90deg,#000 0 1px,#fff 1px 2px,#000 2px 4px,#fff 4px 5px,#000 5px 7px,#fff 7px 9px); }
+.fbusiness { font-style:italic; font-weight:bold; font-size:11px; margin:6px 0 2px; }
+.fchk { font-size:8.5px; padding:4px 0; line-height:1.3; }
+.cb { display:inline-block; width:9px; height:9px; border:1px solid #333; background:#fff; vertical-align:middle; }
+.fhead2 { font-weight:bold; font-size:12px; margin:10px 0 3px; border-top:2px solid #b9ad63; padding-top:3px; }
+.fbox-wide { border:1px solid #c9be7e; background:#fff; padding:5px; margin-top:4px; }
+.frow2 { display:flex; font-size:9px; }
+.fi2 { font-size:8px; line-height:1.3; margin-top:3px; color:#222; }
+.ftwo { display:flex; gap:8px; margin-top:4px; }
+.fbox-half { flex:1; border:1px solid #c9be7e; background:#fff; padding:5px; font-size:9px; }
+.fovrigt { font-size:9px; margin-top:4px; }
+.fbox-blank { border:1px solid #c9be7e; background:#fff; height:40px; margin-top:2px; }
+.sig { min-height:52px; }
+.sigline { border-bottom:1px solid #333; margin:14px 0 2px; }
+</style>
+</body></html>

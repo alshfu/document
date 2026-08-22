@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Смета на Пакет Услуг по Продаже Цифрового Искусства</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        /* Основные стили для экрана */
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            max-width: 800px;
+            background: #fff;
+            padding: 40px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 1.25rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        h4 {
+            color: #2c3e50;
+            font-weight: 700;
+        }
+
+        section {
+            margin-bottom: 2rem;
+        }
+
+        ul {
+            margin-bottom: 1rem;
+            padding-left: 1.2rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .total-block {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .section-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Стили для печати на A4 */
+        @media print {
+            @page {
+                size: A4;
+                margin: 20mm;
+            }
+
+            body {
+                background-color: #fff;
+                font-family: 'Times New Roman', Times, serif;
+                font-size: 12pt;
+                line-height: 1.4;
+                color: #000;
+                margin: 0;
+                padding: 0;
+            }
+
+            .container {
+                width: 100%;
+                max-width: none;
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+                border-radius: 0;
+            }
+
+            h1 {
+                font-size: 20pt;
+                text-align: center;
+                margin-bottom: 0.5cm;
+                color: #000;
+            }
+
+            h3 {
+                font-size: 14pt;
+                margin-top: 0.5cm;
+                margin-bottom: 0.3cm;
+                border-bottom: 1px solid #000;
+                page-break-after: avoid;
+                color: #000;
+            }
+
+            h4 {
+                font-size: 14pt;
+                margin-bottom: 0.2cm;
+            }
+
+            p, li {
+                text-align: justify;
+                orphans: 3;
+                widows: 3;
+            }
+
+            section {
+                page-break-inside: avoid;
+                margin-bottom: 0.5cm;
+            }
+
+            .total-block {
+                background-color: transparent !important;
+                border: 2px solid #000;
+                padding: 10px;
+                margin-top: 1cm;
+                margin-bottom: 1cm;
+            }
+
+            .text-muted {
+                color: #666 !important;
+            }
+
+            .section-img {
+                max-width: 80%;
+                max-height: 8cm;
+                width: auto;
+                box-shadow: none;
+                border: 1px solid #ddd;
+                border-radius: 0;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+
+            /* Сброс отступов Bootstrap */
+            .mb-5 {
+                margin-bottom: 0.5cm !important;
+            }
+
+            .mb-4 {
+                margin-bottom: 0.3cm !important;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center">Смета на Пакет Услуг по Продаже Цифрового Искусства</h1>
+    <p class="text-center text-muted mb-5" style="font-size: 1.1em;">(в пределах бюджета 5000 долларов США, без лишних
+        сборов)</p>
+
+    <section>
+        <p>Уважаемый клиент!</p>
+        <p>Мы подготовили простую и понятную смету на наши услуги. Эта версия рассчитана так, чтобы уложиться в 5000
+            долларов США. Мы учли, что вы ничего не предоставляете — мы сами создадим все нужные материалы, такие как
+            картинки, дизайны и другие файлы. В итоге вы получите готовый продукт, который можно сразу использовать, и
+            Мы используем самые передовые инструменты, чтобы но предоставить хорошее
+            качество. Все цены в USDT. Общая стоимость базового пакета — 4850 USDT, что оставляет 150
+            долларов на неожиданные расходы.</p>
+    </section>
+
+    <section>
+        <h3>1. Создание простого веб-сайта для вашей коллекции (800 долларов)</h3>
+        <ul>
+            <li>Создание внешнего вида и структуры сайта (используем готовые шаблоны на простой системе вроде WordPress,
+                сами сделаем все картинки и текст): 500 долларов.
+            </li>
+            <li>Добавление галереи с картинками, описаний и форм для сообщений: 200 долларов.</li>
+            <li>Проверка и запуск (включая место для сайта на год): 100 долларов.</li>
+        </ul>
+        <p>Это будет простой сайт, как витрина в магазине, где люди смогут посмотреть вашу коллекцию.</p>
+        <!-- Реальное изображение для Пункта 1 -->
+        <img src="https://belovdigital.agency/wp-content/uploads/2022/11/themeforest_belov_digital_agency.webp"
+             alt="Изображение для Пункта 1" class="section-img">
+    </section>
+
+    <section>
+        <h3>2. Создание коллекции уникальных цифровых предметов (NFT, 1000 штук) (2500 долларов)</h3>
+        <ul>
+            <li>Подготовка и создание 1000 уникальных предметов (сами сделаем картинки, описания, специальные коды для
+                защиты; используем простые инструменты вроде OpenSea или Manifold, чтобы не тратить много на комиссии):
+                1500 долларов.
+            </li>
+            <li>Размещение в цифровой сети (на недорогой системе вроде Polygon, где расходы меньше 0,01 доллара за
+                штуку; всего на комиссии около 100 долларов): 600 долларов.
+            </li>
+            <li>Настройка вознаграждений (чтобы вы получали процент от перепродаж) и проверка на уникальность: 400
+                долларов.
+            </li>
+        </ul>
+        <p>Мы используем программы для автоматического создания вариантов, чтобы меньше работать вручную. Это как
+            коллекция уникальных карточек в цифровом мире.</p>
+        <!-- Реальное изображение для Пункта 2 -->
+        <img src="https://miro.medium.com/1*dUJjf0mET7VB_KpWKFuUZg.jpeg"
+             alt="Изображение для Пункта 2" class="section-img">
+    </section>
+
+    <section>
+        <h3>3. Создание 100 цифровых кошельков (300 долларов)</h3>
+        <ul>
+            <li>Создание и настройка 100 кошельков (используем простые инструменты вроде MetaMask, делаем все сразу):
+                200 долларов.
+            </li>
+            <li>Добавление защиты и инструкций: 100 долларов.</li>
+        </ul>
+        <p>Кошельки — это как виртуальные сумки для хранения цифровых предметов. Это просто и недорого.</p>
+        <!-- Реальное изображение для Пункта 3 -->
+        <img src="https://www.webopedia.com/wp-content/uploads/2024/07/how-to-create-crypto-wallet-2024-cover.webp"
+             alt="Изображение для Пункта 3" class="section-img">
+    </section>
+
+    <section>
+        <h3>4. Поддержка в течение одного месяца (1000 долларов)</h3>
+        <ul>
+            <li>Обработка платежей и распределение токенов: После поступления оплаты – размещение токенов в кошельке
+                покупателя, формирование инвойса (чека) и передача данных: 500 USD.
+            </li>
+            <li>Техническая поддержка (устранение неисправностей, интеграция с платёжными системами): 500 USD.</li>
+        </ul>
+        <p>Мы используем автоматические инструменты, чтобы меньше делать вручную. Это как личный помощник на месяц.</p>
+        <!-- Реальное изображение для Пункта 4 -->
+        <img src="https://cdn.prod.website-files.com/61d40c6951c3a2d3234782ae/65aa1b77f01c83a962ba30ce_0dy7CeaWGn8sinQeHWVLk8dGPamp2Ig0-RDCyVRqN4uv-g0sWrdjYFvHWglcWcOfSxBB1OseLtixcGCEluFsePbkwUdRmu4SUEbUkq_Eyqez2E6E0B5k2f8k2YCmDwVjzZyL-tC9B8pheJ0nZih7Pkw.jpeg"
+             alt="Изображение для Пункта 4" class="section-img">
+    </section>
+
+    <div class="total-block">
+        <h4 class="mb-2">Итого по базовому пакету: 4600 долларов</h4>
+        <p class="mb-0">(Распределение: 17% на сайт, 54% на коллекцию, 7% на кошельки, 22% на поддержку.)</p>
+    </div>
+
+    <section>
+        <h3>Дополнительные услуги (за отдельную плату):</h3>
+        <ul>
+            <li>Создание приложения в Telegram: 1500 долларов (простая версия для показа и продажи коллекции через чат в
+                Telegram).
+            </li>
+            <li>Полноценное приложение для телефонов (iOS и Android): 5000 долларов (с нуля, с дизайном и проверкой;
+                дороже, потому что сложнее).
+            </li>
+            <li>Создание аккаунтов в соцсетях (X, Instagram, LinkedIn) и привлечение подписчиков: 3000 долларов
+                (настроим профили, добавим контент, привлечем 5000–10000 человек законными способами, без риска
+                блокировок).
+            </li>
+        </ul>
+    </section>
+
+    <section class="mt-5">
+        <p>Эта смета значит, что вы получите все готовое, без вашего участия. Оплата в USDT напрямую: 50% заранее, 50%
+            после. Мы делаем все просто и эффективно.</p>
+        <p>Если нужны объяснения или изменения, скажите!</p>
+        <p class="mt-4">С уважением,<br>Наша команда</p>
+    </section>
+</div>
+
+<!-- Bootstrap JS CDN (опционально) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+</html>

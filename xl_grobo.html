@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Заголовок будет динамическим, например, "Подтверждение заказа - [номер заказа]" -->
+    <title>Orderbekräftelse - {{ data.order_number }}</title>
+
+    <style>
+        /* * Базовые стили для печати и предпросмотра в формате A4.
+         * Основано на вашей документации.
+        */
+        @page {
+            size: A4;
+            margin: 0; /* Убираем стандартные отступы браузера при печати */
+        }
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 10px;
+            color: #000;
+            background-color: #f4f4f4; /* Фон для предпросмотра в браузere */
+            -webkit-print-color-adjust: exact; /* Обязательно для Chrome, чтобы печатать фоновые цвета */
+            print-color-adjust: exact; /* Стандартное свойство */
+        }
+        .a4-sheet {
+            background: white;
+            width: 210mm;
+            min-height: 296mm; /* min-height позволяет контенту расти */
+            margin: 0 auto;
+            padding: 15mm;
+            box-sizing: border-box;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Тень для предпросмотра */
+            display: flex;
+            flex-direction: column;
+        }
+        .content-wrapper {
+            flex-grow: 1; /* Заставляет этот блок расти, отодвигая футер вниз */
+        }
+
+        /* Стили для печати */
+        @media print {
+            body {
+                background: none;
+            }
+            .a4-sheet {
+                box-shadow: none;
+                margin: 0;
+                width: 100%;
+                height: 297mm;
+            }
+        }
+
+        /* * Кастомные стили для шаблона "Derome", адаптированные из вашего оригинального кода.
+         * Используется Bootstrap Grid для удобства, но можно заменить на flexbox или CSS Grid.
+        */
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+        .col-3, .col-5, .col-6, .col-7, .col-md-4 {
+            position: relative;
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            box-sizing: border-box;
+        }
+        .col-3 { flex: 0 0 25%; max-width: 25%; }
+        .col-5 { flex: 0 0 41.666667%; max-width: 41.666667%; }
+        .col-6 { flex: 0 0 50%; max-width: 50%; }
+        .col-7 { flex: 0 0 58.333333%; max-width: 58.333333%; }
+        .col-md-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+        .text-end { text-align: right; }
+        .mt-3 { margin-top: 1rem; }
+
+        /* --- Стили шаблона --- */
+        .header-logo {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-weight: bold;
+            font-size: 3rem;
+            color: #005f47;
+            line-height: 1;
+        }
+        .header-title {
+            font-weight: normal;
+            font-size: 1.5rem;
+            text-align: left;
+            color: #000;
+            margin-top: 10px;
+        }
+        .header-row {
+            align-items: flex-start;
+            border-bottom: 3px solid #005f47;
+            padding-bottom: 1rem;
+        }
+        .order-details-top {
+            font-size: 10px;
+        }
+        .order-details-top .label {
+            display: inline-block;
+            width: 120px;
+        }
+        .order-details-top .value {
+            font-weight: bold;
+        }
+        .info-section {
+            margin-top: 1rem;
+        }
+        .info-section h6 {
+            font-weight: normal;
+            font-size: 10px;
+            margin-bottom: 0.1rem;
+            color: #333;
+        }
+        .info-section p {
+            margin-bottom: 1rem;
+            font-size: 10px;
+            line-height: 1.4;
+            font-weight: bold;
+        }
+        .info-section .regular-weight p {
+            font-weight: normal;
+        }
+        .info-section .regular-weight p strong {
+            font-weight: bold;
+        }
+        .order-table {
+            width: 100%;
+            margin-top: 2rem;
+            font-size: 10px;
+            border-collapse: collapse;
+        }
+        .order-table th {
+            background-color: #005f47;
+            color: white;
+            font-weight: bold;
+            padding: 6px 8px;
+            text-align: left;
+            border: none;
+        }
+        .order-table td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            vertical-align: top;
+            font-weight: bold;
+        }
+        .order-table .item-description, .order-table .gtin {
+            font-weight: normal;
+        }
+        .order-table .pos-nr {
+            font-weight: bold;
+        }
+        .totals-section {
+            margin-top: 1rem;
+            float: right;
+            width: 40%;
+        }
+        .totals-block {
+            font-size: 10px;
+        }
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 8px;
+            font-weight: bold;
+        }
+        .total-row.summary-light {
+            background-color: #f0f0f0;
+        }
+        .total-row.summary-dark {
+            background-color: #e0e0e0;
+            border-top: 1px solid #aaa;
+            border-bottom: 1px solid #aaa;
+        }
+        .fine-print {
+            clear: both;
+            margin-top: 3rem;
+            font-size: 9px;
+            color: #555;
+        }
+        .fine-print a {
+            color: #005f47;
+            text-decoration: none;
+        }
+        .page-footer {
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #005f47;
+            color: white;
+            font-size: 9px;
+        }
+        .page-footer p {
+            margin-bottom: 0.1rem;
+        }
+        .page-footer .label {
+            display: inline-block;
+            width: 50px;
+        }
+        .page-number {
+            text-align: right;
+            font-size: 10px;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="a4-sheet">
+    <div class="content-wrapper">
+        <!-- 1. Заголовок -->
+        <header class="row header-row">
+            <div class="col-7">
+                <!-- Логотип можно вставить как изображение, как в вашей документации -->
+                <!-- <img src="{{ url_for('static', filename='img/logo/derome_logo.png', _external=True) }}" alt="Derome Logo"> -->
+                <div class="header-logo">Derome</div>
+            </div>
+            <div class="col-5">
+                <h2 class="header-title">Orderbekräftelse</h2>
+                <div class="order-details-top">
+                    <!-- Используем переменные из объекта data -->
+                    <div><span class="label">Orderdatum:</span><span class="value">{{ data.invoice_date or '' }}</span></div>
+                    <div><span class="label">Orderbekräftelsedatum:</span><span class="value">{{ data.generation_timestamp or data.invoice_date or '' }}</span></div>
+                    <div><span class="label">Kundnummer:</span><span class="value">{{ data.customer.id or '' }}</span></div>
+                    <div><span class="label">Ordernr:</span><span class="value">{{ data.order_number or '' }}</span></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- 2. Адреса и основная информация -->
+        <div class="info-section row">
+            <div class="col-6 regular-weight">
+                <h6>Vår referens:</h6>
+                <p>{{ data.our_ref or '' }}</p>
+                <h6>Leveransadress:</h6>
+                <!-- Предполагается, что адрес доставки может отличаться от адреса клиента -->
+                <p>
+                    {{ data.delivery_address.addr1 or data.customer.addr1 or '' }}<br>
+                    {{ data.delivery_address.addr2 or data.customer.addr2 or '' }}<br>
+                    {{ data.delivery_address.zipcode or data.customer.zipcode or '' }} {{ data.delivery_address.city or data.customer.city or '' }}
+                </p>
+            </div>
+            <div class="col-6 regular-weight">
+                <h6>Referens tel:</h6>
+                <p>{{ data.company.phone or '031-309 13 14' }}</p> <!-- Статично или из данных компании -->
+                <h6>Kundadress:</h6>
+                <p>
+                    {{ data.customer.name or '' }}<br>
+                    {{ data.customer.addr1 or '' }}<br>
+                    <strong>{{ data.customer.ref or '' }}</strong><br>
+                    {{ data.customer.zipcode or '' }} - {{ data.customer.city or '' }}<br>
+                    SVERIGE
+                </p>
+            </div>
+        </div>
+
+        <!-- 3. Дополнительная информация -->
+        <div class="info-section row">
+            <div class="col-3">
+                <h6>Önskat lev.datum:</h6>
+                <p>{{ data.requested_delivery_date or data.due_date or '' }}</p>
+                <h6>Rutt:</h6>
+                <p>{{ data.route or 'VALFRI' }}</p>
+            </div>
+            <div class="col-3">
+                <h6>Bet.villkor:</h6>
+                <p>{{ data.payment_terms or '30 Dagar netto' }}</p>
+                <h6>Er referens:</h6>
+                <p>{{ data.customer.ref or '' }}</p>
+            </div>
+            <div class="col-6">
+                <h6>Märkning</h6>
+                <p>{{ data.marking or '&nbsp;' }}</p>
+                <h6>Godsmärke</h6>
+                <p>{{ data.goods_mark or '&nbsp;' }}</p>
+            </div>
+        </div>
+        <div class="info-section row" style="margin-top:-1rem;">
+            <div class="col-3">
+                <h6>Leveransvillkor:</h6>
+                <p>{{ data.delivery_terms or 'Butik' }}</p>
+            </div>
+            <div class="col-3">
+                <h6>Referens tel:</h6>
+                <p>{{ data.customer.phone or '&nbsp;' }}</p>
+            </div>
+        </div>
+        <div class="info-section row" style="margin-top:-1rem;">
+            <div class="col-3">
+                <h6>Leveranssätt:</h6>
+                <p>{{ data.delivery_method or 'Butiksorder' }}</p>
+            </div>
+            <div class="col-3">
+                <h6>Mottagare referens:</h6>
+                <p>{{ data.receiver or '&nbsp;' }}</p>
+            </div>
+        </div>
+
+        <!-- 4. Таблица с товарами (используем цикл Jinja2) -->
+        <table class="order-table">
+            <thead>
+            <tr>
+                <th style="width: 50%;">Pos. Art.nr<br>Lev. Beskrivning</th>
+                <th style="width: 12%;" class="text-end">Fsg.kvant. Enhet</th>
+                <th style="width: 12%;" class="text-end">Priskvant. Enhet</th>
+                <th style="width: 13%;" class="text-end">Pris</th>
+                <th style="width: 13%;" class="text-end">Nettobelopp<br>SEK</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in data.line_items %}
+            <tr>
+                <td>
+                    <span class="pos-nr">{{ loop.index }} {{ item.artikelnummer or '' }}</span><br>
+                    <span class="item-description">{{ item.benamning or '' }}</span><br>
+                    <span class="gtin">GTIN-nr: {{ item.gtin or '' }}</span>
+                </td>
+                <td class="text-end">{{ item.antal or 0 }} {{ item.enhet or '' }}</td>
+                <td class="text-end">{{ item.antal or 0 }} {{ item.enhet or '' }}</td>
+                <td class="text-end">{{ item.enhetspris | format_number }}</td>
+                <td class="text-end">{{ item.total | format_number }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- 5. Секция итогов -->
+        <div class="totals-section">
+            <div class="totals-block">
+                <div class="total-row summary-light">
+                    <span>Total delsum</span>
+                    <span>{{ data.sum_ex_vat | format_number }}</span>
+                </div>
+                <div class="total-row">
+                    <span>Netto totalt</span>
+                    <span>{{ data.sum_ex_vat | format_number }}</span>
+                </div>
+                <div class="total-row">
+                    <span>Moms</span>
+                    <span>{{ data.vat_amount | format_number }}</span>
+                </div>
+                <div class="total-row summary-dark">
+                    <span>Totalt ink moms</span>
+                    <span>{{ data.total | format_number }}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Условия возврата -->
+        <div class="fine-print">
+            <p>Returrätt 60 dagar mot returavgift, enbart på varor som lagerhålls av Derome. Produkten returneras komplett och i oförändrat skick. Pall, emballage och frakt kan tillkomma. För fullständiga försäljningsvillkor se <a href="http://www.derome.se/forsaljningsvillkor" target="_blank">www.derome.se/forsaljningsvillkor</a></p>
+        </div>
+    </div>
+
+    <!-- 6. Футер -->
+    <footer class="page-footer row">
+        <div class="col-md-4">
+            <p><strong>Derome Bygg & Industri AB</strong></p>
+            <p>Bjurumsvägen 14</p>
+            <p>432 87 Veddige</p>
+            <p>Sverige</p>
+            <p>Godkänd för F-skatt</p>
+        </div>
+        <div class="col-md-4">
+            <p><span class="label">Mail:</span> byggvaror@derome.se</p>
+            <p><span class="label">Telefon:</span> +46 (0)340-666500</p>
+            <p><span class="label">Org nr:</span> 556202-5196</p>
+            <p><span class="label">Säte:</span> Varberg</p>
+            <p><span class="label">VAT:</span> SE556202519601</p>
+        </div>
+        <div class="col-md-4">
+            <p><span class="label">Bankgiro:</span> 358-0750</p>
+            <p><span class="label">IBAN:</span> SE0712000000013250100218</p>
+            <p><span class="label">Swift:</span> DABASESX</p>
+        </div>
+    </footer>
+
+    <!-- Номер страницы -->
+    <div class="page-number">
+        Sida 1 (1)
+    </div>
+</div>
+
+</body>
+</html>

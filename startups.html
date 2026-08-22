@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Презентация: Стартапы и Гранты в Устойчивом Развитии</title>
+  <style>
+    /* Общие стили */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #1a1a1a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    .presentation-container {
+      width: 100%;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Стили слайда */
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-color: #555; /* Заглушка */
+    }
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      z-index: 1;
+    }
+
+    /* Контейнер для текста с затемнением */
+    .slide-content {
+      background-color: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      padding: 25px 35px;
+      border-radius: 10px;
+      max-width: 90%;
+      width: auto;
+      text-align: center;
+      box-sizing: border-box;
+      overflow-y: auto;
+      max-height: 85vh;
+      backdrop-filter: blur(3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    /* Анимации для текста */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translate3d(0, 30px, 0); }
+      to { opacity: 1; transform: translate3d(0, 0, 0); }
+    }
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translate3d(-30px, 0, 0); }
+      to { opacity: 1; transform: translate3d(0, 0, 0); }
+    }
+
+    /* Применение анимаций к активному слайду */
+    .slide.active .slide-content h1,
+    .slide.active .slide-content h2,
+    .slide.active .slide-content p,
+    .slide.active .slide-content ul {
+      opacity: 0;
+      animation-fill-mode: forwards;
+    }
+    .slide.active .slide-content h1 { animation: fadeInUp 0.6s 0.2s ease forwards; }
+    .slide.active .slide-content h2 { animation: fadeInUp 0.6s 0.4s ease forwards; }
+    .slide.active .slide-content p { animation: fadeInUp 0.6s 0.6s ease forwards; }
+    .slide.active .slide-content ul { animation: fadeInLeft 0.6s 0.6s ease forwards; }
+
+    /* Стили для текста */
+    .slide h1, .slide h2 { color: #fff; margin-bottom: 15px; margin-top: 0; font-weight: 600; }
+    .slide h1 { font-size: 1.8em; }
+    .slide h2 { font-size: 1.4em; color: #ddd; }
+    .slide p, .slide ul { color: #f5f5f5; font-size: 1em; line-height: 1.6; margin: 12px auto; text-align: left; }
+    .slide ul { list-style: circle; padding-left: 30px; }
+    .slide li { margin-bottom: 10px; }
+
+    /* Навигация */
+    .navigation {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 20px;
+      box-sizing: border-box;
+      z-index: 10;
+    }
+    /* Стили для SVG кнопок */
+    .nav-button {
+      background: rgba(0, 0, 0, 0.4);
+      border: none;
+      padding: 8px;
+      cursor: pointer;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px; height: 45px;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    .nav-button svg { width: 24px; height: 24px; fill: #ffffff; transition: fill 0.3s; }
+    .nav-button:hover:not(:disabled) { background: rgba(0, 0, 0, 0.6); transform: scale(1.1); }
+    .nav-button:disabled { background: rgba(51, 51, 51, 0.4); cursor: not-allowed; opacity: 0.6; }
+    .nav-button:disabled svg { fill: #aaaaaa; }
+    .slide-counter {
+      color: #fff; font-size: 1em; align-self: center;
+      background-color: rgba(0, 0, 0, 0.4); padding: 5px 15px; border-radius: 15px;
+      font-weight: 500;
+    }
+
+    /* Адаптивность для Десктопа */
+    @media (min-width: 768px) {
+      .slide { padding: 40px; }
+      .slide-content { padding: 40px 60px; max-width: 75%; max-height: 75vh; }
+      .slide h1 { font-size: 2.8em; }
+      .slide h2 { font-size: 2.0em; }
+      .slide p, .slide ul { font-size: 1.15em; }
+      .slide ul { padding-left: 40px; }
+      .navigation { padding: 20px 50px; }
+      .nav-button { width: 55px; height: 55px; padding: 12px; }
+      .nav-button svg { width: 30px; height: 30px; }
+      .slide-counter { font-size: 1.1em; padding: 8px 20px; }
+    }
+    @media (min-width: 1200px) {
+      .slide-content { max-width: 65%; }
+    }
+
+    /* Фоны слайдов (ЗАМЕНИТЕ URL) */
+    .slide-bg-title { background-image: url('placeholder-business-presentation.jpg'); }
+    .slide-bg-foodwaste { background-image: url('placeholder-food-waste-large.jpg'); }
+    .slide-bg-foodsharing { background-image: url('placeholder-food-sharing-app.jpg'); }
+    /* ... добавьте классы или стили для остальных фонов ... */
+    .slide-bg-market { background-image: url('placeholder-market-gaps.jpg'); }
+    .slide-bg-ai { background-image: url('placeholder-ai-data.jpg'); }
+    .slide-bg-b2b { background-image: url('placeholder-b2b-market.jpg'); }
+    .slide-bg-ugly { background-image: url('placeholder-ugly-produce-farm.jpg'); }
+    .slide-bg-textile { background-image: url('placeholder-textile-recycling.jpg'); }
+    .slide-bg-construction { background-image: url('placeholder-construction-waste.jpg'); }
+    .slide-bg-gamify { background-image: url('placeholder-recycling-game.jpg'); }
+    .slide-bg-funding { background-image: url('placeholder-grant-money.jpg'); }
+    .slide-bg-programs { background-image: url('placeholder-funding-programs.jpg'); }
+    .slide-bg-strategy { background-image: url('placeholder-application-strategy.jpg'); }
+    .slide-bg-conclusion { background-image: url('placeholder-future-growth.jpg'); }
+
+    /* Скрыть стандартные контролы аудио плеера */
+    #slideAudio {
+      display: none;
+    }
+
+  </style>
+</head>
+<body>
+<audio id="slideAudio"></audio>
+
+<div class="presentation-container">
+
+  <div class="slide active slide-bg-title" style="background-color: #4a6a8a;" data-audio="audio/slide1_intro.mp3">
+    <div class="slide-content">
+      <h1>Перспективные Стартап-идеи и Гранты в Сфере Устойчивого Развития в России</h1>
+      <h2>Анализ рынка, 10 идей и возможности финансирования</h2>
+    </div>
+  </div>
+
+  <div class="slide slide-bg-foodwaste" style="background-color: #8b4513;" data-audio="audio/slide2_problem.mp3">
+    <div class="slide-content">
+      <h2>Масштаб проблемы пищевых отходов</h2>
+      <ul>
+        <li>Более 17 млн тонн ежегодно (продажа, хранение, потребление).</li>
+        <li>До 42 млн тонн, включая агро/транспортные потери.</li>
+        <li>Эквивалент 900 тыс. грузовиков (Москва-Владивосток и обратно).</li>
+        <li>**Экологический ущерб:** Метан на свалках, изменение климата.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="slide slide-bg-foodsharing" style="background-color: #5f9ea0;" data-audio="audio/slide3_foodsharing.mp3">
+    <div class="slide-content">
+      <h2>Существующие решения: Фудшеринг в России</h2>
+      <ul>
+        <li>**Концепция:** Спасение и перераспределение еды.</li>
+        <li>**Формы:** P2P обмен, коммерческие приложения, банки еды («Русь»).</li>
+        <li>**Платформы:** Lastbox, Eatme, DoggyBag, Еда Дома, Karmitt.</li>
+        <li>**Проблемы:** Логистика, доверие.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="slide slide-bg-market" style="background-color: #708090;" data-audio="audio/slide4_gaps.mp3">
+    <div class="slide-content">
+      <h2>Рыночные пробелы и возможности</h2>
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-around; width: 100%;">
+        <ul style="width: 100%; max-width: 300px; margin-bottom: 10px;">
+          <li>**Пробелы:**</li>
+          <li>Мало фокуса на производителях/опте</li>
+          <li>Слабые B2B-платформы</li>
+          <li>Логистические барьеры</li>
+          <li>Вопросы доверия</li>
+        </ul>
+        <ul style="width: 100%; max-width: 300px;">
+          <li>**Возможности:**</li>
+          <li>Ниши ("ugly produce", B2B)</li>
+          <li>Развитие B2B-решений</li>
+          <li>Инновации в логистике</li>
+          <li>Технологии (ИИ, блокчейн)</li>
+          <li>Регионы</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide slide-bg-ai" style="background-color: #2e8b57;" data-audio="audio/slide5_idea_ai.mp3">
+    <div class="slide-content">
+      <h2>Идея 1: AI-платформа для предотвращения излишков</h2>
+      <ul>
+        <li>**Концепция:** SaaS с ИИ анализирует данные (продажи, погода), помогает HoReCa/ритейлу прогнозировать спрос, оптимизировать закупки.</li>
+        <li>**Модель:** Подписка (SaaS).</li>
+        <li>**Устойчивость:** Предотвращение отходов у источника.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="slide slide-bg-b2b" style="background-color: #4682b4;" data-audio="audio/slide6_idea_b2b.mp3">
+    <div class="slide-content">
+      <h2>Идея 2: B2B-маркетплейс для излишков</h2>
+      <ul>
+        <li>**Концепция:** Платформа для производителей/дистрибьюторов с излишками и бизнесов-потребителей. Опт, логистика.</li>
+        <li>**Модель:** Комиссия, подписка.</li>
+        <li>**Устойчивость:** Повторное использование в пром. цепочке.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="slide slide-bg-ugly" style="background-color: #daa520;" data-audio="audio/slide7_idea_ugly.mp3">
+    <div class="slide-content">
+      <h2>Идея 3: Подписка на "Ugly Produce"</h2>
+      <ul>
+        <li>**Концепция:** Закупка "неидеальных" овощей/фруктов у фермеров. Доставка по подписке. Адресует агропотери.</li>
+        <li>**Модель:** Подписка, B2B.</li>
+        <li>**Устойчивость:** Сокращение потерь на фермах.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="slide slide-bg-textile" style="background-color: #ff69b4;" data-audio="audio/slide8_idea_textile.mp3">
+    <div class="slide-content">
+      <h2>Идея 4: Платформа для апсайклинга текстиля</h2>
+      <ul>
+        <li>**Концепция:** Сбор текстиля -> передача дизайнерам -> продажа новых изделий через платформу.</li>
+        <li>**Модель:** Комиссия, плата за сбор.</li>
+        <li>**Устойчивость:** Циркулярная экономика в моде.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="slide slide-bg-construction" style="background-color: #a0522d;" data-audio="audio/slide9_idea_construction.mp3">
+    <div class="slide-content">
+      <h2>Идея 5: Маркетплейс стройотходов</h2>
+      <ul>
+        <li>**Концепция:** Платформа связывает стройки и переработчиков. Включает логистику.</li>
+        <li>**Модель:** Комиссия, плата за логистику.</li>
+        <li>**Устойчивость:** Вовлечение стройотходов в оборот.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="slide slide-bg-gamify" style="background-color: #3cb371;" data-audio="audio/slide10_idea_gamify.mp3">
+    <div class="slide-content">
+      <h2>Идея 6: Геймификация сортировки отходов</h2>
+      <ul>
+        <li>**Концепция:** Мобильное приложение: обучение, трекинг (QR), баллы -> обмен на скидки у эко-партнеров.</li>
+        <li>**Модель:** Партнерства.</li>
+        <li>**Устойчивость:** Формирование привычек.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="slide slide-bg-funding" style="background-color: #8a2be2;" data-audio="audio/slide11_funders.mp3">
+    <div class="slide-content">
+      <h2>Грантодающие организации</h2>
+      <ul>
+        <li>**ФСИ (Фонд Бортника):** Научно-технические стартапы.</li>
+        <li>**«Сколково»:** Для резидентов (техно-стартапы).</li>
+        <li>**Президентские фонды:** Для НКО (соц., культура, экология).</li>
+        <li>**Другие:** Регионы ("Мой бизнес"), Росмолодежь.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="slide slide-bg-programs" style="background-color: #008b8b;" data-audio="audio/slide12_programs.mp3">
+    <div class="slide-content">
+      <h2>Ключевые грантовые программы</h2>
+      <ul>
+        <li>**ФСИ "Студенческий стартап":** 1 млн ₽ для студентов.</li>
+        <li>**ФСИ "Старт":** 3-8 млн ₽ для МСП/физлиц.</li>
+        <li>**Микрогранты "Сколково":** До 1.5 млн ₽ для резидентов.</li>
+        <li>**Гранты молодым (до 25 лет):** До 500 тыс. ₽.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="slide slide-bg-strategy" style="background-color: #b8860b;" data-audio="audio/slide13_strategy.mp3">
+    <div class="slide-content">
+      <h2>Стратегии подачи заявок</h2>
+      <ul>
+        <li>**Процесс:** Электронная подача.</li>
+        <li>**Лучшие практики:**</li>
+        <li>✅ Соответствие фокусу гранта</li>
+        <li>💡 Демонстрация инновации/воздействия</li>
+        <li>📊 Реалистичный план и бюджет</li>
+        <li>👥 Компетентность команды</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="slide slide-bg-conclusion" style="background-color: #6a5acd;" data-audio="audio/slide14_conclusion.mp3">
+    <div class="slide-content">
+      <h2>Заключение и Рекомендации</h2>
+      <ul>
+        <li>Рынок имеет значительные возможности.</li>
+        <li>**Рекомендации:**</li>
+        <li>➡️ Дифференциация (B2B, технологии)</li>
+        <li>💰 Стратегическое использование грантов</li>
+        <li>📄 Убедительная заявка</li>
+        <li>♻️ Исследование смежных ниш</li>
+        <li>🤝 Партнерства</li>
+        <li>🌍 Сочетание экономики и устойчивости</li>
+      </ul>
+    </div>
+  </div>
+
+
+</div><div class="navigation">
+  <button id="prevBtn" class="nav-button" aria-label="Предыдущий слайд">
+    <svg viewBox="0 0 24 24">
+      <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+    </svg>
+  </button>
+  <span id="slideCounter" class="slide-counter">Слайд 1 / 14</span>
+  <button id="nextBtn" class="nav-button" aria-label="Следующий слайд">
+    <svg viewBox="0 0 24 24">
+      <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
+    </svg>
+  </button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const slideCounter = document.getElementById('slideCounter');
+  const audioElement = document.getElementById('slideAudio'); // Получаем аудио элемент
+  let currentSlide = 0;
+  const totalSlides = slides.length;
+
+  function showSlide(index) {
+    const activeSlide = document.querySelector('.slide.active');
+    if (activeSlide) {
+      activeSlide.classList.remove('active');
+    }
+
+    if (slides[index]) {
+      slides[index].classList.add('active');
+      currentSlide = index;
+    } else {
+      console.error("Slide index out of bounds:", index);
+      return;
+    }
+
+    slideCounter.textContent = `Слайд ${currentSlide + 1} / ${totalSlides}`;
+    prevBtn.disabled = currentSlide === 0;
+    nextBtn.disabled = currentSlide === totalSlides - 1;
+
+    // --- Воспроизведение аудио ---
+    const audioSrc = slides[index].getAttribute('data-audio');
+
+    // Остановить предыдущее аудио
+    if (!audioElement.paused) {
+      audioElement.pause();
+      audioElement.currentTime = 0; // Сбросить время для следующего воспроизведения
+    }
+
+    if (audioSrc) {
+      audioElement.src = audioSrc;
+      // Попытка воспроизведения (может быть заблокирована браузером до взаимодействия пользователя)
+      audioElement.play().catch(error => {
+        console.warn("Audio playback failed:", error);
+        // Можно добавить кнопку "Play" для пользователя, если автовоспроизведение не сработало
+      });
+    } else {
+      audioElement.src = ''; // Очистить источник, если аудио нет
+    }
+    // ---------------------------
+  }
+
+  prevBtn.addEventListener('click', () => {
+    if (currentSlide > 0) {
+      showSlide(currentSlide - 1);
+    }
+  });
+
+  nextBtn.addEventListener('click', () => {
+    if (currentSlide < totalSlides - 1) {
+      showSlide(currentSlide + 1);
+    }
+  });
+
+  // --- Управление с клавиатуры ---
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowLeft') {
+      prevBtn.click(); // Имитировать нажатие кнопки
+    } else if (event.key === 'ArrowRight') {
+      nextBtn.click(); // Имитировать нажатие кнопки
+    }
+  });
+  // ----------------------------
+
+  let touchstartX = 0;
+  let touchendX = 0;
+  const presentationContainer = document.querySelector('.presentation-container');
+
+  function handleGesture() {
+    // Добавляем небольшую "мертвую зону", чтобы избежать случайных срабатываний
+    const threshold = 50;
+    if (touchendX < touchstartX - threshold) { nextBtn.click(); }
+    if (touchendX > touchstartX + threshold) { prevBtn.click(); }
+  }
+
+  presentationContainer.addEventListener('touchstart', e => {
+    touchstartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  presentationContainer.addEventListener('touchend', e => {
+    touchendX = e.changedTouches[0].screenX;
+    handleGesture();
+  }, { passive: true });
+
+  // Показать первый слайд при загрузке
+  showSlide(0);
+</script>
+
+</body>
+</html>

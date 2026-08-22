@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пассажирская таможенная декларация — Товсултанов Р.В.</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 13px;
+            line-height: 1.45;
+            background: #e5e5e5;
+            color: #000;
+        }
+
+        .page {
+            width: 21cm;
+            min-height: 29.7cm;
+            margin: 0.5cm auto;
+            padding: 1.3cm 1.5cm;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .25);
+            position: relative;
+        }
+
+        h1 {
+            font-size: 17px;
+            text-align: center;
+            letter-spacing: .5px;
+            margin-bottom: 12px;
+        }
+
+        .intro {
+            border: 1px solid #000;
+            padding: 8px 10px;
+            font-size: 12px;
+            margin-bottom: 12px;
+        }
+
+        .sect {
+            font-weight: bold;
+            margin: 10px 0 4px;
+        }
+
+        /* filled-in value over an underline */
+        .f {
+            display: inline-block;
+            border-bottom: 1px solid #000;
+            padding: 0 6px 1px;
+            min-width: 40px;
+            text-align: center;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12.5px;
+        }
+
+        .f.empty {
+            min-width: 120px;
+            color: transparent;
+        }
+
+        .cap {
+            display: block;
+            font-size: 10px;
+            text-align: center;
+            font-weight: normal;
+        }
+
+        /* Page 1 is stretched vertically to fill the whole A4 sheet */
+        .page1 {
+            display: flex;
+            flex-direction: column;
+            font-size: 12.5px;
+        }
+
+        .page1 .intro {
+            padding: 9px 11px;
+            margin-bottom: 13px;
+        }
+
+        .page1 .sect {
+            margin: 13px 0 8px;
+        }
+
+        .page1 .row {
+            margin-bottom: 12px;
+        }
+
+        .page1 .cbrow {
+            margin-bottom: 10px;
+        }
+
+        .page1 ol.goods li {
+            margin-bottom: 8px;
+        }
+
+        @media print {
+            .page1 {
+                height: 27.2cm; /* full printable height of A4 */
+                justify-content: space-between;
+            }
+        }
+
+        .row {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+            margin-bottom: 6px;
+        }
+
+        .row > div {
+            flex: 1;
+        }
+
+        .row .f {
+            display: block;
+            width: 100%;
+        }
+
+        /* checkbox */
+        .cb {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border: 1px solid #000;
+            text-align: center;
+            line-height: 14px;
+            font-size: 12px;
+            font-weight: bold;
+            vertical-align: middle;
+            flex: none;
+        }
+
+        .cbrow {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 6px;
+        }
+
+        .cbrow .item {
+            display: flex;
+            gap: 6px;
+            align-items: flex-start;
+            flex: 1;
+        }
+
+        ol.goods {
+            list-style: none;
+        }
+
+        ol.goods li {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+        }
+
+        table th, table td {
+            border: 1px solid #000;
+            padding: 4px 5px;
+            vertical-align: top;
+        }
+
+        table th {
+            font-weight: normal;
+            text-align: center;
+        }
+
+        .sign {
+            display: flex;
+            gap: 14px;
+            align-items: flex-end;
+            margin-top: 14px;
+        }
+
+        .note {
+            background: #fff8c4;
+            border: 1px dashed #b8a000;
+            padding: 6px 8px;
+            font-size: 10.5px;
+            margin-top: 10px;
+        }
+
+        .small {
+            font-size: 9.5px;
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                background: #fff;
+            }
+
+            .page {
+                width: auto;
+                min-height: auto;
+                margin: 0;
+                padding: 1.2cm 1.4cm;
+                box-shadow: none;
+                page-break-after: always;
+            }
+
+            .page:last-child {
+                page-break-after: auto;
+            }
+
+            .note, .no-print {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<div class="page page1">
+    <h1>ПАССАЖИРСКАЯ ТАМОЖЕННАЯ ДЕКЛАРАЦИЯ</h1>
+
+    <div class="intro">
+        Заполняется физическим лицом, достигшим 16-летнего возраста.<br>
+        В случае утвердительного ответа в соответствующем поле проставляется знак "&times;" или "&#10003;".<br>
+        Экземпляр оформленной пассажирской таможенной декларации сохраняется на весь период временного
+        пребывания на таможенной территории ЕАЭС (за ее пределами) и предъявляется таможенному органу при
+        выезде (возвращении).
+    </div>
+
+    <div class="sect">1. Сведения о декларанте:</div>
+
+    <div class="row">
+        <div><span class="f">ТОВСУЛТАНОВ</span><span class="cap">(фамилия)</span></div>
+        <div><span class="f">РАХМАН</span><span class="cap">(имя)</span></div>
+        <div><span class="f">ВИСАМУДИНОВИЧ</span><span class="cap">(отчество)</span></div>
+    </div>
+
+    <div class="row">
+        <div>
+            <span class="f">Паспорт гражданина РФ (заграничный), Российская Федерация, 55 № 1079127, выдан 30.05.2023, МИД России 46802</span>
+            <span class="cap">(документ, удостоверяющий личность (наименование, страна выдачи, серия, номер, дата выдачи))</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div>
+            <span class="f">Holländareplan 11 lgh 0901, 374 34 Karlshamn, Королевство Швеция</span>
+            <span class="cap">(адрес постоянного места жительства (регистрации) (заполняется при ввозе (в том числе временном) транспортного
+            средства, ввозе или вывозе наличных денежных средств и (или) денежных инструментов, транзите)</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div>
+            <span class="f">Российская Федерация, Чеченская Республика, Гудермесский район, с. Кошкельды, ул. Масаева, д. 3</span>
+            <span class="cap">(адрес временного проживания (пребывания) в государстве – члене ЕАЭС (заполняется иностранным лицом при ввозе (в том числе
+            временном) транспортного средства, ввозе или вывозе наличных денежных средств и (или) денежных инструментов, транзите)</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div><span class="f">ГРУЗИЯ</span><span class="cap">(страна отправления)</span></div>
+        <div><span class="f">РОССИЙСКАЯ ФЕДЕРАЦИЯ</span><span class="cap">(страна назначения)</span></div>
+    </div>
+
+    <p style="margin-bottom:6px">Со мной следуют лица, не достигшие 16-летнего возраста, в количестве
+        <span class="f">0</span> чел.</p>
+    <p style="margin-bottom:8px">Мной, следующими со мной лицами, не достигшими 16-летнего возраста, либо в мой адрес
+        (от меня) перемещаются следующие товары и транспортные средства:</p>
+
+    <div class="sect">2. Сведения о способе перемещения товаров и транспортных средств:</div>
+    <div class="cbrow">
+        <div class="item"><span>2.1. Сопровождаемый багаж, включая ручную кладь</span><span class="cb">&times;</span>
+        </div>
+        <div class="item"><span class="small">2.2. Несопровождаемый багаж (багаж, следующий отдельно от
+            въезжающего/выезжающего лица) (при въезде лица заполняется для учета норм ввоза товаров без уплаты
+            платежей)</span><span class="cb"></span></div>
+        <div class="item"><span>2.3. Доставляемые в адрес (пересылаемые) товары без въезда/выезда лица</span><span
+                class="cb"></span></div>
+    </div>
+
+    <div class="sect">3. Сведения о товарах:</div>
+    <div class="cbrow">
+        <div class="item"><span>Ввоз (свободное обращение)</span><span class="cb"></span></div>
+        <div class="item"><span>Вывоз</span><span class="cb"></span></div>
+        <div class="item"><span>Временный вывоз</span><span class="cb"></span></div>
+        <div class="item"><span>Транзит (для товаров, ввозимых со льготой)</span><span class="cb"></span></div>
+    </div>
+
+    <ol class="goods">
+        <li><span>3.1. Наличные денежные средства и (или) дорожные чеки свыше 10 000 $ в эквиваленте (на 1 лицо),
+            векселя, чеки (банковские чеки), ценные бумаги &lt;*&gt;</span><span class="cb"></span></li>
+        <li><span>3.2. Товары, ввозимые с освобождением от уплаты таможенных пошлин, налогов (ввоз со льготой)</span><span
+                class="cb"></span></li>
+        <li><span>3.3. Товары, стоимость, вес и (или) количество которых превышают нормы ввоза без уплаты таможенных
+            пошлин, налогов</span><span class="cb"></span></li>
+        <li><span>3.4. Культурные ценности</span><span class="cb"></span></li>
+        <li><span>3.5. Гражданское и служебное оружие, его основные (составные) части, патроны к нему</span><span
+                class="cb"></span></li>
+        <li><span>3.6. Наркотические средства, психотропные вещества, их прекурсоры в виде лекарственных
+            средств</span><span class="cb"></span></li>
+        <li><span>3.7. Животные, растения</span><span class="cb"></span></li>
+        <li><span>3.8. Коллекционные материалы по минералогии, палеонтологии, кости ископаемых животных</span><span
+                class="cb"></span></li>
+        <li><span>3.9. Образцы биологических материалов человека</span><span class="cb"></span></li>
+        <li><span>3.10. Другие товары, в отношении которых подлежат соблюдению запреты и ограничения и требуется
+            представление подтверждающих документов и (или) сведений</span><span class="cb"></span></li>
+    </ol>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page">
+    <div class="sect">4. Дополнительные сведения о товарах, в том числе указанных в графах 3.2 - 3.10:</div>
+    <table>
+        <tr>
+            <th style="width:6%">N п/п</th>
+            <th>Наименование товара и его описание (идентификационный номер и другие отличительные признаки),
+                наименования, даты и номера документа, подтверждающего соблюдение условий ввоза с освобождением от
+                уплаты таможенных пошлин, налогов, и (или) документа, подтверждающего соблюдение ограничений, а также
+                наименования органов, выдавших такие документы
+            </th>
+            <th style="width:17%">Вес (с учетом фактически перемещаемой первичной упаковки) (кг)/количество (л, шт.)
+            </th>
+            <th style="width:17%">Стоимость (в валюте государства - члена ЕАЭС, евро или долларах США)</th>
+        </tr>
+        <tr>
+            <td style="text-align:center">1</td>
+            <td>Доверенность (Fullmakt) от 30.07.2025 на право управления и распоряжения транспортным средством
+                Mercedes-Benz GLE 450 4-matic, VIN WDC1671591A038110, выдана владельцем — TMR Bygg &amp; Renovering AB
+                (Org.nr 559017-1137, Швеция) в лице генерального директора Товсултанова Магомеда
+            </td>
+            <td style="text-align:center">1 шт.</td>
+            <td style="text-align:center">—</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <div class="sect">5. Сведения о транспортных средствах:</div>
+    <div class="cbrow">
+        <div class="item"><span>Ввоз (свободное обращение)</span><span class="cb"></span></div>
+        <div class="item"><span>Временный ввоз</span><span class="cb">&times;</span></div>
+        <div class="item"><span>Вывоз</span><span class="cb"></span></div>
+        <div class="item"><span>Временный вывоз</span><span class="cb"></span></div>
+        <div class="item"><span>Транзит</span><span class="cb"></span></div>
+    </div>
+    <div class="cbrow">
+        <div class="item"><span>Транспортные средства, ввозимые с освобождением от уплаты таможенных пошлин, налогов
+            (ввоз со льготой)</span><span class="cb"></span></div>
+    </div>
+    <div class="cbrow">
+        <div class="item" style="flex:none"><span>Авто- и мототранспортное средство</span><span
+                class="cb">&times;</span></div>
+        <div class="item" style="flex:none"><span>Прицеп</span><span class="cb"></span></div>
+    </div>
+
+    <div class="row">
+        <div><span class="f">Mercedes-Benz GLE 450 4-matic</span><span class="cap">(марка, модель)</span></div>
+        <div><span class="f">SNK97A SE</span><span class="cap">(регистрационный номер, страна регистрации)</span>
+        </div>
+        <div><span class="f">WDC1671591A038110</span><span class="cap">(идентификационный номер)</span></div>
+        <div style="flex:.6"><span class="f">2999</span><span class="cap">(рабочий объем двигателя (см³))</span></div>
+    </div>
+
+    <div class="row">
+        <div><span class="f">WDC1671591A038110</span><span class="cap">(номер кузова)</span></div>
+        <div><span class="f">отсутствует</span><span class="cap">(номер шасси)</span></div>
+        <div style="flex:.7"><span class="f">01.2020</span><span class="cap">(дата изготовления)</span></div>
+        <div style="flex:.7"><span class="f">45 000 EUR</span><span class="cap">(стоимость)</span></div>
+    </div>
+
+    <div class="row">
+        <div style="flex:.5">Водное судно <span class="f empty">&nbsp;</span><span class="cap">(вид)</span></div>
+        <div><span class="f empty">&nbsp;</span><span class="cap">(регистрационный номер, страна регистрации)</span>
+        </div>
+        <div style="flex:.5"><span class="f empty">&nbsp;</span><span class="cap">(стоимость)</span></div>
+        <div style="flex:.5"><span class="f empty">&nbsp;</span><span class="cap">(масса (кг))</span></div>
+        <div style="flex:.5"><span class="f empty">&nbsp;</span><span class="cap">(длина корпуса (м))</span></div>
+    </div>
+
+    <div class="row">
+        <div style="flex:.5">Воздушное судно <span class="f empty">&nbsp;</span><span class="cap">(вид)</span></div>
+        <div><span class="f empty">&nbsp;</span><span class="cap">(регистрационный номер, страна регистрации)</span>
+        </div>
+        <div style="flex:.5"><span class="f empty">&nbsp;</span><span class="cap">(стоимость)</span></div>
+        <div style="flex:.7"><span class="f empty">&nbsp;</span><span class="cap">(масса пустого снаряженного аппарата (кг))</span>
+        </div>
+    </div>
+
+    <p style="margin:6px 0">Часть транспортного средства, замененная в государстве, не являющемся членом ЕАЭС, и
+        подлежащая учету (регистрации) <span class="f" style="min-width:200px">—</span>.<br>
+        <span class="cap" style="text-align:left;display:inline">(наименование, номер)</span></p>
+
+    <p style="margin-top:10px">Мне известно, что сообщение в пассажирской таможенной декларации недостоверных сведений
+        влечет за собой ответственность в соответствии с законодательством государства - члена ЕАЭС.</p>
+
+    <div class="sign">
+        <div style="flex:.6"><span class="f" style="display:block">&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;</span><span
+                class="cap">(дата)</span></div>
+        <div style="flex:.8"><span class="f" style="display:block">&nbsp;</span><span class="cap">(подпись)</span>
+        </div>
+        <div style="flex:2"><span class="f" style="display:block">&nbsp;</span><span class="cap">(Ф.И.О. лица, действующего от имени и по поручению декларанта, реквизиты документа)</span>
+        </div>
+    </div>
+
+    <hr style="border:none;border-top:1px dashed #000;margin:14px 0 8px">
+    <p>Для служебных отметок:</p>
+    <div style="display:flex;gap:20px;margin-top:6px">
+        <div style="width:3cm;height:3cm;border:1px solid #000;position:relative">
+            <span style="position:absolute;bottom:-16px;left:50%;transform:translateX(-50%)" class="small">М.П.</span>
+        </div>
+        <div style="flex:1">
+            <div style="border-bottom:1px solid #000;height:22px"></div>
+            <div style="border-bottom:1px solid #000;height:22px"></div>
+            <div style="border-bottom:1px solid #000;height:22px"></div>
+            <div style="border-bottom:1px solid #000;height:22px"></div>
+        </div>
+    </div>
+
+    <p class="small" style="margin-top:24px">--------------------------------<br>
+        &lt;*&gt; Необходимо заполнить приложение к пассажирской таможенной декларации.</p>
+
+    <div class="note">
+        <strong>Перед печатью (эта заметка не печатается):</strong><br>
+        1. <strong>Дата и подпись</strong> — оставлены пустыми, заполняются от руки в день пересечения границы.<br>
+        2. С собой на пункте пропуска Верхний Ларс: паспорт, шведский registreringsbevis на автомобиль,
+        доверенность (fullmakt), страховка. Декларацию сохранить до обратного выезда — по ней закрывается
+        временный ввоз.
+    </div>
+</div>
+
+<!-- Print Button -->
+<div class="no-print" style="text-align:center;padding:20px">
+    <button onclick="window.print()"
+            style="background:#2563eb;color:#fff;font-weight:bold;padding:10px 28px;border:none;border-radius:6px;cursor:pointer;font-size:15px">
+        Печать (A4)
+    </button>
+</div>
+
+</body>
+</html>

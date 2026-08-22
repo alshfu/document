@@ -1,0 +1,121 @@
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Attestation d'emploi et de revenus</title>
+<style>
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: #111; }
+.page { width: 210mm; min-height: 297mm; padding: 14mm 15mm; page-break-after: always; }
+.ikea{display:inline-block;}
+.ikea img{width:104px;height:42px;}
+
+.header{display:flex;justify-content:space-between;align-items:flex-start;}
+.company{font-size:12px;line-height:1.45;}
+.company .c1{font-weight:bold;color:#0058a3;}
+.rule{border:0;border-top:1px solid #999;margin:10px 0 14px;}
+
+h1.title{text-align:center;font-size:19px;font-weight:bold;margin:6px 0 14px;letter-spacing:0.5px;}
+.intro{font-size:12.5px;line-height:1.5;margin:0 0 14px;}
+
+.band{background:#f0f0f0;padding:5px 8px 5px 10px;font-weight:bold;font-size:12.5px;border-left:4px solid #0058a3;margin:12px 0 6px;}
+.rows{font-size:12.5px;}
+.row{display:flex;line-height:1.55;}
+.row .lbl{width:36%;padding-left:6px;}
+.row .val{width:64%;}
+.b .val{font-weight:bold;}
+
+.salary .row .val{font-weight:bold;}
+.salary .total .lbl{font-weight:bold;}
+.salary .total .val{font-weight:bold;color:#0058a3;}
+.salary-note{font-size:11px;line-height:1.45;padding:4px 6px 0;}
+
+.subh{font-weight:bold;font-size:12.5px;margin:14px 0 4px;}
+.mini{font-size:12.5px;}
+.mini .row .lbl{width:36%;padding-left:6px;}
+.mini .row .val .net{font-weight:bold;}
+
+.box{background:#f0f0f0;font-size:11px;line-height:1.45;padding:8px 10px;margin:12px 0;}
+.plain{font-size:12.5px;line-height:1.5;margin:10px 0 0;}
+
+.sign{display:flex;justify-content:space-between;margin-top:40px;}
+.sign .col{width:45%;}
+.sign .above{font-size:12.5px;min-height:16px;}
+.sign .line{border-top:1px solid #333;margin-top:2px;}
+.sign .cap{font-size:11.5px;color:#333;margin-top:3px;}
+
+.footnote{text-align:center;font-size:10.5px;font-style:italic;color:#777;margin-top:26px;border-top:1px solid #ccc;padding-top:8px;}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div class="company">
+      <div class="c1">IKEA Svenska Försäljnings AB</div>
+      <div>Box 8041, 141 08 Kungens Kurva</div>
+      <div>Org.nr : 556074-7569</div>
+    </div>
+    <div class="ikea"><img src="ikea_logo.svg"></div>
+  </div>
+  <hr class="rule">
+
+  <h1 class="title">ATTESTATION D'EMPLOI ET DE REVENUS</h1>
+
+  <p class="intro">Par la présente, il est attesté que <strong>Lamiaa Benouari</strong> est employée chez IKEA Svenska Försäljnings AB et exécute son travail de manière satisfaisante. La collaboratrice est bien considérée au sein de l'unité, accomplit ses tâches de façon responsable et professionnelle et entretient de bonnes relations avec ses collègues et ses responsables. L'emploi se poursuit sans remarque.</p>
+
+  <div class="band">Collaboratrice</div>
+  <div class="rows">
+    <div class="row"><div class="lbl">Nom</div><div class="val">Lamiaa Benouari</div></div>
+    <div class="row"><div class="lbl">Numéro personnel</div><div class="val">19840101-5667</div></div>
+    <div class="row"><div class="lbl">Adresse</div><div class="val">Tingsvägen 23 Lgh 1502, 145 56 Norsborg</div></div>
+    <div class="row"><div class="lbl">Numéro d'employé</div><div class="val">23211136</div></div>
+  </div>
+
+  <div class="band">Informations sur l'emploi</div>
+  <div class="rows">
+    <div class="row"><div class="lbl">Poste</div><div class="val">IKEA Food Co-worker (IKEA Food / restauration)</div></div>
+    <div class="row"><div class="lbl">Lieu de travail</div><div class="val">Kungens Kurva</div></div>
+    <div class="row"><div class="lbl">Type de contrat</div><div class="val">Contrat à durée indéterminée</div></div>
+    <div class="row"><div class="lbl">Temps de travail</div><div class="val">Temps plein 100 % (38,25 heures/semaine net)</div></div>
+    <div class="row"><div class="lbl">Date d'embauche</div><div class="val">2007-06-15 (selon le bulletin de salaire)</div></div>
+    <div class="row"><div class="lbl">Date de prise de fonction (contrat)</div><div class="val">2020-01-29</div></div>
+    <div class="row"><div class="lbl">Convention collective</div><div class="val">Svensk Handel / HRF (Personnel de restaurant et café)</div></div>
+    <div class="row"><div class="lbl">Droit aux congés</div><div class="val">25 jours</div></div>
+  </div>
+
+  <div class="band">Salaire et revenus</div>
+  <div class="rows salary">
+    <div class="row"><div class="lbl">Salaire mensuel de base (temps plein)</div><div class="val">30 636 kr</div></div>
+    <div class="row"><div class="lbl">Prime d'ancienneté</div><div class="val">160 kr</div></div>
+    <div class="row total"><div class="lbl">Salaire de base total</div><div class="val">30 796 kr / mois</div></div>
+    <div class="salary-note">En complément du salaire de base s'ajoutent les majorations pour horaires décalés (OB), les heures supplémentaires et les autres primes prévues par la convention collective.</div>
+  </div>
+
+  <div class="subh">Derniers mois (salaire brut / salaire net) :</div>
+  <div class="rows mini">
+    <div class="row"><div class="lbl">Mai 2026</div><div class="val">35 914,87 kr / <span class="net">27 822,87 kr</span></div></div>
+    <div class="row"><div class="lbl">Juin 2026</div><div class="val">37 893,07 kr / <span class="net">28 948,07 kr</span></div></div>
+    <div class="row"><div class="lbl">Juillet 2026</div><div class="val">35 452,55 kr / <span class="net">27 178,55 kr</span></div></div>
+  </div>
+
+  <div class="box">Les salaires sont versés mensuellement sur le compte de la collaboratrice à la SEB (compte privé 5710 00 296 00). Les montants figurant sur les bulletins de salaire correspondent exactement aux versements effectifs sur le compte au cours de la période février–juillet 2026.</div>
+
+  <p class="plain">Cette attestation est délivrée sur demande afin de confirmer l'emploi, les conditions d'emploi et les revenus.</p>
+
+  <div class="sign">
+    <div class="col">
+      <div class="above">&nbsp;</div>
+      <div class="line"></div>
+      <div class="cap">Lieu et date</div>
+    </div>
+    <div class="col">
+      <div class="above">Älg Stenberg</div>
+      <div class="line"></div>
+      <div class="cap">Responsable / Responsable d'unité</div>
+    </div>
+  </div>
+
+  <div class="footnote">L'attestation se fonde sur le contrat de travail, les bulletins de salaire (fév.–juillet 2026) et le relevé de compte de la SEB.</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<title>калькуляторс</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: Arial, Helvetica, sans-serif; font-size:9pt; color:#000; background:#888; }
+  .page { width:210mm; height:293mm; background:#fff; margin:10px auto; padding:12mm 14mm 10mm;
+          position:relative; display:flex; flex-direction:column; overflow:hidden; }
+  @page { size:A4; margin:0; }
+  @media print { body{background:none} .page{margin:0; page-break-after:always;} .page:last-child{page-break-after:auto} }
+  .mono { font-family:"Courier New", Courier, monospace; }
+
+  .svhead { display:flex; justify-content:space-between; align-items:flex-start; }
+  .sv-logo { display:flex; align-items:center; gap:6px; font-size:15pt; font-weight:bold; }
+  .sv-logo svg { display:block; }
+  .pagemark { font-size:8pt; text-align:right; }
+  .doc-title { font-size:13pt; font-weight:bold; text-align:right; }
+  .meta { display:flex; gap:14mm; justify-content:flex-end; font-size:8pt; margin-top:2mm; }
+  .meta .mono { font-size:9.5pt; }
+  .senderaddr { font-family:"Courier New",monospace; font-size:9pt; margin-top:1mm; }
+  .recipient { font-family:"Courier New",monospace; font-size:10pt; margin:14mm 0 0 42%; }
+
+  h2 { font-size:11pt; margin:5mm 0 1.5mm; }
+  h3 { font-size:9.5pt; margin:3.5mm 0 1mm; }
+  p  { margin:0 0 2.2mm; line-height:1.35; }
+  .letter { width:78%; margin-left:0; margin-top:8mm; }
+  .letter ul { margin:0 0 2mm 0; list-style:none; }
+  a { color:#1a0dab; text-decoration:underline; }
+
+  .pagefoot { margin-top:auto; }
+  .footline { border-top:0.5px solid #000; padding-top:1.5mm; font-size:8pt; display:flex; justify-content:space-between; }
+  .vertcode { position:absolute; left:5mm; bottom:30mm; transform:rotate(-90deg); transform-origin:left bottom; font-size:7pt; color:#333; white-space:nowrap; }
+
+  .idbox { border:1px solid #000; margin-top:6mm; }
+  .idbox table { width:100%; border-collapse:collapse; }
+  .idbox td { border:1px solid #000; padding:1mm 2mm; font-size:7.5pt; vertical-align:top; }
+  .idbox .val { font-family:"Courier New",monospace; font-size:9.5pt; }
+  .calc { width:100%; border-collapse:collapse; margin-top:4mm; }
+  .calc th { text-align:left; font-size:9.5pt; border-bottom:1px solid #000; padding:1mm 2mm; }
+  .calc th.r { text-align:right; }
+  .calc td { padding:0.8mm 2mm; font-size:9pt; }
+  .calc td.r { text-align:right; font-family:"Courier New",monospace; white-space:pre; }
+  .calc tr.sum td { font-weight:bold; border-top:0.5px solid #000; border-bottom:0.5px solid #000; }
+  .calc tr.pad td { padding-top:3mm; }
+  .payslipbox { border:1.5px solid #000; border-radius:3mm; padding:3mm 4mm; width:95mm; margin-top:3mm; }
+  .payslipbox .lbl { font-size:8.5pt; }
+  .payslipbox .val { font-family:"Courier New",monospace; font-size:10pt; }
+  .payslipbox table td { padding:0.5mm 3mm 0.5mm 0; }
+
+  .ku { width:100%; border-collapse:collapse; margin-top:5mm; }
+  .ku th { text-align:left; font-size:9.5pt; border-bottom:1.2px solid #000; padding:1mm 2mm; }
+  .ku th.r { text-align:right; }
+  .ku td { padding:0.8mm 2mm; font-size:9pt; }
+  .ku td.r { text-align:right; font-family:"Courier New",monospace; }
+  .ku tr.sub td { font-weight:bold; font-size:8.5pt; }
+  .ku tr.sum td { font-weight:bold; border-top:0.5px solid #000; }
+
+  .form { background:#fbf0a8; padding:8mm 8mm 6mm; }
+  .form .svhead { align-items:flex-start; }
+  .fs { font-size:7pt; }
+  .formcols { display:flex; gap:4mm; margin-top:3mm; flex:1 1 auto; min-height:0; }
+  .fcol { flex:1; }
+  .sect { margin-bottom:2.2mm; }
+  .sect-h { font-weight:bold; font-size:8.5pt; padding:0.6mm 1mm; display:flex; justify-content:space-between; align-items:baseline; }
+  .sect-h .note { font-weight:normal; font-size:6.3pt; }
+  .frow { display:flex; border-top:0.5px solid #555; align-items:stretch; }
+  .frow .lab { flex:1; font-size:6.6pt; padding:0.6mm 1mm; line-height:1.25; }
+  .frow .lab i { font-size:6.3pt; }
+  .fbox { width:19mm; border:0.5px solid #555; background:#fdf6c9; min-height:4.5mm; font-family:"Courier New",monospace;
+          font-size:8.5pt; text-align:right; padding:0.6mm 1mm; }
+  .fbox.white { background:#fff; }
+  .fbox.filled { background:#fdf6c9; }
+  .green .sect-h { background:#dcead0; }
+  .green .frow { background:#eaf2e2; }
+  .green .fbox { background:#f2f7ec; }
+  .green .fbox.white { background:#fff; }
+  .greenwrap { border:1px solid #9bb87a; padding:1mm; background:#f5f9f0; }
+  .chk { display:inline-block; width:3.4mm; height:3.4mm; border:0.6px solid #000; background:#fff; vertical-align:middle; margin-right:1.2mm; }
+  .persnrbox { border:1px solid #000; background:#fff; font-family:"Courier New",monospace; font-size:10pt; padding:1mm 2mm; display:inline-block; }
+  .instrbox { border:1px solid #000; background:#fff; font-size:6.8pt; padding:1mm 1.5mm; width:44mm; line-height:1.3; }
+  .deadline { width:26mm; height:26mm; border-radius:50%; background:#cfe6d8; display:flex; align-items:center; justify-content:center;
+              text-align:center; font-size:7.5pt; font-weight:bold; line-height:1.25; padding:2mm; }
+  .barcode { height:7mm; width:62mm; background:repeating-linear-gradient(90deg,#000 0 1px,#fff 1px 2px,#000 2px 4px,#fff 4px 5px,#000 5px 6px,#fff 6px 8px); margin-top:1mm; }
+  .formnum { font-family:"Courier New",monospace; font-size:9pt; text-align:right; }
+  .sig { border:1px solid #000; background:#fff; height:14mm; }
+  .form17 { font-size:6.8pt; }
+  .form17 .box { border:0.5px solid #555; background:#fdf6c9; padding:1mm; }
+  .form17 .wbox { background:#fff; border:0.5px solid #555; }
+
+  /* редактируемые ячейки (фокус держит вся страница, «текущую» ячейку скрипт помечает .editing) */
+  .page[contenteditable="true"] { outline:none; }
+  [data-in], [data-out] { border-radius:2px; cursor:text; }
+  /* входные поля и суммы с обратным пересчётом — синие */
+  [data-in], [data-out].backsolve { background:#e8f2ff; box-shadow:inset 0 0 0 1px #b7d3f3; }
+  [data-in]:hover, [data-out].backsolve:hover { background:#d9eaff; }
+  [data-in].editing, [data-out].backsolve.editing {
+    background:#fff3c2; box-shadow:inset 0 0 0 1.5px #e0a800; }
+  /* чисто расчётные ячейки: под курсором — серые, правка откатывается к расчёту */
+  [data-out]:not(.backsolve).editing { background:#eee; box-shadow:inset 0 0 0 1px #aaa; }
+  @media print { [data-in], [data-out] { background:none !important; box-shadow:none !important; } }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <table class="calc">
+    <tr><th>Din inkomst</th><th class="r">Belopp</th></tr>
+    <tr><td>Inkomst av tjänst</td><td class="r" data-out="inkomst">222 185</td></tr>
+    <tr><td>Fastställd förvärvsinkomst</td><td class="r" data-out="ffi">222 100</td></tr>
+    <tr><td>Grundavdrag</td><td class="r" data-out="grundavdrag" data-neg>- 41 400</td></tr>
+    <tr class="sum"><td>Beskattningsbar förvärvsinkomst</td><td class="r" data-out="bfi">180 700</td></tr>
+    <tr class="pad"><td>Ränteutgifter för lån utan säkerhet</td><td class="r" data-out="ranteavdrag" data-neg>- 70</td></tr>
+    <tr class="sum"><td>Underskott av kapital</td><td class="r" data-out="underskott">70</td></tr>
+  </table>
+  <table class="calc">
+    <tr><th>Dina skatter och avgifter</th><th class="r"></th></tr>
+    <tr><td>Kommunal inkomstskatt <span data-in="kommunalSats">32,43</span> %</td><td class="r" data-out="kommunal">58 601</td></tr>
+    <tr id="row-statlig" hidden><td>Statlig inkomstskatt på förvärvsinkomster 20 %</td><td class="r" data-out="statlig">0</td></tr>
+    <tr><td>Allmän pensionsavgift anställning</td><td class="r" data-out="pension">15 500</td></tr>
+    <tr><td>Begravningsavgift <span data-in="begravningSats">0,293</span> %</td><td class="r" data-out="begravning">529</td></tr>
+    <tr><td>Public service-avgift</td><td class="r" data-out="publicservice">1 249</td></tr>
+    <tr class="sum"><td>Summa skatter och avgifter</td><td class="r" data-out="summaSkatt">75 879</td></tr>
+  </table>
+  <table class="calc">
+    <tr><th>Skattereduktioner och annat som minskar din skatt</th><th class="r"></th></tr>
+    <tr><td>Skattereduktion för allmän pensionsavgift</td><td class="r" data-out="redPension" data-neg>- 15 500</td></tr>
+    <tr id="row-jsa" hidden><td>Skattereduktion för arbetsinkomster (jobbskatteavdrag)</td><td class="r" data-out="jobbskatteavdrag" data-neg>0</td></tr>
+    <tr><td>Skattereduktion för förvärvsinkomst</td><td class="r" data-out="redForvarv" data-neg>- 1 055</td></tr>
+    <tr><td>Skattereduktion för underskott av kapital</td><td class="r" data-out="redUnderskott" data-neg>- 21</td></tr>
+    <tr><td>Skattereduktion för a-kassa</td><td class="r" data-out="redAkassa" data-neg>- 503</td></tr>
+    <tr class="sum"><td>Summa av skattereduktioner och annat som minskar din skatt</td><td class="r" data-out="summaRed" data-neg>- 17 079</td></tr>
+  </table>
+  <table class="calc">
+    <tr><th>Din slutliga skatt för inkomstår 2025</th><th class="r"></th></tr>
+    <tr><td>Summa skatter och avgifter</td><td class="r" data-out="summaSkatt2">75 879</td></tr>
+    <tr><td>Summa av skattereduktioner och annat som minskar din skatt</td><td class="r" data-out="summaRed2" data-neg>- 17 079</td></tr>
+    <tr class="sum"><td>Din slutliga skatt (preliminär)</td><td class="r" data-out="slutlig">58 800</td></tr>
+  </table>
+  <table class="calc">
+    <tr><th>Beräkning av belopp att betala/få tillbaka</th><th class="r"></th></tr>
+    <tr><td>Din slutliga skatt (preliminär)</td><td class="r" data-out="slutlig2">58 800</td></tr>
+    <tr><td>Avdragen skatt</td><td class="r" data-out="avdragenNeg" data-neg>- 59 744</td></tr>
+    <tr class="sum"><td data-out="diffLabel">Beräknat belopp att få tillbaka (exklusive ränta, egen inbetalning, debiterad preliminär skatt)</td><td class="r" data-out="diff">944</td></tr>
+  </table>
+</div>
+
+<div class="page">
+
+  <table class="ku">
+    <tr><th>TJÄNST</th><th class="r">Belopp</th><th class="r">Avdragen skatt</th></tr>
+    <tr class="sub"><td>Inkomster - Tjänst</td><td></td><td></td></tr>
+    <tr class="sub"><td style="padding-left:5mm">1.1 Lön, förmåner, sjukpenning m.m.</td><td></td><td></td></tr>
+    <tr><td style="padding-left:5mm">ARBETSGIVARE (lön)</td><td class="r" data-in="lon">0</td><td class="r" data-in="lonSkatt">0</td></tr>
+    <tr><td style="padding-left:5mm">FÖRSÄKRINGSKASSAN</td><td class="r" data-in="inkomstFK">222 185</td><td class="r" data-in="avdragenFK">59 744</td></tr>
+    <tr class="sum"><td>Summa</td><td class="r" data-out="inkomstSumma">222 185</td><td></td></tr>
+  </table>
+  <table class="ku">
+    <tr><th>KAPITAL</th><th style="text-align:left">Namn/Beteckning</th><th class="r">Belopp</th><th class="r">Avdragen skatt</th></tr>
+    <tr class="sub"><td colspan="2">Avdrag - Kapital</td><td></td><td></td></tr>
+    <tr class="sub"><td colspan="2" style="padding-left:5mm">8.8 Ränteutgifter för lån utan säkerhet</td><td></td><td></td></tr>
+    <tr><td colspan="2" style="padding-left:5mm">FÖRSÄKRINGSKASSAN</td><td class="r" data-in="ranta0">108</td><td></td></tr>
+    <tr><td colspan="2" style="padding-left:5mm">Resurs NPL 1 AB</td><td class="r" data-in="ranta1">31</td><td></td></tr>
+    <tr><td colspan="2" style="padding-left:5mm">Skandinaviska Enskilda Banken AB</td><td class="r" data-in="ranta2">1</td><td></td></tr>
+    <tr class="sum"><td colspan="2">Summa</td><td class="r" data-out="rantorSumma">140</td><td></td></tr>
+  </table>
+  <table class="ku">
+    <tr><th>ÖVRIGA KONTROLLUPPGIFTER</th><th class="r">Belopp</th></tr>
+    <tr class="sub"><td>A-kassa</td><td></td></tr>
+    <tr class="sub"><td style="padding-left:5mm">Arbetslöshetskassa</td><td></td></tr>
+    <tr><td style="padding-left:5mm">Fastighets arbetslöshetskassa</td><td class="r" data-in="akassa">2 015</td></tr>
+  </table>
+  <table class="ku" style="margin-top:10mm">
+    <tr class="sum"><td><b>Summa avdragen skatt</b></td><td class="r"><b data-out="avdragenSumma">59 744</b></td></tr>
+  </table>
+  <div class="vertcode">SKV 4008 06 sv 00 01</div>
+  <div class="pagefoot"></div>
+</div>
+
+<script src="Inkomstdeklaration_calculator.js"></script>
+
+</body>
+</html>

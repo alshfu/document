@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="sv">
+<head>
+    <meta charset="utf-8">
+    <title>Transaktion Generator</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #000;
+            font-size: 10px;
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            padding: 12mm;
+            position: relative;
+            page-break-after: always;
+        }
+
+        .page:last-child {
+            page-break-after: auto;
+        }
+
+        table.tx {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 14px;
+            font-size: 9px;
+        }
+
+        table.tx th {
+            text-align: left;
+            vertical-align: bottom;
+            border-bottom: 1px solid #999;
+            padding: 3px 3px 6px;
+            font-size: 9px;
+        }
+
+        table.tx th.r {
+            text-align: right;
+        }
+
+        table.tx td {
+            padding: 1px 3px;
+            white-space: nowrap;
+        }
+
+        table.tx td.r {
+            text-align: right;
+        }
+
+        /* --- generator: markering av syntetisk data --- */
+        .wm {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .wm span {
+            transform: rotate(-30deg);
+            font-size: 32px;
+            letter-spacing: 2px;
+            color: rgba(178, 60, 60, 0.20);
+            border: 3px solid rgba(178, 60, 60, 0.20);
+            padding: 10px 26px;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+
+        .gen-note {
+            position: absolute;
+            left: 12mm;
+            right: 12mm;
+            bottom: 8mm;
+            font-size: 8px;
+            color: #555;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* --- redigerbara celler (endast skärm) --- */
+        @media screen {
+            table.tx td[contenteditable="true"]:hover {
+                background: #f2f7fb;
+            }
+
+            table.tx td[contenteditable="true"]:focus {
+                outline: 1px solid #6a9cc9;
+                background: #eaf3fb;
+            }
+        }
+
+        /* --- generator: UI (visas ej vid utskrift) --- */
+        .toolbar {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 50;
+            display: flex;
+        }
+
+        .toolbar > * + * {
+            margin-left: 8px;
+        }
+
+        .toolbar button,
+        .modal button {
+            font: inherit;
+            font-size: 13px;
+            padding: 7px 14px;
+            border: 1px solid #888;
+            border-radius: 4px;
+            background: #f4f4f4;
+            cursor: pointer;
+        }
+
+        .toolbar button:hover,
+        .modal button:hover {
+            background: #e6e6e6;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.hidden {
+            display: none;
+        }
+
+        .modal {
+            background: #fff;
+            border-radius: 8px;
+            padding: 22px 26px;
+            width: 420px;
+            max-width: 94vw;
+            font-size: 13px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal h2 {
+            margin: 0 0 4px;
+            font-size: 16px;
+        }
+
+        .modal .sub {
+            margin: 0 0 14px;
+            color: #a33;
+            font-size: 11px;
+            line-height: 1.4;
+        }
+
+        .modal label {
+            display: block;
+            margin: 10px 0 3px;
+            color: #333;
+        }
+
+        .modal input {
+            width: 100%;
+            font: inherit;
+            padding: 6px 8px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+        }
+
+        .modal .row2 {
+            display: flex;
+        }
+
+        .modal .row2 > * + * {
+            margin-left: 12px;
+        }
+
+        .modal .row2 > div {
+            flex: 1;
+        }
+
+        .modal .actions {
+            margin-top: 18px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .modal .actions > * + * {
+            margin-left: 8px;
+        }
+
+        .modal .err {
+            color: #b00;
+            font-size: 11px;
+            min-height: 14px;
+            margin-top: 8px;
+        }
+
+        .modal .hint {
+            color: #777;
+            font-size: 10px;
+            margin-top: 2px;
+        }
+
+        .fixed-row {
+            display: flex;
+            margin: 4px 0;
+        }
+
+        .fixed-row > * + * {
+            margin-left: 6px;
+        }
+
+        .fixed-row .fc-day {
+            width: 56px;
+        }
+
+        .fixed-row .fc-name {
+            flex: 1;
+            width: auto;
+        }
+
+        .fixed-row .fc-amount {
+            width: 90px;
+        }
+
+        .fixed-row button {
+            padding: 2px 8px;
+        }
+
+        .modal .small {
+            margin-top: 4px;
+            font-size: 11px;
+            padding: 4px 10px;
+        }
+
+        .page-ctl {
+            position: absolute;
+            top: 4mm;
+            right: 12mm;
+            display: flex;
+            z-index: 20;
+        }
+
+        .page-ctl > * + * {
+            margin-left: 6px;
+        }
+
+        .page-ctl button {
+            font: inherit;
+            font-size: 11px;
+            padding: 3px 8px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            background: #fafafa;
+            cursor: pointer;
+        }
+
+        .page-ctl button:hover {
+            background: #eee;
+        }
+
+        .row-ctl {
+            position: absolute;
+            display: none;
+            z-index: 60;
+        }
+
+        .row-ctl > * + * {
+            margin-left: 2px;
+        }
+
+        .row-ctl button {
+            font-size: 11px;
+            width: 20px;
+            height: 16px;
+            line-height: 1;
+            padding: 0;
+            border: 1px solid #aaa;
+            border-radius: 3px;
+            background: #fafafa;
+            cursor: pointer;
+        }
+
+        .row-ctl button:hover {
+            background: #eee;
+        }
+
+        @media print {
+            .toolbar,
+            .modal-overlay,
+            .page-ctl,
+            .row-ctl,
+            .statement-panel,
+            .no-print {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="pages"></div>
+
+<div class="toolbar no-print">
+    <button type="button" id="btn-edit">Ändra parametrar</button>
+    <button type="button" id="btn-print">Skriv ut / PDF</button>
+</div>
+
+<div class="modal-overlay" id="modal">
+    <div class="modal">
+        <h2>Transaktionsgenerator</h2>
+        <p class="sub">Genererar syntetisk testdata för bokföringsövning. Varje sida märks
+            &laquo;EXEMPEL &ndash; SYNTETISK TESTDATA&raquo; &ndash; utskriften motsvarar ingen
+            verklig bank, person eller kontohistorik.</p>
+
+        <div class="row2">
+            <div>
+                <label for="f-from">Period från</label>
+                <input type="date" id="f-from">
+            </div>
+            <div>
+                <label for="f-to">Period till</label>
+                <input type="date" id="f-to">
+            </div>
+        </div>
+
+        <div class="row2">
+            <div>
+                <label for="f-income">Inkomst per månad (SEK)</label>
+                <input type="number" id="f-income" min="1" step="1" value="16040">
+            </div>
+            <div>
+                <label for="f-day">Inkomstdag (1&ndash;31)</label>
+                <input type="number" id="f-day" min="1" max="31" step="1" value="27">
+                <div class="hint">Helg/röd dag &rarr; närmast föregående bankdag</div>
+            </div>
+        </div>
+
+        <div class="row2">
+            <div>
+                <label for="f-desc">Inkomstbeskrivning</label>
+                <input type="text" id="f-desc" maxlength="12" value="Arbetslöshet">
+            </div>
+            <div>
+                <label for="f-start">Startsaldo (SEK)</label>
+                <input type="number" id="f-start" step="0.01" value="5000">
+            </div>
+        </div>
+
+        <div class="row2">
+            <div>
+                <label for="f-count">Utgifter per månad (ca)</label>
+                <input type="number" id="f-count" min="0" max="40" step="1" value="14">
+            </div>
+            <div>
+                <label for="f-seed">Slumpfrö</label>
+                <input type="number" id="f-seed" min="1" step="1" value="1">
+                <div class="hint">Samma frö = samma resultat</div>
+            </div>
+        </div>
+
+        <div class="row2">
+            <div>
+                <label for="f-pre">Saldo före lön, ca (SEK)</label>
+                <input type="number" id="f-pre" min="0" step="1" value="2000">
+                <div class="hint">Utgifterna anpassas så att kontot landar ungefär här före varje löneutbetalning</div>
+            </div>
+        </div>
+
+        <label>Fasta kostnader (valfritt)</label>
+        <div id="f-fixed"></div>
+        <button type="button" id="btn-add-fixed" class="small">+ Lägg till fast kostnad</button>
+        <div class="hint">Dag i månaden, namn och belopp. Tom lista = automatiska förslag
+            (hyra, Göteborgs El, Telenoor, Boxer).</div>
+
+        <label style="display:flex;align-items:center;gap:6px;margin-top:12px;cursor:pointer;">
+            <input type="checkbox" id="f-keep" checked>
+            Behåll befintliga transaktioner vid ny generering
+        </label>
+
+        <label style="display:flex;align-items:center;gap:6px;margin-top:8px;cursor:pointer;">
+            <input type="checkbox" id="f-swish">
+            Generera Swish-transaktioner
+        </label>
+
+        <div class="err" id="f-err"></div>
+
+        <div class="actions">
+            <button type="button" id="btn-generate">Generera</button>
+        </div>
+    </div>
+</div>
+
+<script src="Transaktion_generator.js"></script>
+</body>
+</html>

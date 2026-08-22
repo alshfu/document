@@ -1,0 +1,488 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><style>
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; }
+body { margin:0; font-family: Arial, Helvetica, sans-serif; color:#000; font-size:11px; }
+.page { width:210mm; height:297mm; padding:14mm 16mm 12mm; position:relative; page-break-after:always; overflow:hidden; }
+.page:last-child { page-break-after:auto; }
+/* ---- Skatteverket header ---- */
+.skv-top { display:flex; justify-content:space-between; align-items:flex-start; }
+.logo { display:flex; align-items:center; gap:8px; }
+.logo img { height:34px; }
+.logo .name { font-size:22px; font-weight:bold; color:#003366; letter-spacing:.5px; }
+.agency { font-size:10px; margin-top:4px; line-height:1.35; }
+.doctitle { text-align:right; font-size:17px; font-weight:bold; }
+.pageof { text-align:right; font-size:10px; margin-bottom:2px; }
+.yearbox { display:flex; gap:26px; justify-content:flex-end; margin-top:6px; font-size:10px; }
+.yearbox .c .k { color:#333; }
+.yearbox .c .v { font-weight:bold; }
+.recipient { margin:38px 0 0 46mm; font-family:'Courier New',monospace; font-size:12px; line-height:1.5; }
+h2.sec { font-size:13px; margin:18px 0 4px; }
+p.body { margin:6px 0; line-height:1.45; }
+.small { font-size:10px; }
+.skv-foot { position:absolute; left:16mm; right:16mm; bottom:10mm; border-top:1px solid #000; padding-top:4px; display:flex; justify-content:space-between; font-size:10px; }
+.sideid { position:absolute; left:5mm; bottom:70mm; transform:rotate(-90deg); transform-origin:left bottom; font-size:9px; color:#333; white-space:nowrap; }
+/* ---- calc table ---- */
+.infobox { border:1px solid #000; margin-top:10px; font-size:11px; }
+.infobox .r { display:flex; border-bottom:1px solid #000; }
+.infobox .r:last-child { border-bottom:0; }
+.infobox .cell { padding:3px 6px; border-right:1px solid #000; }
+.infobox .cell:last-child { border-right:0; }
+.infobox .k { color:#333; font-size:9.5px; }
+.infobox .v { font-family:'Courier New',monospace; }
+table.calc { width:100%; border-collapse:collapse; margin-top:14px; }
+table.calc td { padding:2.5px 4px; font-size:11px; }
+table.calc td.amt { text-align:right; font-family:'Courier New',monospace; white-space:nowrap; }
+table.calc tr.head td { font-weight:bold; border-bottom:1px solid #000; padding-top:12px; }
+table.calc tr.sum td { font-weight:bold; border-top:1px solid #000; }
+.pay { border:1px solid #000; border-radius:8px; padding:8px 10px; width:300px; margin-top:8px; font-family:'Courier New',monospace; font-size:10.5px; }
+.pay .lbl { font-family:Arial; font-size:9.5px; color:#333; }
+/* ---- control page ---- */
+table.ctrl { width:100%; border-collapse:collapse; margin-top:10px; font-size:11px; }
+table.ctrl td, table.ctrl th { padding:3px 4px; }
+table.ctrl .hdr td { font-weight:bold; border-bottom:1.5px solid #000; }
+table.ctrl .grp td { font-weight:bold; padding-top:8px; }
+table.ctrl .sub td { padding-left:16px; font-weight:bold; }
+table.ctrl .item td { padding-left:22px; }
+table.ctrl .amt { text-align:right; font-family:'Courier New',monospace; white-space:nowrap; }
+table.ctrl .tot td { font-weight:bold; border-top:1px solid #000; }
+.namebox { border:1px solid #000; display:flex; margin-top:6px; }
+.namebox .c { padding:4px 8px; border-right:1px solid #000; }
+.namebox .c:last-child { border-right:0; }
+.namebox .k { font-size:9.5px; color:#333; }
+</style></head><body>
+
+<!-- ============ PAGE 1 ============ -->
+<div class="page">
+  <div class="skv-top">
+    <div>
+      <div class="logo"><img src="skatteverket_logo.svg"><span class="name">Skatteverket</span></div>
+      <div class="agency">Skatteverket<br>205 30 Malmö</div>
+    </div>
+    <div style="min-width:300px">
+      <div class="pageof">1 (1)</div>
+      <div class="doctitle">Information sur la déclaration de revenus 1</div>
+      <div class="yearbox">
+        <div class="c"><div class="k">Année de revenus</div><div class="v">2025</div></div>
+        <div class="c"><div class="k">Numéro personnel / d'enregistrement</div><div class="v">840101-5667</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="recipient">Benouari, Lamiaa<br>TINGSVÄGEN 23 LGH 1502<br>145 56 NORSBORG</div>
+
+  <h2 class="sec">Il est temps de déclarer</h2>
+  <p class="body">Voici votre déclaration pour l'année de revenus 2025. Vous pouvez déclarer à partir du 17 mars 2026. Le dernier jour pour déclarer est le 4 mai 2026.</p>
+  <p class="body">Dans la spécification jointe à la déclaration, vous trouverez des informations sur la manière de déclarer.</p>
+
+  <h2 class="sec">Voici le montant qui vous sera remboursé</h2>
+  <p class="body">Sur la base des informations de votre déclaration, l'Administration fiscale (Skatteverket) a calculé que vous devez recevoir un remboursement de 6 715 kr.</p>
+  <p class="body">Notez que si vous modifiez ou ajoutez des informations dans la déclaration, le montant calculé peut changer.</p>
+  <p class="body">L'Administration fiscale verse l'argent sur le compte bancaire 5710-00 296 00 au moment où nous envoyons votre avis d'imposition définitif.</p>
+  <p class="body">Vous trouverez le solde actuel de votre compte fiscal en vous connectant sur <u>skatteverket.se/minasidor</u>.</p>
+
+  <h2 class="sec">Plus d'informations</h2>
+  <p class="body">Sur <u>skatteverket.se/deklaration</u>, vous trouverez plus d'informations sur la déclaration et sur la date la plus proche à laquelle vous pouvez recevoir votre avis d'imposition définitif.</p>
+  <p class="body">Sur <u>skatteverket.se/betalakvarskatt</u> se trouvent des informations sur le moment où vous devez payer un éventuel solde d'impôt restant dû et comment procéder le cas échéant.</p>
+  <p class="body">Information in other languages about declaring and paying taxes: <u>skatteverket.se/declaringtaxes</u></p>
+
+  <h2 class="sec">Si vous devez nous contacter</h2>
+  <p class="body">Sur <u>skatteverket.se/kontaktaoss</u>, vous trouverez les différents moyens de nous contacter.</p>
+
+  <h2 class="sec">Êtes-vous enregistré(e) à l'adresse où vous habitez ?</h2>
+  <p class="body">Sinon, effectuez votre déclaration de changement d'adresse sur <u>skatteverket.se/minadress</u></p>
+
+  <h2 class="sec">Avec cette lettre, vous recevez également ce qui suit :</h2>
+  <p class="body">- Calcul provisoire de l'impôt<br>- Spécification de la déclaration de revenus 1<br>- Données de contrôle et de revenus<br>- Déclaration de revenus 1</p>
+
+  <div class="sideid">SKV 4015 04 sv 00 01</div>
+  <div class="skv-foot"><span><b>www.skatteverket.se</b></span><span>Renseignements fiscaux <b>0771-567 567</b></span><span>E-mail via « Kontakta oss » sur <b>www.skatteverket.se</b></span></div>
+</div>
+
+<!-- ============ PAGE 2 : Calcul provisoire ============ -->
+<div class="page">
+  <div class="skv-top">
+    <div class="logo"><img src="skatteverket_logo.svg"><span class="name">Skatteverket</span></div>
+    <div style="min-width:300px">
+      <div class="pageof">1 (1)</div>
+      <div class="doctitle">Calcul provisoire de l'impôt</div>
+      <div class="yearbox"><div class="c"><div class="k">Année de revenus</div><div class="v">2025</div></div></div>
+    </div>
+  </div>
+
+  <div class="infobox">
+    <div class="r">
+      <div class="cell" style="flex:1"><div class="k">Nom</div><div class="v">Benouari, Lamiaa</div></div>
+      <div class="cell" style="flex:1"><div class="k">Numéro personnel / d'organisation</div><div class="v">840101-5667</div></div>
+    </div>
+    <div class="r">
+      <div class="cell" style="flex:1"><div class="k">Commune de résidence au 1er novembre 2024</div><div class="v">BOTKYRKA</div></div>
+      <div class="cell" style="width:120px"><div class="k">Taux d'imposition communal %</div><div class="v">32,43</div></div>
+      <div class="cell" style="width:120px"><div class="k">Redevance funéraire %</div><div class="v">0,293</div></div>
+      <div class="cell" style="width:120px"><div class="k">Redevance à une communauté religieuse %</div><div class="v">&nbsp;</div></div>
+    </div>
+  </div>
+
+  <table class="calc">
+    <tr class="head"><td>Vos revenus</td><td class="amt">Montant</td></tr>
+    <tr><td>Revenus d'activité salariée</td><td class="amt">444 685</td></tr>
+    <tr><td>Revenu professionnel établi</td><td class="amt">444 600</td></tr>
+    <tr><td>Abattement de base</td><td class="amt">- 19 200</td></tr>
+    <tr class="sum"><td>Revenu professionnel imposable</td><td class="amt">425 400</td></tr>
+    <tr><td>Charges d'intérêts sur prêts sans garantie</td><td class="amt">- 70</td></tr>
+    <tr class="sum"><td>Déficit de capital</td><td class="amt">70</td></tr>
+
+    <tr class="head"><td>Vos impôts et redevances</td><td></td></tr>
+    <tr><td>Impôt communal sur le revenu 32,43 %</td><td class="amt">146 032</td></tr>
+    <tr><td>Cotisation générale de retraite (emploi)</td><td class="amt">32 700</td></tr>
+    <tr><td>Redevance funéraire 0,293 %</td><td class="amt">1 319</td></tr>
+    <tr><td>Redevance de service public</td><td class="amt">1 249</td></tr>
+    <tr class="sum"><td>Total des impôts et redevances</td><td class="amt">171 552</td></tr>
+
+    <tr class="head"><td>Réductions d'impôt et autres éléments qui diminuent votre impôt</td><td></td></tr>
+    <tr><td>Réduction d'impôt pour cotisation générale de retraite</td><td class="amt">- 32 700</td></tr>
+    <tr><td>Réduction d'impôt pour revenu professionnel</td><td class="amt">- 45 417</td></tr>
+    <tr><td>Réduction d'impôt pour déficit de capital</td><td class="amt">- 21</td></tr>
+    <tr><td>Réduction d'impôt pour caisse de chômage</td><td class="amt">- 503</td></tr>
+    <tr class="sum"><td>Total des réductions d'impôt et autres éléments qui diminuent votre impôt</td><td class="amt">- 76 440</td></tr>
+
+    <tr class="head"><td>Votre impôt définitif pour l'année de revenus 2025</td><td></td></tr>
+    <tr><td>Total des impôts et redevances</td><td class="amt">181 300</td></tr>
+    <tr><td>Total des réductions d'impôt et autres éléments qui diminuent votre impôt</td><td class="amt">181 300</td></tr>
+    <tr class="sum"><td>Votre impôt définitif (provisoire)</td><td class="amt">95 112</td></tr>
+
+    <tr class="head"><td>Calcul du montant à payer / à rembourser</td><td></td></tr>
+    <tr><td>Votre impôt définitif (provisoire)</td><td class="amt">95 112</td></tr>
+    <tr><td>Impôt prélevé</td><td class="amt">- 88 397</td></tr>
+    <tr class="sum"><td>Montant estimé à rembourser (hors intérêts, versement personnel, impôt provisoire débité)</td><td class="amt">6 715</td></tr>
+  </table>
+
+  <h2 class="sec">Versement sur votre compte fiscal</h2>
+  <div class="pay">
+    <div><span class="lbl">Bankgiro</span> &nbsp;&nbsp;&nbsp; <span class="lbl">Votre numéro de référence (OCR)</span></div>
+    <div>5050-1055 &nbsp;&nbsp; 1984010156671</div>
+    <div class="lbl" style="margin-top:6px">Si vous souhaitez scanner votre versement</div>
+    <div>50501055#42# &nbsp;&nbsp; 1984010156671 #</div>
+  </div>
+  <div class="sideid">SKV 4010 07 sv 00 01</div>
+</div>
+
+<!-- ============ PAGE 3 : Spécification 1(2) ============ -->
+<div class="page">
+  <div class="skv-top">
+    <div class="logo"><img src="skatteverket_logo.svg"><span class="name">Skatteverket</span></div>
+    <div style="min-width:300px">
+      <div class="pageof">1 (2)</div>
+      <div class="doctitle">Spécification de la déclaration de revenus 1</div>
+      <div class="yearbox">
+        <div class="c"><div class="k">Année de revenus</div><div class="v">2025</div></div>
+        <div class="c"><div class="k">Numéro personnel / d'enregistrement</div><div class="v">840101-5667</div></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="body" style="margin-top:24px"><b>Votre code d'identification : 25557756</b><br><b>Votre code de signature : 62842656</b></p>
+
+  <h2 class="sec">Voici comment déclarer</h2>
+  <p class="body">Déclarez de l'une des manières suivantes :</p>
+
+  <h2 class="sec" style="font-size:12px">Service en ligne</h2>
+  <p class="body">Déclarez via le service en ligne Déclaration de revenus 1 sur <u>skatteverket.se/deklaration</u> en utilisant une identification électronique ou vos codes.</p>
+  <p class="body">Si vous utilisez une identification électronique, vous pouvez approuver votre déclaration ou modifier/ajouter des informations. Un exemple de modification consiste à effectuer une déduction ou à ajouter un revenu. Dans le calcul de l'impôt, vous voyez comment la modification influe sur votre impôt.</p>
+  <p class="body">Si vous utilisez vos codes, vous pouvez uniquement approuver votre déclaration et effectuer une éventuelle déduction pour les trajets domicile-travail.</p>
+  <p class="body">Dans le service en ligne, vous recevez immédiatement un accusé de réception confirmant que vous avez déclaré.</p>
+
+  <h2 class="sec" style="font-size:12px">Par SMS</h2>
+  <p class="body">Déclarez en envoyant par SMS <b>8401015667 62842656</b> au 711 44. N'oubliez pas l'espace entre le numéro personnel et le code. Pour déclarer par SMS, vous devez disposer d'un abonnement mobile suédois. Vous devez recevoir dans les 10 minutes un SMS confirmant que vous avez déclaré. Conservez la confirmation SMS comme accusé de réception.</p>
+
+  <h2 class="sec" style="font-size:12px">Par téléphone</h2>
+  <p class="body">Déclarez en appelant le 020-567 100 (depuis l'étranger +46 8 764 92 40). Suivez les instructions enregistrées et utilisez le code <b>25557756</b> pour l'identification et le code <b>62842656</b> pour la signature. Attendez d'entendre un message lu au téléphone. Le message confirme que vous avez déclaré. Il est ensuite conservé comme accusé de réception et vous pouvez rappeler pour réécouter le message.</p>
+
+  <h2 class="sec" style="font-size:12px">Déclaration papier</h2>
+  <p class="body">Déclarez en signant et en postant votre déclaration papier avec les éventuelles annexes. Si vous modifiez quelque chose dans la déclaration, veillez à inscrire le nouveau montant total dans la case blanche. Indiquez le montant en couronnes entières.</p>
+  <p class="body">Postez la déclaration de sorte qu'elle nous parvienne au plus tard le 4 mai 2026.</p>
+  <p class="body">Envoyez-la à :</p>
+  <p class="body">Skatteverket<br>Centre de numérisation<br>Déclaration de revenus 1<br>FE 8000<br>107 75 Stockholm</p>
+
+  <h2 class="sec">Informations relatives à votre calcul provisoire de l'impôt</h2>
+  <p class="body"><b>Réduction d'impôt pour la cotisation à la caisse de chômage</b></p>
+  <p class="body">Vous avez bénéficié d'une réduction d'impôt de 25 % de la cotisation à la caisse de chômage. Vous obtenez la réduction d'impôt automatiquement et n'avez rien à faire.</p>
+  <p class="body">Plus d'informations sur les réductions d'impôt sur <u>skatteverket.se/skattereduktioner</u>.</p>
+
+  <h2 class="sec">Informations déjà incluses dans votre déclaration de revenus</h2>
+  <p class="body"><b>8 Déductions – Capital</b><br><b>Charges d'intérêts</b><br>Pour l'année de revenus 2025, de nouvelles règles s'appliquent aux prêts sans garantie. En raison des nouvelles règles</p>
+
+  <div class="sideid">SKV 4015 04 sv 00 01</div>
+  <div class="skv-foot"><span><b>www.skatteverket.se</b></span><span>Renseignements fiscaux <b>0771-567 567</b></span><span>E-mail via « Kontakta oss » sur <b>www.skatteverket.se</b></span></div>
+</div>
+
+<!-- ============ PAGE 4 : Spécification 2(2) ============ -->
+<div class="page">
+  <div class="skv-top">
+    <div class="logo"><img src="skatteverket_logo.svg"><span class="name">Skatteverket</span></div>
+    <div style="min-width:300px">
+      <div class="pageof">2 (2)</div>
+      <div class="doctitle">Spécification de la déclaration de revenus 1</div>
+      <div class="yearbox">
+        <div class="c"><div class="k">Année de revenus</div><div class="v">2025</div></div>
+        <div class="c"><div class="k">Numéro personnel / d'enregistrement</div><div class="v">840101-5667</div></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="body" style="margin-top:24px">il existe deux cases différentes dans la déclaration. L'Administration fiscale a rempli vos charges d'intérêts selon les données de contrôle que nous avons reçues. Vous trouverez des informations sur les charges d'intérêts dans l'annexe Données de contrôle et de revenus. Si vous avez eu d'autres charges d'intérêts que vous avez le droit de déduire, vous devez les ajouter vous-même dans la bonne case.</p>
+
+  <p class="body"><b>8.1 Charges d'intérêts sur prêts avec garantie</b></p>
+  <p class="body">Prêts qui remplissent les exigences de garantie, par exemple prêts sur logement, résidence secondaire et véhicules. Vous obtenez une déduction pour la totalité du montant.</p>
+
+  <p class="body"><b>8.8 Charges d'intérêts sur prêts sans garantie</b></p>
+  <p class="body">Prêts qui ne remplissent pas les exigences de garantie, par exemple prêts personnels, crédits à la consommation et prêts contractés auprès d'un particulier. Vous déclarez la totalité du montant que vous avez payé en intérêts, l'Administration fiscale calcule votre déduction à la moitié du montant.</p>
+  <p class="body">Plus d'informations sur <u>skatteverket.se/ränteavdrag</u>.</p>
+
+  <div class="sideid">SKV 4015 04 sv 00 01</div>
+  <div class="skv-foot"><span><b>www.skatteverket.se</b></span><span>Renseignements fiscaux <b>0771-567 567</b></span><span>E-mail via « Kontakta oss » sur <b>www.skatteverket.se</b></span></div>
+</div>
+
+<!-- ============ PAGE 5 : Données de contrôle ============ -->
+<div class="page">
+  <div class="skv-top">
+    <div class="logo"><img src="skatteverket_logo.svg"><span class="name">Skatteverket</span></div>
+    <div style="min-width:300px">
+      <div class="pageof">1 (1)</div>
+      <div class="doctitle">Données de contrôle et de revenus</div>
+      <div class="yearbox"><div class="c"><div class="k">Année de revenus</div><div class="v">2025</div></div></div>
+    </div>
+  </div>
+
+  <div class="namebox">
+    <div class="c" style="flex:1"><div class="k">Nom</div><div>Benouari, Lamiaa</div></div>
+    <div class="c" style="flex:1"><div class="k">Numéro personnel / d'organisation</div><div>840101-5667</div></div>
+  </div>
+
+  <table class="ctrl">
+    <tr class="hdr"><td>ACTIVITÉ SALARIÉE</td><td class="amt">Montant</td><td class="amt">Impôt prélevé</td></tr>
+    <tr class="grp"><td>Revenus – Activité salariée</td><td></td><td></td></tr>
+    <tr class="sub"><td>1.1 Salaire, avantages, indemnités de maladie, etc.</td><td></td><td></td></tr>
+    <tr class="item"><td>EMPLOYEUR (salaire)</td><td class="amt">422 500</td><td class="amt">88 397</td></tr>
+    <tr class="item"><td>FÖRSÄKRINGSKASSAN</td><td class="amt">22 185</td><td class="amt">9 744</td></tr>
+    <tr class="tot"><td>Total</td><td class="amt">444 685</td><td></td></tr>
+
+    <tr class="hdr"><td>CAPITAL &nbsp;&nbsp;&nbsp; <span style="font-weight:normal">Nom/Désignation</span></td><td class="amt">Montant</td><td class="amt">Impôt prélevé</td></tr>
+    <tr class="grp"><td>Déductions – Capital</td><td></td><td></td></tr>
+    <tr class="sub"><td>8.8 Charges d'intérêts sur prêts sans garantie</td><td></td><td></td></tr>
+    <tr class="item"><td>FÖRSÄKRINGSKASSAN</td><td class="amt">108</td><td></td></tr>
+    <tr class="item"><td>Resurs NPL 1 AB</td><td class="amt">31</td><td></td></tr>
+    <tr class="item"><td>Skandinaviska Enskilda Banken AB</td><td class="amt">1</td><td></td></tr>
+    <tr class="tot"><td>Total</td><td class="amt">140</td><td></td></tr>
+
+    <tr class="hdr"><td>AUTRES DONNÉES DE CONTRÔLE</td><td></td><td class="amt">Montant</td></tr>
+    <tr class="grp"><td>Caisse de chômage</td><td></td><td></td></tr>
+    <tr class="sub"><td>Caisse de chômage</td><td></td><td></td></tr>
+    <tr class="item"><td>Fastighets arbetslöshetskassa</td><td></td><td class="amt">2 015</td></tr>
+
+    <tr class="tot"><td>Total de l'impôt prélevé</td><td></td><td class="amt">98 140</td></tr>
+  </table>
+
+  <div class="sideid">SKV 4008 06 sv 00 01</div>
+</div>
+
+<!-- ============ PAGE 6 : Formulaire jaune (recto) ============ -->
+<div class="page form">
+  <div class="fmast">
+    <div class="fmast-left">
+      Skatteverket<br>Centre de numérisation<br>Déclaration de revenus 1<br>FE 8000<br>107 75 Stockholm<br><br>Renseignements fiscaux<br>0771-567 567<br><br>Sur www.skatteverket.se, vous obtenez<br>des réponses à la plupart de vos questions.
+    </div>
+    <div class="fcircle">Déclarez au plus tard le 4 mai</div>
+    <div class="fmast-mid">
+      <div class="fnote">Vérifiez les montants indiqués. Effectuez les modifications/ajouts dans la case blanche. En cas d'ajout, inscrivez le montant total dans la case blanche.<br><b>Indiquez les montants en couronnes entières.</b></div>
+      <div class="forgbox"><div class="k">Numéro personnel / d'organisation</div><div class="v">840101-5667</div></div>
+    </div>
+    <div class="fmast-right">
+      <div class="ftitle">Déclaration de revenus 1 <span class="fyear">2026</span></div>
+      <div class="fsub">Année de revenus 2025</div>
+      <div class="frecip">Benouari, Lamiaa<br>TINGSVÄGEN 23 LGH 1502<br>145 56 NORSBORG</div>
+    </div>
+  </div>
+
+  <div class="fcols">
+    <div class="fcol">
+      <div class="fhead">1 Revenus – Activité salariée <span class="fh-note">Indiquez le montant en couronnes entières</span></div>
+      <div class="frow"><div class="fl"><b>1.1</b> Salaire, avantages, indemnités de maladie, etc.</div><div class="fbox filled">422 500</div></div>
+      <div class="frow"><div class="fl"><b>1.2</b> Indemnités de frais</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>1.3</b> Pension générale et pension professionnelle, etc.</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>1.4</b> Pension privée et rente viagère</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>1.5</b> Autres revenus non ouvrant droit à pension</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>1.6</b> Revenus, p. ex. loisirs, pour lesquels vous devez payer vous-même les cotisations personnelles</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>1.7</b> Revenu de l'annexe K10, K10A et K13</div><div class="fbox"></div></div>
+
+      <div class="fhead">2 Déductions – Activité salariée <span class="fh-note">Indiquez le montant en couronnes entières</span></div>
+      <div class="frow"><div class="fl"><b>2.1</b> Trajets domicile-travail<br><span class="fi">Vous n'obtenez une déduction que pour la partie dépassant 11 000 kr. Indiquez le montant total.</span></div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>2.2</b> Déplacements professionnels</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>2.3</b> Travail temporaire, double résidence et voyages de retour au domicile</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>2.4</b> Autres frais liés à votre travail<br><span class="fi">Vous n'obtenez une déduction que pour la partie dépassant 5 000 kr. Indiquez le montant total.</span></div><div class="fbox"></div></div>
+
+      <div class="fhead">3 Déductions générales <span class="fh-note">Indiquez le montant en couronnes entières</span></div>
+      <div class="frow"><div class="fl"><b>3.1</b> Cotisations de sécurité sociale selon le règlement de l'UE, etc.</div><div class="fbox"></div></div>
+
+      <div class="fhead">4 Base des réductions d'impôt</div>
+      <div class="frow"><div class="fl"><b>4.1</b> Travaux de rénovation (ROT)</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>4.2</b> Services domestiques (RUT)</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>4.3</b> Électricité renouvelable</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>4.4</b> Don</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>4.5</b> Installation de technologie verte</div><div class="fbox"></div></div>
+
+      <div class="fhead">5 Base de la redevance foncière</div>
+      <div class="frow"><div class="fl"><b>5.1</b> Maison individuelle / logement en propriété 0,75 %</div><div class="fbox"></div></div>
+
+      <div class="fhead">6 Base de l'impôt foncier</div>
+      <div class="frow"><div class="fl"><b>6.1</b> Maison individuelle / logement en propriété : terrain, bâtiment en construction 1,0 %</div><div class="fbox"></div></div>
+    </div>
+
+    <div class="fcol">
+      <div class="fhead">7 Revenus – Capital <span class="fh-note">Indiquez le montant en couronnes entières</span></div>
+      <div class="frow"><div class="fl"><b>7.1</b> Revenus forfaitaires</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>7.2</b> Revenus d'intérêts, dividendes, gains de l'annexe K4 section C, etc.</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>7.3</b> Excédent de la location d'un logement privé</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>7.4</b> Gains sur parts de fonds, etc. Gains de l'annexe K4 sections A et B, K9 section B, K10, K10A, K11, K12 section B et K13.</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>7.5</b> Gains sur parts de fonds non cotées, etc. Gains de l'annexe K4 section D, K9 section B, K12 section C et K15A/B, etc.</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>7.6</b> Gains des annexes K5 et K6. Report de sursis de l'annexe K2.</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>7.7</b> Gains des annexes K7 et K8</div><div class="fbox"></div></div>
+
+      <div class="fhead">8 Déductions – Capital <span class="fh-note">Indiquez le montant en couronnes entières</span></div>
+      <div class="frow"><div class="fl"><b>8.1</b> Charges d'intérêts sur prêts avec garantie, perte de l'annexe K4 section C, etc.</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>8.3</b> Perte sur parts de fonds, etc. Perte de l'annexe K4 section A, K9 section B, K10, K12 section B et K13.</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>8.4</b> Perte sur parts de fonds non cotées. Perte de l'annexe K4 section D, K9 section B, K10A, K12 section C et K15A/B.</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>8.5</b> Perte des annexes K5 et K6</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>8.6</b> Perte des annexes K7 et K8</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>8.7</b> Déduction pour investisseur de l'annexe K11</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>8.8</b> Charges d'intérêts sur prêts sans garantie</div><div class="fbox filled">140</div></div>
+
+      <div class="fhead">9 Assurance étrangère – Impôt sur le rendement</div>
+      <div class="frow"><div class="fl"><b>9.1</b> Base imposable pour assurance-capital et produit PEPP</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>9.2</b> Base imposable pour assurance-retraite</div><div class="fbox"></div></div>
+
+      <div class="fbarcode"><div class="fcode">INK1-1-35-2025P4</div><div class="bars"></div></div>
+    </div>
+  </div>
+  <div class="sideid">SKV 2000 35 sv 00 05 &nbsp; Déclaration de revenus selon la loi SFS 2011:1244</div>
+</div>
+
+<!-- ============ PAGE 7 : Formulaire jaune (verso) ============ -->
+<div class="page form">
+  <div class="forgbox" style="float:right;margin-top:2mm"><div class="k">Numéro personnel / d'organisation</div><div class="v">840101-5667 &nbsp;&nbsp; <b>2026</b></div></div>
+  <div style="clear:both"></div>
+  <div class="fbusiness">Les points 10 à 16 concernent uniquement l'activité professionnelle (entreprise)</div>
+
+  <div class="fcols">
+    <div class="fcol">
+      <div class="fhead">10 Activité professionnelle (entreprise)</div>
+      <div class="frow"><div class="fl"><b>10.1</b> Excédent d'activité professionnelle active</div><div class="fbox2"><span>Montant de<br>NE</span><span>Montant de<br>N3A</span></div></div>
+      <div class="frow"><div class="fl"><b>10.2</b> Déficit d'activité professionnelle active</div><div class="fbox2"><span>Montant de<br>NE</span><span>Montant de<br>N3A</span></div></div>
+      <div class="frow"><div class="fl"><b>10.3</b> Excédent d'activité professionnelle passive</div><div class="fbox2"><span>Montant de<br>NE</span><span>Montant de<br>N3A</span></div></div>
+      <div class="frow"><div class="fl"><b>10.4</b> Déficit d'activité professionnelle passive</div><div class="fbox2"><span>Montant de<br>NE</span><span>Montant de<br>N3A</span></div></div>
+      <div class="frow"><div class="fl"><b>10.5</b> Revenus pour lesquels le donneur d'ordre doit payer les cotisations sociales</div><div class="fbox2"><span>Revenu brut</span><span>Frais</span></div></div>
+      <div class="frow"><div class="fl"><b>10.6</b> Base de la taxe salariale spéciale sur les coûts de retraite</div><div class="fbox2"><span>Propre</span><span>Des salariés</span></div></div>
+      <div class="frow"><div class="fl"><b>10.7</b> Base de l'impôt sur le rendement : provisions pour retraites au bilan</div><div class="fbox"></div></div>
+
+      <div class="fhead">11 Répartition des intérêts</div>
+      <div class="frow"><div class="fl"><b>11.1</b> Répartition positive des intérêts<br><span class="fi">Montant de NE (case R30) ou N3A (p.15).</span></div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>11.2</b> Répartition négative des intérêts<br><span class="fi">Montant de NE (case R31) ou N3A (p.16).</span></div><div class="fbox"></div></div>
+
+      <div class="fhead">12 Base de l'impôt sur le fonds d'expansion</div>
+      <div class="frow"><div class="fl"><b>12.1</b> Augmentation du fonds d'expansion<br><span class="fi">Montant de NE (case R36) ou N3A (p.21).</span></div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>12.2</b> Diminution du fonds d'expansion<br><span class="fi">Montant de NE (case R37) ou N3A (p.22).</span></div><div class="fbox"></div></div>
+    </div>
+
+    <div class="fcol">
+      <div class="fhead">13 Activité professionnelle en zone d'aide</div>
+      <div class="frow"><div class="fl"><b>13.1</b> Réduction régionale des cotisations personnelles</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl"><b>13.2</b> Code NACE</div><div class="fbox"></div></div>
+      <div class="fchk">Cochez ici si l'entreprise exerce dans :&nbsp; <span class="cb"></span> Agriculture &nbsp; <span class="cb"></span> Pêche et aquaculture</div>
+
+      <div class="fhead">14 Déductions générales (activité professionnelle)</div>
+      <div class="frow"><div class="fl"><b>14.1</b> Déficit d'activité professionnelle active que vous pouvez compenser avec le revenu professionnel<br><span class="fi">Le déficit que vous déclarez ici ne doit pas être déclaré au point 10.2</span></div><div class="fbox"></div></div>
+
+      <div class="fhead">15 Base de la redevance foncière</div>
+      <div class="frow"><div class="fl">Immeuble locatif : logements 0,3 %</div><div class="fbox"></div></div>
+
+      <div class="fhead">16 Base de l'impôt foncier</div>
+      <div class="frow"><div class="fl">Immeuble locatif : terrain, logements en construction 0,4 %</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl">Immeuble locatif : locaux 1,0 %</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl">Unité industrielle et de production d'électricité, centrale thermique 0,5 %</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl">Unité de production d'électricité : centrale hydroélectrique 0,5 %</div><div class="fbox"></div></div>
+      <div class="frow"><div class="fl">Unité de production d'électricité : éolienne 0,2 %</div><div class="fbox"></div></div>
+      <div class="fchk"><span class="cb"></span> Cochez ici si votre activité professionnelle a cessé en 2025. Désinscrivez-vous sur verksamt.se ou au moyen du formulaire SKV 4639. La détention d'un bien immobilier professionnel est toujours considérée comme une activité professionnelle.</div>
+    </div>
+  </div>
+
+  <div class="fhead2">17 Autres informations</div>
+  <div class="fbox-wide">
+    <div class="frow2"><div style="flex:1"><span class="cb"></span> Cochez ici si vous avez eu des revenus étrangers<br><span class="cb"></span> Salaire, etc. &nbsp; <span class="cb"></span> Pension &nbsp; <span class="cb"></span> Capital</div><div style="flex:1.4;border-left:1px solid #c9be7e;padding-left:8px">Pays d'où proviennent les revenus</div><div style="width:110px;border-left:1px solid #c9be7e;padding-left:8px">Montant en SEK</div></div>
+    <div class="fi2">N'oubliez pas d'ajouter le montant dans la case correspondant au revenu sur la première page, si le revenu étranger doit être imposé en Suède. Tenez également compte du montant éventuel déjà rempli par l'Administration fiscale. Sous « Divers », vous pouvez fournir d'autres informations, p. ex. si vous avez eu d'autres revenus de l'étranger.</div>
+  </div>
+
+  <div class="fbox-wide">
+    <div class="frow2"><div style="flex:1"><b>Imputation de l'impôt étranger</b></div><div style="width:110px;text-align:right">Montant en SEK</div></div>
+    <div class="fi2">Si vous souhaitez demander l'imputation de l'impôt définitif que vous avez payé sur des revenus étrangers, indiquez le montant ici. Si vous avez bénéficié d'une imputation automatique de l'impôt étranger figurant sur une donnée de contrôle, additionnez les montants et indiquez le montant total.</div>
+  </div>
+
+  <div class="ftwo">
+    <div class="fbox-half"><span class="cb"></span> <b>Répartition de la réduction d'impôt</b><div class="fi2">Cochez ici si vous demandez la répartition de la réduction d'impôt pour travaux ROT/RUT ou installation de technologie verte. Sous « Divers », indiquez le montant, le sens (vers ou depuis) et la personne (numéro personnel) avec qui la répartition doit être effectuée.</div></div>
+    <div class="fbox-half"><span class="cb"></span> <b>Information erronée ou manquante</b><div class="fi2">Cochez ici si une donnée de revenu est erronée/manquante. Sous « Divers », indiquez le nom du payeur, l'adresse, le montant de la rémunération et l'impôt prélevé.</div></div>
+  </div>
+
+  <div class="fi2" style="margin-top:4px">Ici, vous pouvez fournir d'autres informations qui ne figurent pas sur le formulaire et dont l'Administration fiscale a besoin pour établir votre impôt définitif, p. ex. si vous avez perçu un revenu cumulé. Vous n'avez pas besoin d'indiquer que vous joignez des annexes ou que vous fournissez des annexes numériquement.</div>
+  <div class="fovrigt">Divers</div>
+  <div class="fbox-blank"></div>
+
+  <div class="ftwo" style="margin-top:6px">
+    <div class="fbox-half sig"><b>18 Signature</b><div class="sigline"></div><div class="fi">Signature</div></div>
+    <div class="fbox-half sig"><div class="fi" style="margin-top:14px">Numéro de téléphone (facultatif)</div><div class="sigline"></div></div>
+  </div>
+
+  <div class="fbarcode" style="margin-top:6px"><div class="fcode">INK1-2-35-2025P4</div><div class="bars"></div></div>
+  <div class="sideid">SKV 2000 35 sv 00 05 &nbsp; Une consultation selon SFS 1982:668 a eu lieu avec le Conseil des règles des entreprises (Näringslivets Regelnämnd).</div>
+</div>
+
+<style>
+.form { background:#f8f1c4; }
+.fmast { display:flex; gap:10px; font-size:8.5px; align-items:flex-start; position:relative; }
+.fmast-left { width:150px; line-height:1.35; }
+.fcircle { position:absolute; left:150px; top:0; width:70px; height:70px; border-radius:50%; background:#cfe0da; display:flex; align-items:center; justify-content:center; text-align:center; font-size:8.5px; font-weight:bold; padding:6px; }
+.fmast-mid { width:210px; margin-left:78px; }
+.fnote { border:1px solid #999; background:#fff; padding:4px; font-size:8px; line-height:1.3; }
+.forgbox { border:1px solid #333; background:#fff; padding:2px 6px; margin-top:6px; display:inline-block; }
+.forgbox .k { font-size:8px; color:#333; }
+.forgbox .v { font-family:'Courier New',monospace; font-size:12px; letter-spacing:1px; }
+.fmast-right { flex:1; text-align:left; padding-left:6px; }
+.ftitle { font-size:18px; font-weight:bold; }
+.fyear { float:right; }
+.fsub { font-size:11px; font-weight:bold; }
+.frecip { font-family:'Courier New',monospace; font-size:11px; margin-top:14px; line-height:1.5; }
+.fcols { display:flex; gap:10px; margin-top:12px; align-items:flex-start; }
+.fcol { flex:1; }
+.fhead { font-weight:bold; font-size:11px; margin:8px 0 2px; border-bottom:1px solid #b9ad63; padding-bottom:1px; }
+.fh-note { float:right; font-weight:normal; font-size:8px; }
+.frow { display:flex; align-items:flex-start; gap:6px; padding:3px 0; border-bottom:1px solid #e3d99e; }
+.fl { flex:1; font-size:9px; line-height:1.25; }
+.fi { font-style:italic; font-size:7.5px; color:#333; }
+.fbox { width:96px; min-height:20px; background:#fff; border:1px solid #b9ad63; font-family:'Courier New',monospace; text-align:right; padding:2px 4px; font-size:11px; }
+.fbox.filled { background:#fdfbe8; font-weight:bold; }
+.fbox2 { width:130px; display:flex; }
+.fbox2 span { flex:1; min-height:26px; background:#fff; border:1px solid #b9ad63; font-size:7px; padding:1px 2px; text-align:right; color:#555; }
+.fbarcode { margin-top:16px; text-align:right; }
+.fcode { font-family:'Courier New',monospace; font-size:9px; }
+.bars { height:34px; margin-top:2px; background:repeating-linear-gradient(90deg,#000 0 1px,#fff 1px 2px,#000 2px 4px,#fff 4px 5px,#000 5px 7px,#fff 7px 9px); }
+.fbusiness { font-style:italic; font-weight:bold; font-size:11px; margin:6px 0 2px; }
+.fchk { font-size:8.5px; padding:4px 0; line-height:1.3; }
+.cb { display:inline-block; width:9px; height:9px; border:1px solid #333; background:#fff; vertical-align:middle; }
+.fhead2 { font-weight:bold; font-size:12px; margin:10px 0 3px; border-top:2px solid #b9ad63; padding-top:3px; }
+.fbox-wide { border:1px solid #c9be7e; background:#fff; padding:5px; margin-top:4px; }
+.frow2 { display:flex; font-size:9px; }
+.fi2 { font-size:8px; line-height:1.3; margin-top:3px; color:#222; }
+.ftwo { display:flex; gap:8px; margin-top:4px; }
+.fbox-half { flex:1; border:1px solid #c9be7e; background:#fff; padding:5px; font-size:9px; }
+.fovrigt { font-size:9px; margin-top:4px; }
+.fbox-blank { border:1px solid #c9be7e; background:#fff; height:40px; margin-top:2px; }
+.sig { min-height:52px; }
+.sigline { border-bottom:1px solid #333; margin:14px 0 2px; }
+</style>
+</body></html>

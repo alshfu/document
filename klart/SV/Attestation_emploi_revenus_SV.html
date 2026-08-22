@@ -1,0 +1,121 @@
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<title>Intyg om anställning och inkomster</title>
+<style>
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: #111; }
+.page { width: 210mm; min-height: 297mm; padding: 14mm 15mm; page-break-after: always; }
+.ikea{display:inline-block;}
+.ikea img{width:104px;height:42px;}
+
+.header{display:flex;justify-content:space-between;align-items:flex-start;}
+.company{font-size:12px;line-height:1.45;}
+.company .c1{font-weight:bold;color:#0058a3;}
+.rule{border:0;border-top:1px solid #999;margin:10px 0 14px;}
+
+h1.title{text-align:center;font-size:19px;font-weight:bold;margin:6px 0 14px;letter-spacing:0.5px;}
+.intro{font-size:12.5px;line-height:1.5;margin:0 0 14px;}
+
+.band{background:#f0f0f0;padding:5px 8px 5px 10px;font-weight:bold;font-size:12.5px;border-left:4px solid #0058a3;margin:12px 0 6px;}
+.rows{font-size:12.5px;}
+.row{display:flex;line-height:1.55;}
+.row .lbl{width:36%;padding-left:6px;}
+.row .val{width:64%;}
+.b .val{font-weight:bold;}
+
+.salary .row .val{font-weight:bold;}
+.salary .total .lbl{font-weight:bold;}
+.salary .total .val{font-weight:bold;color:#0058a3;}
+.salary-note{font-size:11px;line-height:1.45;padding:4px 6px 0;}
+
+.subh{font-weight:bold;font-size:12.5px;margin:14px 0 4px;}
+.mini{font-size:12.5px;}
+.mini .row .lbl{width:36%;padding-left:6px;}
+.mini .row .val .net{font-weight:bold;}
+
+.box{background:#f0f0f0;font-size:11px;line-height:1.45;padding:8px 10px;margin:12px 0;}
+.plain{font-size:12.5px;line-height:1.5;margin:10px 0 0;}
+
+.sign{display:flex;justify-content:space-between;margin-top:40px;}
+.sign .col{width:45%;}
+.sign .above{font-size:12.5px;min-height:16px;}
+.sign .line{border-top:1px solid #333;margin-top:2px;}
+.sign .cap{font-size:11.5px;color:#333;margin-top:3px;}
+
+.footnote{text-align:center;font-size:10.5px;font-style:italic;color:#777;margin-top:26px;border-top:1px solid #ccc;padding-top:8px;}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div class="company">
+      <div class="c1">IKEA Svenska Försäljnings AB</div>
+      <div>Box 8041, 141 08 Kungens Kurva</div>
+      <div>Org.nr : 556074-7569</div>
+    </div>
+    <div class="ikea"><img src="ikea_logo.svg"></div>
+  </div>
+  <hr class="rule">
+
+  <h1 class="title">INTYG OM ANSTÄLLNING OCH INKOMSTER</h1>
+
+  <p class="intro">Härmed intygas att <strong>Lamiaa Benouari</strong> är anställd hos IKEA Svenska Försäljnings AB och utför sitt arbete på ett tillfredsställande sätt. Medarbetaren är väl ansedd inom enheten, utför sina arbetsuppgifter på ett ansvarsfullt och professionellt sätt och har goda relationer med kollegor och chefer. Anställningen fortgår utan anmärkning.</p>
+
+  <div class="band">Medarbetaren</div>
+  <div class="rows">
+    <div class="row"><div class="lbl">Namn</div><div class="val">Lamiaa Benouari</div></div>
+    <div class="row"><div class="lbl">Personnummer</div><div class="val">19840101-5667</div></div>
+    <div class="row"><div class="lbl">Adress</div><div class="val">Tingsvägen 23 Lgh 1502, 145 56 Norsborg</div></div>
+    <div class="row"><div class="lbl">Anställningsnummer</div><div class="val">23211136</div></div>
+  </div>
+
+  <div class="band">Uppgifter om anställningen</div>
+  <div class="rows">
+    <div class="row"><div class="lbl">Befattning</div><div class="val">IKEA Food Co-worker (IKEA Food / restaurang)</div></div>
+    <div class="row"><div class="lbl">Arbetsplats</div><div class="val">Kungens Kurva</div></div>
+    <div class="row"><div class="lbl">Anställningsform</div><div class="val">Tillsvidareanställning</div></div>
+    <div class="row"><div class="lbl">Arbetstid</div><div class="val">Heltid 100 % (38,25 timmar/vecka netto)</div></div>
+    <div class="row"><div class="lbl">Anställningsdatum</div><div class="val">2007-06-15 (enligt lönespecifikation)</div></div>
+    <div class="row"><div class="lbl">Tillträdesdatum (avtal)</div><div class="val">2020-01-29</div></div>
+    <div class="row"><div class="lbl">Kollektivavtal</div><div class="val">Svensk Handel / HRF (Restaurang- och cafépersonal)</div></div>
+    <div class="row"><div class="lbl">Semesterrätt</div><div class="val">25 dagar</div></div>
+  </div>
+
+  <div class="band">Lön och inkomster</div>
+  <div class="rows salary">
+    <div class="row"><div class="lbl">Grundlön per månad (heltid)</div><div class="val">30 636 kr</div></div>
+    <div class="row"><div class="lbl">Årstillägg</div><div class="val">160 kr</div></div>
+    <div class="row total"><div class="lbl">Total grundlön</div><div class="val">30 796 kr / månad</div></div>
+    <div class="salary-note">Utöver grundlönen tillkommer OB-tillägg, övertidsersättning och övriga tillägg enligt kollektivavtalet.</div>
+  </div>
+
+  <div class="subh">Senaste månaderna (bruttolön / nettolön):</div>
+  <div class="rows mini">
+    <div class="row"><div class="lbl">Maj 2026</div><div class="val">35 914,87 kr / <span class="net">27 822,87 kr</span></div></div>
+    <div class="row"><div class="lbl">Juni 2026</div><div class="val">37 893,07 kr / <span class="net">28 948,07 kr</span></div></div>
+    <div class="row"><div class="lbl">Juli 2026</div><div class="val">35 452,55 kr / <span class="net">27 178,55 kr</span></div></div>
+  </div>
+
+  <div class="box">Lönerna utbetalas månadsvis till medarbetarens konto i SEB (privatkonto 5710 00 296 00). Beloppen på lönespecifikationerna motsvarar exakt de faktiska utbetalningarna till kontot under perioden februari–juli 2026.</div>
+
+  <p class="plain">Detta intyg utfärdas på begäran för att bekräfta anställningen, anställningsvillkoren och inkomsterna.</p>
+
+  <div class="sign">
+    <div class="col">
+      <div class="above">&nbsp;</div>
+      <div class="line"></div>
+      <div class="cap">Ort och datum</div>
+    </div>
+    <div class="col">
+      <div class="above">Älg Stenberg</div>
+      <div class="line"></div>
+      <div class="cap">Chef / Enhetschef</div>
+    </div>
+  </div>
+
+  <div class="footnote">Intyget grundar sig på anställningsavtalet, lönespecifikationerna (feb.–juli 2026) samt kontoutdrag från SEB.</div>
+</div>
+</body>
+</html>

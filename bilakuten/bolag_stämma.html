@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protokoll Digital Extra Bolagsstämma - Bil Akuten i Karlshamn AB</title>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --text-color: #1f2937;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 40px 0;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .doc-container {
+            background-color: white;
+            max-width: 210mm; /* A4 width */
+            margin: 0 auto;
+            padding: 25mm 20mm;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            min-height: 297mm; /* A4 height */
+        }
+
+        h1 {
+            font-size: 22px;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 14px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .protocol-item {
+            margin-bottom: 20px;
+        }
+
+        .protocol-title {
+            font-weight: 700;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .decision-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 13px;
+        }
+
+        .signatures {
+            margin-top: 60px;
+            display: flex;
+            justify-content: space-between;
+            page-break-inside: avoid;
+        }
+
+        .signature-block {
+            width: 45%;
+        }
+
+        .signature-line {
+            border-top: 1px solid #000;
+            margin-top: 40px;
+            margin-bottom: 5px;
+        }
+
+        .meta-table {
+            width: 100%;
+            margin-bottom: 30px;
+            font-size: 13px;
+        }
+
+        .meta-table td {
+            padding: 4px 0;
+            vertical-align: top;
+        }
+
+        .print-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+        }
+
+        @media print {
+            body { background-color: white; padding: 0; }
+            .doc-container { box-shadow: none; margin: 0; padding: 20mm; width: 100%; }
+            .print-btn { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <button onclick="window.print()" class="btn btn-primary print-btn d-print-none">🖨️ Skriv ut Protokoll</button>
+
+    <div class="doc-container">
+
+        <h1>Protokoll fört vid digital extra bolagsstämma</h1>
+        <div class="subtitle">i Bil Akuten i Karlshamn AB (559329-6774)</div>
+
+        <table class="meta-table">
+            <tr>
+                <td style="width: 150px;"><strong>Datum:</strong></td>
+                <td>2025-11-30</td>
+            </tr>
+            <tr>
+                <td><strong>Plats:</strong></td>
+                <td>Digitalt via videolänk (Karlshamn/Surte)</td>
+            </tr>
+            <tr>
+                <td><strong>Närvarande:</strong></td>
+                <td>
+                    Emilia Teresa Mazur (Avgående ägare/styrelse)<br>
+                    Kurre Nura (Tillträdande ägare/styrelse)
+                </td>
+            </tr>
+        </table>
+
+        <div class="protocol-item">
+            <span class="protocol-title">§ 1. Stämmans öppnande</span>
+            Stämman öppnades av Emilia Teresa Mazur via videolänk.
+        </div>
+
+        <div class="protocol-item">
+            <span class="protocol-title">§ 2. Val av ordförande</span>
+            Till ordförande för stämman valdes Emilia Teresa Mazur.
+            Till protokollförare valdes Kurre Nura.
+        </div>
+
+        <div class="protocol-item">
+            <span class="protocol-title">§ 3. Upprättande och godkännande av röstlängd</span>
+            Det antecknades att Kurre Nura per dagens datum förvärvat samtliga 500 aktier i bolaget. Röstlängden fastställdes att omfatta 500 aktier och 500 röster, representerade av Kurre Nura via länk.
+        </div>
+
+        <div class="protocol-item">
+            <span class="protocol-title">§ 4. Godkännande av dagordning</span>
+            Den i kallelsen intagna dagordningen godkändes.
+        </div>
+
+        <div class="protocol-item">
+            <span class="protocol-title">§ 5. Prövning av stämmans tillkomst</span>
+            Då samtliga aktier var representerade förklarades stämman behörigen sammankallad.
+        </div>
+
+        <div class="protocol-item">
+            <span class="protocol-title">§ 6. Godkännande av försäljning av inventarier (Väsentlig transaktion)</span>
+            Stämman förelades handlingar avseende försäljning av bolagets inventarier (Bilaga 2 till överlåtelseavtalet). Det noterades att försäljningen genomfördes den <strong>2025-11-29</strong> till ett värde av 528 000 SEK (inkl. moms) och att syftet är att reglera bolagets skatteskulder.
+
+            <div class="decision-box">
+                <strong>Beslut:</strong> Stämman beslutade enhälligt att i efterhand godkänna försäljningen av inventarierna samt den tillhörande planen för skuldreglering där köparen (Kurre Nura) förskotterar betalning av skatteskulderna.
+            </div>
+        </div>
+
+        <div class="protocol-item">
+            <span class="protocol-title">§ 7. Notering om aktieöverlåtelse</span>
+            Stämman noterade att ett aktieöverlåtelseavtal undertecknats detta datum, varvid Emilia Teresa Mazur överlåtit 100% av aktierna till Kurre Nura. Kurre Nura inträder därmed som ensam ägare med omedelbar verkan.
+        </div>
+
+        <div class="protocol-item">
+            <span class="protocol-title">§ 8. Fastställande av antalet styrelseledamöter och suppleanter</span>
+            Stämman beslutade att styrelsen ska bestå av en (1) ordinarie ledamot och en (1) suppleant.
+        </div>
+
+        <div class="protocol-item">
+            <span class="protocol-title">§ 9. Val av styrelse</span>
+            Det antecknades att Emilia Teresa Mazur ställt sin plats till förfogande.
+
+            <div class="decision-box">
+                <strong>Beslut:</strong> Stämman beslutade att entlediga Emilia Teresa Mazur från styrelsen.<br><br>
+                Till ny <strong>ordinarie styrelseledamot</strong> valdes:<br>
+                - Kurre Nura (880914-9571)<br><br>
+                Till <strong>styrelsesuppleant</strong> noterades att sittande suppleant (Lizan Kusaeva) kvarstår interimistiskt under en period om maximalt fem (5) dagar, i enlighet med överlåtelseavtalet, till dess att Kurre Nura utsett en ersättare.
+            </div>
+        </div>
+
+        <div class="protocol-item">
+            <span class="protocol-title">§ 10. Firmateckning</span>
+            Stämman beslutade att firman tecknas av styrelsen samt av den ordinarie ledamoten ensam.
+        </div>
+
+        <div class="protocol-item">
+            <span class="protocol-title">§ 11. Stämmans avslutande</span>
+            Ordföranden förklarade stämman avslutad.
+        </div>
+
+        <div class="signatures">
+            <div class="signature-block">
+                Vid protokollet:
+                <div class="signature-line"></div>
+                <strong>Kurre Nura</strong><br>
+                Protokollförare & Justerare
+            </div>
+
+            <div class="signature-block">
+                Ordförande:
+                <div class="signature-line"></div>
+                <strong>Emilia Teresa Mazur</strong><br>
+                Stämmoordförande
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

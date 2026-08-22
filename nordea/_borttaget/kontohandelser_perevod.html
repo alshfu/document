@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выписка по счёту Nordea — перевод на русский</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            line-height: 1.4;
+            background: #e5e5e5;
+            color: #000;
+        }
+
+        .page {
+            width: 21cm;
+            min-height: 29.7cm;
+            margin: 0.5cm auto;
+            padding: 1.2cm 1.3cm 1cm;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .25);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+
+        /* ---- translation note ---- */
+        .trans-note {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 10.5px;
+            font-style: italic;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        /* ---- decorative figure (bottom right, as in original) ---- */
+        .deco {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* ---- header ---- */
+        .hdr {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 28px;
+        }
+
+        .hdr .logo svg {
+            width: 118px;
+            height: auto;
+            display: block;
+        }
+
+        .hdr-right {
+            text-align: right;
+            font-size: 10.5px;
+            line-height: 1.5;
+        }
+
+        /* ---- section headings (Nordea blue) ---- */
+        h2 {
+            color: #0000A0;
+            font-size: 13px;
+            font-weight: normal;
+            margin-bottom: 8px;
+        }
+
+        h2.ruled {
+            border-bottom: 1px solid #000;
+            padding-bottom: 14px;
+            margin-bottom: 14px;
+        }
+
+        h3 {
+            color: #0000A0;
+            font-size: 11px;
+            font-weight: normal;
+            margin-bottom: 4px;
+        }
+
+        /* ---- summary block ---- */
+        .summary {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 60px;
+        }
+
+        .sum-col table {
+            border-collapse: collapse;
+            font-size: 11px;
+        }
+
+        .sum-col td {
+            padding: 1px 0;
+            vertical-align: top;
+        }
+
+        .sum-col td.lbl {
+            padding-right: 30px;
+        }
+
+        .sum-col.right td.val {
+            text-align: right;
+            min-width: 110px;
+        }
+
+        /* ---- transactions table ---- */
+        table.tx {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10.5px;
+        }
+
+        table.tx th {
+            background: #d9d9d9;
+            font-weight: bold;
+            text-align: left;
+            padding: 4px 6px;
+        }
+
+        table.tx th.num,
+        table.tx td.num {
+            text-align: right;
+        }
+
+        table.tx td {
+            padding: 3px 6px;
+        }
+
+        table.tx tr.odd td {
+            background: #efefef;
+        }
+
+        table.tx td.month {
+            color: #0000A0;
+            font-size: 11.5px;
+            padding-top: 6px;
+            background: none !important;
+        }
+
+        table.tx col.c-date  { width: 14%; }
+        table.tx col.c-name  { width: 42%; }
+        table.tx col.c-amt   { width: 20%; }
+        table.tx col.c-saldo { width: 24%; }
+
+        /* ---- balances page ---- */
+        table.saldon {
+            width: 62%;
+            border-collapse: collapse;
+            font-size: 11px;
+        }
+
+        table.saldon td {
+            padding: 2px 0;
+        }
+
+        table.saldon tr:nth-child(even) td {
+            background: #efefef;
+        }
+
+        table.saldon td.val {
+            text-align: right;
+        }
+
+        /* ---- footer ---- */
+        .pfoot {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            font-size: 10px;
+            margin-top: 24px;
+        }
+
+        .no-print {
+            text-align: center;
+            padding: 20px;
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                background: #fff;
+            }
+
+            .page {
+                width: auto;
+                min-height: 29.6cm;
+                margin: 0;
+                padding: 1.2cm 1.3cm 1cm;
+                box-shadow: none;
+                page-break-after: always;
+            }
+
+            .page:last-child {
+                page-break-after: auto;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            .deco,
+            table.tx th,
+            table.tx tr.odd td,
+            table.saldon tr:nth-child(even) td {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ================= PAGE 1 ================= -->
+<div class="page">
+    <div class="content">
+        <div class="trans-note">Перевод со шведского языка на русский язык</div>
+
+        <div class="hdr">
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 136.1 28.6">
+                    <g fill="#0000A0">
+                        <path d="M124.1,6.2c-5.5,0.4-9.9,4.9-10.3,10.4c-0.4,6.5,4.7,11.9,11.1,11.9c2.3,0,5.4-1.2,6.8-3.6v3.3h4.3V17.6 C136.2,10.6,130.6,5.7,124.1,6.2z M131.4,17.6c-0.2,3.7-3.4,6.5-7.2,6c-2.9-0.4-5.2-2.7-5.6-5.6c-0.4-3.9,2.6-7.2,6.4-7.2 c3.4,0,6.2,2.7,6.4,6.1L131.4,17.6L131.4,17.6z"/>
+                        <path d="M100.5,6.2c-5.9,0.2-10.9,4.7-10.9,11.3c0,6,4.9,11.1,11.2,11.1c4.4,0,8.7-2.6,10.4-6.9l-4.3-1.3 c-0.8,1.8-2.7,3.3-4.8,3.7c-3,0.6-5.8-1.3-6.9-3.3l16.7-4.6C111.4,11.8,107.6,6,100.5,6.2z M94.3,16.8c0-2.3,1.4-5,4.4-6.1 c3.4-1.3,6.4,0.4,7.7,2.8L94.3,16.8z"/>
+                        <path d="M63.8,10.7V6.1c-4.2,0-5.6,2.1-6.3,3.2V6.8h-4.8V17v11.1h4.9c0-6.6,0-6.5,0-10.5 C57.6,12.8,60.4,10.9,63.8,10.7z"/>
+                        <polygon points="19.7,19.6 5.1,2.4 0.1,2.4 0.1,28.1 5.3,28.1 5.3,10.9 20.1,28.2 24.6,28.2 24.6,2.4 19.7,2.4"/>
+                        <path d="M86.7,0.1h-4.6v8.4c-1.1-1.4-4.5-2.6-7.4-2.3c-5.5,0.4-9.9,4.9-10.3,10.4c-0.4,6.5,4.7,11.9,11.1,11.9 c2.4,0,5.7-1.1,6.8-3.2v2.8h4.3V17.5c0-0.1,0-0.1,0-0.2c0-0.1,0-0.1,0-0.2L86.7,0.1L86.7,0.1z M81.9,17.6 c-0.2,3.7-3.4,6.5-7.2,6c-2.9-0.4-5.2-2.7-5.6-5.6c-0.4-3.9,2.6-7.2,6.4-7.2c3.4,0,6.2,2.7,6.4,6.1 C81.9,16.9,81.9,17.6,81.9,17.6z"/>
+                        <path d="M38.7,6.1c-6.2,0-11.2,5-11.2,11.2s5,11.2,11.2,11.2s11.2-5,11.2-11.2C49.8,11.1,44.8,6.1,38.7,6.1z M38.7,23.7c-3.5,0-6.4-2.9-6.4-6.4s2.9-6.4,6.4-6.4s6.4,2.9,6.4,6.4C45.1,20.9,42.2,23.7,38.7,23.7z"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="hdr-right">
+                Создано: БАРУДИ, АХМАД (BAROUDI, AHMAD)<br>
+                2026-08-22 17:49:57
+            </div>
+        </div>
+
+        <h2 class="ruled">Сводка выписки по счёту</h2>
+
+        <div class="summary">
+            <div class="sum-col">
+                <h3>Счёт</h3>
+                <table>
+                    <tr><td class="lbl">Название:</td><td>ЛИЧНЫЙ СЧЁТ (PERSONKONTO)</td></tr>
+                    <tr><td class="lbl">Клиринговый номер:</td><td>3023</td></tr>
+                    <tr><td class="lbl">Номер счёта:</td><td>3023 01 51051</td></tr>
+                    <tr><td class="lbl">IBAN:</td><td>SE1830000000030230151051</td></tr>
+                    <tr><td class="lbl">BIC/SWIFT:</td><td>NDEASESS</td></tr>
+                    <tr><td class="lbl">Валюта:</td><td>SEK</td></tr>
+                </table>
+            </div>
+            <div class="sum-col right">
+                <h3>Период</h3>
+                <table>
+                    <tr><td class="lbl">С:</td><td class="val">2025-07-01</td></tr>
+                    <tr><td class="lbl">По:</td><td class="val">2026-08-22</td></tr>
+                    <tr><td class="lbl">Дней:</td><td class="val">418</td></tr>
+                    <tr><td class="lbl">Операций по счёту:</td><td class="val">36</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <h2>Операции по счёту с 2025-07-01 по 2026-08-22</h2>
+
+        <table class="tx">
+            <colgroup>
+                <col class="c-date"><col class="c-name"><col class="c-amt"><col class="c-saldo">
+            </colgroup>
+            <tr>
+                <th>Дата</th><th>Наименование</th><th class="num">Сумма</th><th class="num">Остаток</th>
+            </tr>
+            <tr><td class="month" colspan="4">Август 2026</td></tr>
+            <tr><td>2026-08-10</td><td>Покупка по карте 260809 APPLE.COM/BILL</td><td class="num">-399,00</td><td class="num">322,82</td></tr>
+            <tr class="odd"><td>2026-08-10</td><td>97801369493</td><td class="num">-43 500,00</td><td class="num">721,82</td></tr>
+            <tr><td>2026-08-08</td><td>Платёж Swish МАГОМЕД ТОВСУЛТАНОВ</td><td class="num">-5 000,00</td><td class="num">44 221,82</td></tr>
+            <tr class="odd"><td>2026-08-07</td><td>97841357585</td><td class="num">-45 000,00</td><td class="num">49 221,82</td></tr>
+            <tr><td>2026-08-06</td><td>Внесение наличных</td><td class="num">94 000,00</td><td class="num">94 221,82</td></tr>
+            <tr class="odd"><td>2026-08-01</td><td>Nordea Vardagspaket (пакет банковских услуг)</td><td class="num">-45,00</td><td class="num">221,82</td></tr>
+            <tr><td class="month" colspan="4">Июль 2026</td></tr>
+            <tr><td>2026-07-30</td><td>97841357585</td><td class="num">-19 500,00</td><td class="num">266,82</td></tr>
+            <tr class="odd"><td>2026-07-29</td><td>Платёж BG 5393-9484 BILLO AB</td><td class="num">-100,00</td><td class="num">19 766,82</td></tr>
+            <tr><td>2026-07-28</td><td>97841357585</td><td class="num">-40 000,00</td><td class="num">19 866,82</td></tr>
+            <tr class="odd"><td>2026-07-28</td><td>Входящий платёж Swish МАГОМЕД ТОВСУЛТАН</td><td class="num">49 957,00</td><td class="num">59 866,82</td></tr>
+            <tr><td>2026-07-28</td><td>Входящий платёж Swish АХМАД БАРУДИ</td><td class="num">10 000,00</td><td class="num">9 909,82</td></tr>
+            <tr class="odd"><td>2026-07-01</td><td>Nordea Vardagspaket (пакет банковских услуг)</td><td class="num">-45,00</td><td class="num">-90,18</td></tr>
+            <tr><td>2026-07-01</td><td>Процент по задолженности</td><td class="num">-0,60</td><td class="num">-45,18</td></tr>
+            <tr><td class="month" colspan="4">Июнь 2026</td></tr>
+            <tr class="odd"><td>2026-06-01</td><td>Nordea Vardagspaket (пакет банковских услуг)</td><td class="num">-45,00</td><td class="num">-44,58</td></tr>
+            <tr><td class="month" colspan="4">Май 2026</td></tr>
+            <tr><td>2026-05-27</td><td>Платёж Swish Klarna Bank AB</td><td class="num">-34,00</td><td class="num">0,42</td></tr>
+            <tr class="odd"><td>2026-05-27</td><td>Платёж Swish Klarna Bank AB</td><td class="num">-5 000,00</td><td class="num">34,42</td></tr>
+            <tr><td>2026-05-27</td><td>Входящий платёж Swish МУГУТДИНОВА, ДЖАН</td><td class="num">5 000,00</td><td class="num">5 034,42</td></tr>
+            <tr class="odd"><td>2026-05-22</td><td>Платёж Swish Klarna Bank AB</td><td class="num">-200,00</td><td class="num">34,42</td></tr>
+            <tr><td>2026-05-11</td><td>Внесение по карте 260510 APPLE.COM/BI</td><td class="num">192,77</td><td class="num">234,42</td></tr>
+            <tr class="odd"><td>2026-05-10</td><td>Платёж Swish Klarna Bank AB</td><td class="num">-320,00</td><td class="num">41,65</td></tr>
+            <tr><td>2026-05-03</td><td>Покупка по карте 260502 APPLE.COM/BILL</td><td class="num">-249,00</td><td class="num">361,65</td></tr>
+            <tr><td class="month" colspan="4">Апрель 2026</td></tr>
+            <tr><td>2026-04-13</td><td>Платёж Swish ОЛЬГА ДИАКОНОВА (Olha Diakonova)</td><td class="num">-1 000,00</td><td class="num">610,65</td></tr>
+            <tr class="odd"><td>2026-04-12</td><td>Покупка по карте 260410 MOONSHOT AI PTE. LTD</td><td class="num">-192,88</td><td class="num">1 610,65</td></tr>
+            <tr><td>2026-04-10</td><td>Платёж BG 5835-1552 GÖTEBORG ENE</td><td class="num">-178,00</td><td class="num">1 803,53</td></tr>
+            <tr class="odd"><td>2026-04-10</td><td>Платёж BG 5786-2690 FOLKSAM ÖMSE</td><td class="num">-207,00</td><td class="num">1 981,53</td></tr>
+            <tr><td>2026-04-10</td><td>Платёж BG 5370-2395 Ежемесячная плата</td><td class="num">-172,00</td><td class="num">2 188,53</td></tr>
+            <tr class="odd"><td>2026-04-10</td><td>Платёж BG 5370-2395 Ежемесячная плата</td><td class="num">-171,00</td><td class="num">2 360,53</td></tr>
+            <tr><td>2026-04-10</td><td>Платёж BG 5607-3703 Visma Amili</td><td class="num">-778,00</td><td class="num">2 531,53</td></tr>
+            <tr class="odd"><td>2026-04-10</td><td>Платёж BG 5370-2395 Ежемесячная плата</td><td class="num">-170,00</td><td class="num">3 309,53</td></tr>
+            <tr><td>2026-04-08</td><td>Платёж Swish TELE2 SVERIGE AKTIE</td><td class="num">-149,00</td><td class="num">3 479,53</td></tr>
+            <tr class="odd"><td>2026-04-07</td><td>Платёж BG 5393-9484 BILLO AB</td><td class="num">-510,00</td><td class="num">3 628,53</td></tr>
+            <tr><td>2026-04-07</td><td>97507755586</td><td class="num">-2 000,00</td><td class="num">4 138,53</td></tr>
+            <tr class="odd"><td>2026-04-04</td><td>Покупка по карте 260402 APPLE.COM/BILL</td><td class="num">-399,00</td><td class="num">6 138,53</td></tr>
+            <tr><td>2026-04-04</td><td>Покупка по карте 260402 APPLE.COM/BILL</td><td class="num">-249,00</td><td class="num">6 537,53</td></tr>
+            <tr class="odd"><td>2026-04-04</td><td>Платёж Swish Klarna Bank AB</td><td class="num">-500,00</td><td class="num">6 786,53</td></tr>
+            <tr><td>2026-04-02</td><td>AVSLUT KODKR (закрытие кредитного лимита)</td><td class="num">7 286,53</td><td class="num">7 286,53</td></tr>
+        </table>
+    </div>
+
+    <svg class="deco" width="300" height="330" viewBox="0 0 300 330" fill="#e6e6f7">
+        <rect x="150" y="30" width="46" height="240" rx="23"/>
+        <rect x="86" y="130" width="40" height="90" rx="20"/>
+        <rect x="210" y="120" width="40" height="130" rx="20"/>
+        <rect x="262" y="150" width="38" height="70" rx="19"/>
+        <rect x="30" y="170" width="34" height="40" rx="17"/>
+        <rect x="120" y="270" width="40" height="60" rx="20"/>
+        <rect x="200" y="285" width="36" height="45" rx="18"/>
+    </svg>
+
+    <div class="pfoot">
+        <div>Данный документ создан через<br>Экономика &gt; Счета &gt; Операции по счёту и детали</div>
+        <div>Страница 1 из 2</div>
+    </div>
+</div>
+
+<!-- ================= PAGE 2 ================= -->
+<div class="page">
+    <div class="content">
+        <div class="trans-note">Перевод со шведского языка на русский язык</div>
+
+        <div class="hdr">
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 136.1 28.6">
+                    <g fill="#0000A0">
+                        <path d="M124.1,6.2c-5.5,0.4-9.9,4.9-10.3,10.4c-0.4,6.5,4.7,11.9,11.1,11.9c2.3,0,5.4-1.2,6.8-3.6v3.3h4.3V17.6 C136.2,10.6,130.6,5.7,124.1,6.2z M131.4,17.6c-0.2,3.7-3.4,6.5-7.2,6c-2.9-0.4-5.2-2.7-5.6-5.6c-0.4-3.9,2.6-7.2,6.4-7.2 c3.4,0,6.2,2.7,6.4,6.1L131.4,17.6L131.4,17.6z"/>
+                        <path d="M100.5,6.2c-5.9,0.2-10.9,4.7-10.9,11.3c0,6,4.9,11.1,11.2,11.1c4.4,0,8.7-2.6,10.4-6.9l-4.3-1.3 c-0.8,1.8-2.7,3.3-4.8,3.7c-3,0.6-5.8-1.3-6.9-3.3l16.7-4.6C111.4,11.8,107.6,6,100.5,6.2z M94.3,16.8c0-2.3,1.4-5,4.4-6.1 c3.4-1.3,6.4,0.4,7.7,2.8L94.3,16.8z"/>
+                        <path d="M63.8,10.7V6.1c-4.2,0-5.6,2.1-6.3,3.2V6.8h-4.8V17v11.1h4.9c0-6.6,0-6.5,0-10.5 C57.6,12.8,60.4,10.9,63.8,10.7z"/>
+                        <polygon points="19.7,19.6 5.1,2.4 0.1,2.4 0.1,28.1 5.3,28.1 5.3,10.9 20.1,28.2 24.6,28.2 24.6,2.4 19.7,2.4"/>
+                        <path d="M86.7,0.1h-4.6v8.4c-1.1-1.4-4.5-2.6-7.4-2.3c-5.5,0.4-9.9,4.9-10.3,10.4c-0.4,6.5,4.7,11.9,11.1,11.9 c2.4,0,5.7-1.1,6.8-3.2v2.8h4.3V17.5c0-0.1,0-0.1,0-0.2c0-0.1,0-0.1,0-0.2L86.7,0.1L86.7,0.1z M81.9,17.6 c-0.2,3.7-3.4,6.5-7.2,6c-2.9-0.4-5.2-2.7-5.6-5.6c-0.4-3.9,2.6-7.2,6.4-7.2c3.4,0,6.2,2.7,6.4,6.1 C81.9,16.9,81.9,17.6,81.9,17.6z"/>
+                        <path d="M38.7,6.1c-6.2,0-11.2,5-11.2,11.2s5,11.2,11.2,11.2s11.2-5,11.2-11.2C49.8,11.1,44.8,6.1,38.7,6.1z M38.7,23.7c-3.5,0-6.4-2.9-6.4-6.4s2.9-6.4,6.4-6.4s6.4,2.9,6.4,6.4C45.1,20.9,42.2,23.7,38.7,23.7z"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="hdr-right">
+                Создано: БАРУДИ, АХМАД (BAROUDI, AHMAD)<br>
+                2026-08-22 17:49:57
+            </div>
+        </div>
+
+        <h2>Остатки по выписке</h2>
+
+        <table class="saldon">
+            <tr><td>Входящий остаток:</td><td class="val">0,00</td></tr>
+            <tr><td>Исходящие платежи (30):</td><td class="val">-166 113,48</td></tr>
+            <tr><td>Входящие платежи (6):</td><td class="val">166 436,30</td></tr>
+            <tr><td>Исходящий остаток:</td><td class="val">322,82</td></tr>
+        </table>
+    </div>
+
+    <svg class="deco" width="300" height="330" viewBox="0 0 300 330" fill="#e6e6f7">
+        <rect x="150" y="30" width="46" height="240" rx="23"/>
+        <rect x="86" y="130" width="40" height="90" rx="20"/>
+        <rect x="210" y="120" width="40" height="130" rx="20"/>
+        <rect x="262" y="150" width="38" height="70" rx="19"/>
+        <rect x="30" y="170" width="34" height="40" rx="17"/>
+        <rect x="120" y="270" width="40" height="60" rx="20"/>
+        <rect x="200" y="285" width="36" height="45" rx="18"/>
+    </svg>
+
+    <div class="pfoot">
+        <div>Данный документ создан через<br>Экономика &gt; Счета &gt; Операции по счёту и детали</div>
+        <div>Страница 2 из 2</div>
+    </div>
+</div>
+
+<div class="no-print">
+    <button onclick="window.print()">Печать / Сохранить как PDF</button>
+</div>
+
+</body>
+</html>

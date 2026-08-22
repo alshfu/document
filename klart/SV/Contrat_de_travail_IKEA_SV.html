@@ -1,0 +1,183 @@
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<title>Anställningsavtal IKEA</title>
+<style>
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: #111; }
+.page { width: 210mm; min-height: 297mm; padding: 12mm 14mm; page-break-after: always; }
+.ikea{display:inline-block;}
+.ikea img{width:104px;height:42px;}
+
+.top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;}
+.top .ttl{text-align:right;}
+.top .ttl h1{font-size:22px;font-weight:bold;margin:0 0 3px;}
+.top .ttl .sub{font-size:10px;font-weight:bold;line-height:1.35;}
+
+.boxes{display:flex;gap:14px;margin-bottom:14px;}
+.boxes .b{flex:1;}
+.boxhead{font-weight:bold;font-size:11px;margin-bottom:3px;}
+.boxbody{border:1px solid #000;padding:8px 10px;font-size:11px;line-height:1.5;min-height:120px;}
+.boxbody .lb{font-weight:bold;}
+
+table{width:100%;border-collapse:collapse;font-size:11px;}
+table td{border:1px solid #000;padding:6px 8px;vertical-align:top;}
+.lcol{width:16%;background:#eee;font-weight:bold;text-transform:uppercase;font-size:10.5px;line-height:1.3;}
+
+.grid{display:flex;}
+.grid .cell{flex:1;padding-right:10px;}
+.grid .cell .lb{font-weight:bold;font-size:10px;}
+.grid .cell .vv{font-size:11px;}
+.gridrow{display:flex;}
+.gridrow + .gridrow{margin-top:8px;}
+
+.sub-b{font-weight:bold;}
+.note-b{font-weight:bold;}
+
+.ec{display:flex;}
+.ec .c1{flex:2;padding-right:8px;border-right:0;}
+.ec .c2{flex:1.3;padding:0 8px;}
+.ec .c3{flex:1.3;padding-left:8px;}
+.ec .c2 .div{border-top:1px solid #000;margin:8px -8px 8px;padding-top:8px;}
+.ecfull{font-weight:bold;margin-top:10px;border-top:1px solid #000;padding-top:8px;}
+
+.sig-top{margin-bottom:10px;}
+.sig{display:flex;}
+.sig .s1{flex:1;padding-right:10px;min-height:150px;}
+.sig .s2{flex:1;padding-left:10px;border-left:1px solid #000;min-height:150px;}
+.sig .cd{font-weight:bold;margin-top:60px;}
+.sig .s2 .cd{margin-top:8px;}
+.sig .mt{margin-top:26px;}
+
+.pageno{text-align:center;font-size:11px;margin:8px 0;}
+.footer{display:flex;border-top:1px solid #000;padding-top:6px;font-size:9.5px;color:#555;line-height:1.4;}
+.footer .fc{flex:1;}
+.footer .fc.center{text-align:center;}
+.footer .fc.right{text-align:right;}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="top">
+    <div class="ikea"><img src="ikea_logo.svg"></div>
+    <div class="ttl">
+      <h1>ANSTÄLLNINGSAVTAL</h1>
+      <div class="sub">- Enligt avtal mellan Svensk Handel och<br>Handelsanställdas förbund (detaljhandel, partihandel, lager och e-handel)<br>samt Hotell- och restaurangfacket</div>
+    </div>
+  </div>
+
+  <div class="boxes">
+    <div class="b">
+      <div class="boxhead">FÖRETAG/ENHET</div>
+      <div class="boxbody">
+        <div class="lb">Företagets namn</div>
+        <div>IKEA Svenska Försäljnings AB</div>
+        <div class="lb">Adress</div>
+        <div>Box 8041</div>
+        <div>141 08 Kungens kurva</div>
+        <div class="lb">Organisationsnummer</div>
+        <div>556074-7569</div>
+      </div>
+    </div>
+    <div class="b">
+      <div class="boxhead">MEDARBETARE</div>
+      <div class="boxbody">
+        <div class="lb">För- och efternamn</div>
+        <div>Lamiaa Benouari</div>
+        <div class="lb">Adress</div>
+        <div>Tingsvägen 23 Lgh 1502</div>
+        <div>145 56 Norsborg</div>
+        <div class="lb">Telefonnummer</div>
+        <div>0738723847</div>
+      </div>
+    </div>
+  </div>
+
+  <table>
+    <tr>
+      <td class="lcol">ANSTÄLLNING</td>
+      <td>
+        <div class="gridrow">
+          <div class="cell" style="flex:1"><div class="lb">Befattning</div><div class="vv">IKEA Food Co-worker</div></div>
+          <div class="cell" style="flex:1"><div class="lb">Personnummer</div><div class="vv">19840101-5667</div></div>
+          <div class="cell" style="flex:1"><div class="lb">Anställningsnummer</div><div class="vv">23406637</div></div>
+        </div>
+        <div class="gridrow">
+          <div class="cell" style="flex:1"><div class="lb">Arbetsplats</div><div class="vv">Kungens Kurva</div></div>
+          <div class="cell" style="flex:1"><div class="lb">Kostnadsställe</div><div class="vv">3920</div></div>
+          <div class="cell" style="flex:1"><div class="lb">Tillträdesdatum</div><div class="vv">2020-01-29</div></div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="lcol">ARBETSTID</td>
+      <td>Heltid, i genomsnitt 38,25 timmar per vecka (nett)</td>
+    </tr>
+    <tr>
+      <td class="lcol">ANSTÄLLNINGSFORM</td>
+      <td>Anställningen är en tillsvidareanställning<br>(Uppsägningstid enligt kollektivavtal, om inte annat anges i särskilda anställningsvillkor)</td>
+    </tr>
+    <tr>
+      <td class="lcol">ANSTÄLLNINGSVILLKOR</td>
+      <td>
+        <div class="ec">
+          <div class="c1">
+            <div class="sub-b">Lön, vid månadslön ange för heltid</div>
+            <div>(utbetalas månadsvis)</div>
+            <div>30636,00 kr/månad</div>
+            <div>302,00 Lokalt lönetillägg</div>
+            <div>160,00 Anställningspremie</div>
+            <div>&nbsp;</div>
+            <div>31098 kr/månad totalt</div>
+          </div>
+          <div class="c2">
+            <div class="sub-b">Semesterrätt</div>
+            <div>25 dagar</div>
+            <div class="div"><span class="sub-b">Avtalad branschvana vid anställning</span></div>
+            <div>A1</div>
+            <div>Månader</div>
+          </div>
+          <div class="c3">
+            <div class="sub-b">Lönerevisionsdatum</div>
+            <div>enligt det för branschen vid varje tidpunkt gällande kollektivavtalet</div>
+          </div>
+        </div>
+        <div class="ecfull">Anställningen regleras av företagets tjänstgöringsbestämmelser samt avtalet mellan Svensk Handel och HRF - Restaurang- och kafépersonal</div>
+      </td>
+    </tr>
+    <tr>
+      <td class="lcol">SÄRSKILDA ANSTÄLLNINGSVILLKOR / INFORMATION</td>
+      <td>Tjänstgöring inom samma kollektivavtalsområde i samtliga avdelningar på enheten kan förekomma.<br>Arbetstid enligt särskilt schema.</td>
+    </tr>
+    <tr>
+      <td class="lcol">UNDERSKRIFTER</td>
+      <td>
+        <div class="sig-top">Vi ber er skicka in er preliminärskatteanmälan för innevarande år eller beslut om jämkning till HRSC. Vid ändring under anställningen av era personuppgifter eller ert bankkontonummer, vänligen meddela lokal HR-avdelning samt HRSC.</div>
+        <div class="sig">
+          <div class="s1">
+            <div class="cd">Ort och datum</div>
+            <div>Kungens kurva 200127</div>
+            <div class="cd mt">Arbetsgivarens underskrift</div>
+          </div>
+          <div class="s2">
+            <div>Jag bekräftar ovanstående anställning och godkänner det omnämnda kollektivavtal som jag tagit del av. Jag förbinder mig att följa företagets ordningsregler, policyer och riktlinjer. Jag intygar härmed även att jag tagit del av informationen om hur IKEA Group behandlar mina personuppgifter.</div>
+            <div class="cd">Ort och datum</div>
+            <div>2020-01-30</div>
+            <div class="cd mt">Medarbetarens underskrift</div>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <div class="pageno">Sida 1</div>
+
+  <div class="footer">
+    <div class="fc">Version: 4.6<br>Datum: 2016-01-01</div>
+    <div class="fc center">Godkänd av:<br>HRSC mgmt</div>
+    <div class="fc right">Ägare:<br>Lager &amp; A04, HRSC mgmt<br>© IKEA AB • 2016. Endast för internt bruk inom IKEA.</div>
+  </div>
+</div>
+</body>
+</html>
