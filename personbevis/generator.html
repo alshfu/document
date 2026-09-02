@@ -1,0 +1,771 @@
+k<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<title>Personbevis-generator</title>
+<style>
+    /* ===== Verktygs-UI (prefix pb-, påverkar aldrig dokumentets klasser) ===== */
+    .pb-toolbar {
+        position: fixed; right: 12px; bottom: 12px; z-index: 50;
+        background: #fff; border: 1px solid #d1d5db; border-radius: 10px;
+        box-shadow: 0 6px 24px rgba(0,0,0,.18); padding: 10px 12px;
+        font-family: Arial, Helvetica, sans-serif; font-size: 13px;
+        display: flex; flex-direction: column; gap: 8px; width: 230px;
+    }
+    .pb-toolbar .pb-title { font-weight: bold; font-size: 13px; color: #111827; }
+    .pb-toolbar select, .pb-toolbar button {
+        width: 100%; box-sizing: border-box; padding: 6px 8px; font-size: 13px;
+        border: 1px solid #d1d5db; border-radius: 6px; background: #fff; cursor: pointer;
+    }
+    .pb-toolbar button.pb-primary { background: #1d4ed8; border-color: #1d4ed8; color: #fff; font-weight: bold; }
+    .pb-toolbar button:hover { filter: brightness(.96); }
+
+    .pb-backdrop {
+        position: fixed; inset: 0; z-index: 100; background: rgba(17,24,39,.55);
+        display: flex; align-items: flex-start; justify-content: center;
+        padding: 24px 12px; overflow-y: auto; font-family: Arial, Helvetica, sans-serif;
+    }
+    .pb-backdrop.pb-hidden { display: none; }
+    .pb-panel {
+        background: #fff; border-radius: 12px; width: 760px; max-width: 100%;
+        box-shadow: 0 20px 60px rgba(0,0,0,.35); padding: 20px 24px 16px;
+    }
+    .pb-panel h2 { margin: 0 0 4px; font-size: 18px; color: #111827; }
+    .pb-panel h3 { margin: 18px 0 8px; font-size: 14px; color: #1d4ed8; border-bottom: 1px solid #e5e7eb; padding-bottom: 4px; }
+    .pb-panel .pb-sub { margin: 0 0 8px; font-size: 12.5px; color: #6b7280; }
+    .pb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 14px; }
+    .pb-grid label { display: flex; flex-direction: column; font-size: 12px; color: #374151; gap: 3px; }
+    .pb-grid input, .pb-grid select {
+        padding: 6px 8px; font-size: 13px; border: 1px solid #d1d5db; border-radius: 6px; box-sizing: border-box;
+    }
+    .pb-grid input:focus, .pb-grid select:focus, .pb-paste textarea:focus { outline: 2px solid #93c5fd; border-color: #3b82f6; }
+    .pb-l10n { display: grid; grid-template-columns: 110px 1fr 1fr 1fr; gap: 6px 10px; align-items: center; font-size: 12px; color: #374151; }
+    .pb-l10n input { padding: 5px 7px; font-size: 12.5px; border: 1px solid #d1d5db; border-radius: 6px; width: 100%; box-sizing: border-box; }
+    .pb-l10n .pb-l10n-head { font-weight: bold; color: #6b7280; font-size: 11px; text-transform: uppercase; }
+    .pb-paste textarea {
+        width: 100%; box-sizing: border-box; min-height: 90px; padding: 8px; font-size: 12.5px;
+        border: 1px solid #d1d5db; border-radius: 6px; font-family: Arial, Helvetica, sans-serif; resize: vertical;
+    }
+    .pb-url-row { display: flex; gap: 8px; margin-top: 8px; }
+    .pb-url-row input { flex: 1; padding: 6px 8px; font-size: 12.5px; border: 1px solid #d1d5db; border-radius: 6px; }
+    .pb-url-row button, .pb-paste-row button {
+        padding: 6px 12px; font-size: 12.5px; border: 1px solid #d1d5db; border-radius: 6px; background: #f3f4f6; cursor: pointer;
+    }
+    .pb-paste-row { display: flex; gap: 8px; margin-top: 8px; align-items: center; }
+    .pb-status { font-size: 12px; margin-top: 6px; min-height: 15px; }
+    .pb-status.pb-ok { color: #15803d; }
+    .pb-status.pb-err { color: #b91c1c; }
+    .pb-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px; position: sticky; bottom: 0; background: #fff; padding-top: 10px; }
+    .pb-actions button { padding: 8px 18px; font-size: 14px; border-radius: 8px; border: 1px solid #d1d5db; background: #fff; cursor: pointer; }
+    .pb-actions .pb-primary { background: #1d4ed8; border-color: #1d4ed8; color: #fff; font-weight: bold; }
+    .pb-saved { font-size: 11px; color: #15803d; align-self: center; opacity: 0; transition: opacity .3s; }
+    .pb-saved.pb-show { opacity: 1; }
+
+    @media screen {
+        body.pb-tool-page { background: #e5e7eb; }
+    }
+    @media print {
+        .pb-toolbar, .pb-backdrop { display: none !important; }
+    }
+</style>
+<style id="pb-doc-css"></style>
+</head>
+<body class="pb-tool-page">
+
+<div id="pb-doc"></div>
+
+<div class="pb-toolbar">
+    <div class="pb-title">Personbevis-generator</div>
+    <select id="pb-type"></select>
+    <select id="pb-lang">
+        <option value="sv">Svenska</option>
+        <option value="en">Engelska</option>
+        <option value="ga">Iriska</option>
+    </select>
+    <button type="button" id="pb-open">Personuppgifter&hellip;</button>
+    <button type="button" class="pb-primary" id="pb-print">Skriv ut</button>
+</div>
+
+<div class="pb-backdrop pb-hidden" id="pb-backdrop">
+    <div class="pb-panel">
+        <h2>Personuppgifter</h2>
+        <p class="pb-sub">Fyll i f&auml;lten, eller klistra in uppgifter som fri text / h&auml;mta fr&aring;n en webbsida. Allt sparas automatiskt i webbl&auml;saren.</p>
+
+        <h3>Klistra in uppgifter</h3>
+        <div class="pb-paste">
+            <textarea id="pb-paste" placeholder="Klistra in text med personens uppgifter h&auml;r (namn, personnummer, adress, datum &hellip;)"></textarea>
+            <div class="pb-paste-row">
+                <button type="button" id="pb-parse">Tolka och fyll i</button>
+                <span class="pb-status" id="pb-parse-status"></span>
+            </div>
+            <div class="pb-url-row">
+                <input type="url" id="pb-url" placeholder="https://&hellip; (sida med personens uppgifter)">
+                <button type="button" id="pb-fetch">H&auml;mta</button>
+            </div>
+            <div class="pb-status" id="pb-fetch-status"></div>
+        </div>
+
+        <h3>Person</h3>
+        <div class="pb-grid" id="pb-fields"></div>
+
+        <h3>Språkberoende uppgifter</h3>
+        <div class="pb-l10n" id="pb-l10n"></div>
+
+        <div class="pb-actions">
+            <span class="pb-saved" id="pb-saved">Sparad &#10003;</span>
+            <button type="button" id="pb-clear">Töm fält</button>
+            <button type="button" class="pb-primary" id="pb-apply">Visa dokument</button>
+        </div>
+    </div>
+</div>
+
+<script>
+'use strict';
+
+/* ===== Översättningar — portade ordagrant från generator.py ===== */
+const T = {
+    sv: {
+        tel: 'Telefon', title: 'Personbevis', date: 'Datum', obs: 'OBS!',
+        obsTxt: 'Personbevis är endast ett intyg om vad som är registrerat i folkbokföringsdatabasen och kan inte användas som ID-handling.',
+        purpose: 'Ändamål', h2: 'Följande uppgifter är registrerade i folkbokföringsdatabasen', mid: '* markerar mellannamn',
+        pnr: 'Personnummer', name: 'Namn', addr: 'Bostadsadress', reg: 'Folkbokföring', regdPre: 'Folkbokförd',
+        lan: 'Län', kommun: 'Kommun', parish: 'Församling', prev: 'Tidigare folkbokföring de senaste två åren',
+        citizen: 'Medborgare i', civil: 'Civilstånd', marriedPre: 'Gift', maiden: 'Namn som ogift',
+        birth: 'Födelseort', country: 'Land', migr: 'Flyttning från/till Sverige', frm: 'Från:', to: 'Till:',
+        right: 'Uppehållsrätt vid invandring', end: 'SLUT PÅ UTSKRIFT',
+        more: 'Ytterligare uppgifter:',
+        more1: 'Personbevis visar uppgifter som finns registrerade för en person i folkbokföringsdatabasen hos Skatteverket.',
+        more2: 'Personbevis för den som är avregistrerad från folkbokföringen (utvandrad eller avliden) aktualiseras som regel inte och avser därför normalt förhållanden vid tidpunkten för avregistreringen.',
+        tn: '', code: 'sv',
+        homeY: function (y) { return 'Hemort år ' + y; },
+        purposes: {
+            Personbevis: 'Adress', pb_anställning: 'Anställning', pb_folkbockföring: 'Utdrag om folkbokföringsuppgifter',
+            pb_fonder: 'Fondansökan/Stipendium', pb_hemort: 'Hemortsbevis', pb_id_kort: 'ID-kort', pb_inbjudan: 'Inbjudan',
+            pb_pass: 'Pass', pb_studie: 'Studier', pb_yrkesledegimation: 'Yrkeslegitimation'
+        }
+    },
+    en: {
+        tel: 'Telephone', title: 'Population registration certificate', date: 'Date', obs: 'NOTE!',
+        obsTxt: 'A population registration certificate is only a certificate of what is registered in the population register database and cannot be used as an identity document.',
+        purpose: 'Purpose', h2: 'The following information is registered in the population register database', mid: '* indicates middle name',
+        pnr: 'Personal identity number', name: 'Name', addr: 'Residential address', reg: 'Population registration', regdPre: 'Registered',
+        lan: 'County', kommun: 'Municipality', parish: 'Parish', prev: 'Previous population registration in the last two years',
+        citizen: 'Citizen of', civil: 'Marital status', marriedPre: 'Married', maiden: 'Name when unmarried',
+        birth: 'Place of birth', country: 'Country', migr: 'Migration from/to Sweden', frm: 'From:', to: 'To:',
+        right: 'Right of residence at immigration', end: 'END OF PRINTOUT',
+        more: 'Additional information:',
+        more1: 'A population registration certificate shows the information registered for a person in the population register database at the Swedish Tax Agency (Skatteverket).',
+        more2: 'A population registration certificate for a person who has been deregistered from the population register (emigrated or deceased) is as a rule not updated and therefore normally refers to the circumstances at the time of deregistration.',
+        tn: 'Translation from Swedish / Översättning från svenska', code: 'en',
+        homeY: function (y) { return 'Domicile year ' + y; },
+        purposes: {
+            Personbevis: 'Address', pb_anställning: 'Employment', pb_folkbockföring: 'Extract of population registration data',
+            pb_fonder: 'Fund application/Scholarship', pb_hemort: 'Certificate of domicile', pb_id_kort: 'ID card', pb_inbjudan: 'Invitation',
+            pb_pass: 'Passport', pb_studie: 'Studies', pb_yrkesledegimation: 'Professional licence'
+        }
+    },
+    ga: {
+        tel: 'Teileafón', title: 'Deimhniú clárúcháin daonra', date: 'Dáta', obs: 'AIRE!',
+        obsTxt: 'Níl sa deimhniú clárúcháin daonra ach teastas ar a bhfuil cláraithe i mbunachar sonraí chlár an daonra agus ní féidir é a úsáid mar dhoiciméad aitheantais.',
+        purpose: 'Cuspóir', h2: 'Tá na sonraí seo a leanas cláraithe i mbunachar sonraí chlár an daonra', mid: '* léiríonn sé an lárainm',
+        pnr: 'Uimhir phearsanta', name: 'Ainm', addr: 'Seoladh cónaithe', reg: 'Clárú daonra', regdPre: 'Cláraithe',
+        lan: 'Contae', kommun: 'Bardas', parish: 'Paróiste', prev: 'Clárú daonra roimhe seo le dhá bhliain anuas',
+        citizen: 'Saoránach de', civil: 'Stádas sibhialta', marriedPre: 'Pósta', maiden: 'Ainm neamhphósta',
+        birth: 'Áit bhreithe', country: 'Tír', migr: 'Imirce ó/go dtí an tSualainn', frm: 'Ó:', to: 'Go:',
+        right: 'Ceart cónaithe tráth na hinimirce', end: 'DEIREADH AN ASPHRIONTA',
+        more: 'Faisnéis bhreise:',
+        more1: 'Taispeánann an deimhniú clárúcháin daonra na sonraí atá cláraithe do dhuine i mbunachar sonraí chlár an daonra ag Skatteverket.',
+        more2: 'De ghnáth ní nuashonraítear deimhniú clárúcháin daonra do dhuine atá díchláraithe ó chlár an daonra (ar eisimirce nó básaithe) agus dá bhrí sin is gnách go mbaineann sé leis na cúinsí tráth an díchláraithe.',
+        tn: 'Aistriúchán ón tSualainnis / Översättning från svenska', code: 'ga',
+        homeY: function (y) { return 'Áit chónaithe sa bhliain ' + y; },
+        purposes: {
+            Personbevis: 'Seoladh', pb_anställning: 'Fostaíocht', pb_folkbockföring: 'Sliocht as sonraí chlár an daonra',
+            pb_fonder: 'Iarratas ar chiste/Scoláireacht', pb_hemort: 'Deimhniú áite cónaithe', pb_id_kort: 'Cárta aitheantais',
+            pb_inbjudan: 'Cuireadh', pb_pass: 'Pas', pb_studie: 'Staidéar', pb_yrkesledegimation: 'Ceadúnas gairmiúil'
+        }
+    }
+};
+
+/* Dokumentets CSS — exakt samma som i de genererade filerna (från TEMPLATE i generator.py) */
+const DOC_CSS = `@page { size: A4; margin: 0; }
+html,body { margin:0; padding:0; background:#fff; color:#000; }
+body { width:210mm; height:297mm; position:relative; font-family: Arial, Helvetica, sans-serif; font-size:9pt; }
+.mono { font-family: "Courier New", Courier, monospace; font-size:9.5pt; white-space:pre; line-height:1.45; }
+.logo { position:absolute; left:15mm; top:6mm; width:45mm; }
+.tel { position:absolute; left:15mm; top:16.5mm; }
+.title { position:absolute; left:105mm; top:11mm; font-weight:bold; font-size:14pt; }
+.date-l { position:absolute; left:105mm; top:17.5mm; font-size:7pt; }
+.date { position:absolute; left:105mm; top:20mm; }
+.obs { position:absolute; left:15mm; top:22mm; width:58mm; border:1px solid #000; border-radius:3px; padding:1.5mm 2mm; font-size:7.5pt; line-height:1.35; }
+.obs b { display:block; }
+.purpose { position:absolute; left:15mm; top:48mm; }
+.purpose b { font-size:10.5pt; margin-right:2mm; }
+.h2 { position:absolute; left:15mm; top:58mm; font-weight:bold; font-size:10.5pt; }
+.h2 small { display:block; font-weight:normal; font-size:6.5pt; margin-top:0.5mm; }
+.body { position:absolute; left:15mm; top:68mm; right:15mm; }
+.side { position:absolute; left:5mm; top:196mm; transform:rotate(-90deg); transform-origin:left top; font-size:7pt; letter-spacing:0.3px; white-space:pre; }
+.more { position:absolute; left:15mm; right:15mm; top:232mm; border:1px solid #000; border-radius:3px; padding:2mm 2.5mm; font-size:7pt; line-height:1.5; display:flex; }
+.more > div { flex:1; }
+.more > div + div { border-left:1px solid #000; padding-left:2.5mm; margin-left:2.5mm; }
+.more b { display:block; }
+.web { position:absolute; left:15mm; top:270mm; font-weight:bold; font-size:8.5pt; }
+.tn { position:absolute; right:15mm; top:6mm; font-size:6.5pt; color:#555; font-style:italic; }
+@media print { .tn { color:#555; } }
+`;
+
+const LOGO = 'data:image/png;base64,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';
+
+/* Standardperson = samma data som i de befintliga genererade dokumenten */
+const DEFAULT_PERSON = {
+    pnr: '19880715-7758', name: 'Ahmad Baroudi',
+    addr1: 'Köpmansgatan 3 B LGH 1101', addr2: '294 31 Sölvesborg',
+    regDate: '2026-03-02', lan: 'Blekinge', kommun: 'Sölvesborg', parish: '---',
+    marriageDate: '2023-05-28', maidenName: 'Baroudi',
+    prevDate: '2023-10-20', prevKommun: 'Karlshamn', prevParish: '---',
+    hemortYear: '2026', hemortLan: '10 Blekinge', hemortKommun: '82 Karlshamn', hemortParish: '---',
+    migrFrom: '2016-11-29', date: '2026-08-23',
+    citizenship: { sv: 'Syrien', en: 'Syria', ga: 'An tSiria' },
+    birthPlace: { sv: 'Damaskus', en: 'Damascus', ga: 'An Damaisc' },
+    birthCountry: { sv: 'Syrien', en: 'Syria', ga: 'An tSiria' },
+    residenceRight: { sv: 'Nej', en: 'No', ga: 'Níl' },
+    civil: 'gift'
+};
+
+/* Civilstånd "ogift" per språk (läggs till här så T-speglarna ovan är orörda) */
+T.sv.unmarried = 'Ogift';
+T.en.unmarried = 'Unmarried';
+T.ga.unmarried = 'Neamhphósta';
+
+const DOC_TYPES = ['Personbevis', 'pb_anställning', 'pb_folkbockföring', 'pb_fonder', 'pb_hemort',
+    'pb_id_kort', 'pb_inbjudan', 'pb_pass', 'pb_studie', 'pb_yrkesledegimation'];
+
+/* ===== Renderingslogik — trogen port av build_body/TEMPLATE i generator.py ===== */
+function escapeHtml(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+/* Löser upp de språkberoende personfälten till strängar för aktivt språk */
+function resolvePerson(p, lang) {
+    const out = Object.assign({}, p);
+    out.citizenship = p.citizenship[lang] || '';
+    out.birthPlace = p.birthPlace[lang] || '';
+    out.birthCountry = p.birthCountry[lang] || '';
+    out.residenceRight = p.residenceRight[lang] || '';
+    return out;
+}
+
+function buildBody(t, type, p) {
+    const keys = ['pnr', 'name', 'addr', 'reg', 'lan', 'kommun', 'citizen', 'civil', 'maiden', 'birth', 'country'];
+    let W = 23;
+    for (const k of keys) W = Math.max(W, t[k].length + 2);
+    const r = (k, v) => String(k).padEnd(W) + escapeHtml(v);
+    const base = [r(t.pnr, p.pnr), r(t.name, p.name), '', r(t.addr, p.addr1), r('', p.addr2), '',
+        r(t.reg, t.regdPre + ' ' + p.regDate), r(t.lan, p.lan), r(t.kommun, p.kommun)];
+    const cit = ['', r(t.citizen, p.citizenship)];
+    const birth = ['', r(t.birth, p.birthPlace), r(t.country, p.birthCountry)];
+    const migr = ['', t.migr,
+        t.frm.padEnd(17) + t.to.padEnd(15) + t.right,
+        '---'.padEnd(17) + String(p.migrFrom).padEnd(15) + escapeHtml(p.residenceRight)];
+    if (type === 'Personbevis') return base;
+    if (type === 'pb_inbjudan') return base.concat(cit, migr);
+    if (type === 'pb_hemort') {
+        return base.concat(['', t.homeY(p.hemortYear), r(t.lan, p.hemortLan),
+            r(t.kommun, p.hemortKommun), r(t.parish, p.hemortParish)]);
+    }
+    if (type === 'pb_folkbockföring') {
+        const civilVal = p.civil === 'ogift' ? t.unmarried
+            : (p.marriageDate ? t.marriedPre + ' ' + p.marriageDate : '');
+        const civilRows = ['', r(t.civil, civilVal)];
+        if (p.civil !== 'ogift') civilRows.push(r(t.maiden, p.maidenName));
+        return base.concat(['', t.prev,
+            t.date.padEnd(W) + t.kommun.padEnd(23) + t.parish,
+            String(p.prevDate).padEnd(W) + String(p.prevKommun).padEnd(23) + escapeHtml(p.prevParish)],
+            cit, civilRows, birth, migr);
+    }
+    return base.concat(cit, birth);
+}
+
+/* Hela dokumentet som fristående HTML — byteidentiskt med generator.py:s output */
+function buildDocumentHtml(type, lang, person) {
+    const t = T[lang];
+    const p = resolvePerson(person, lang);
+    const purposeVal = t.purposes[type];
+    return '<!DOCTYPE html>\n' +
+        '<html lang="' + t.code + '"><head><meta charset="utf-8"><title>' + t.title + ' – ' + escapeHtml(purposeVal) + '</title>\n' +
+        '<style>\n' + DOC_CSS + '</style></head><body>\n' +
+        '<div class="tn">' + t.tn + '</div>\n' +
+        '<img class="logo" src="' + LOGO + '" alt="Skatteverket">\n' +
+        '<div class="tel mono">' + t.tel + ': 0771-567 567</div>\n' +
+        '<div class="title">' + t.title + '</div>\n' +
+        '<div class="date-l">' + t.date + '</div>\n' +
+        '<div class="date mono">' + p.date + '</div>\n' +
+        '<div class="obs"><b>' + t.obs + '</b>' + t.obsTxt + '</div>\n' +
+        '<div class="purpose"><b>' + t.purpose + '</b><span class="mono">' + escapeHtml(purposeVal) + '</span></div>\n' +
+        '<div class="h2">' + t.h2 + '<small>' + t.mid + '</small></div>\n' +
+        '<div class="body mono">' + buildBody(t, type, p).join('\n') + '\n' +
+        '-'.repeat(73) + '\n' +
+        t.end + '</div>\n' +
+        '<div class="side">SKV   7780      09   ' + t.code + '      00     05     1</div>\n' +
+        '<div class="more"><div><b>' + t.more + '</b>' + t.more1 + '</div><div>' + t.more2 + '</div></div>\n' +
+        '<div class="web">www.skatteverket.se</div>\n' +
+        '</body></html>\n';
+}
+
+/* ===== Tillstånd + localStorage ===== */
+const STORAGE_KEY = 'personbevis-gen-v1';
+
+function defaultState() {
+    return { type: 'Personbevis', lang: 'sv', person: JSON.parse(JSON.stringify(DEFAULT_PERSON)) };
+}
+
+function loadState() {
+    try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return defaultState();
+        const s = JSON.parse(raw);
+        const d = defaultState();
+        const person = Object.assign(d.person, s.person || {});
+        for (const k of ['citizenship', 'birthPlace', 'birthCountry', 'residenceRight']) {
+            person[k] = Object.assign(d.person[k], (s.person || {})[k] || {});
+        }
+        return {
+            type: DOC_TYPES.indexOf(s.type) !== -1 ? s.type : 'Personbevis',
+            lang: T[s.lang] ? s.lang : 'sv',
+            person: person
+        };
+    } catch (e) {
+        return defaultState();
+    }
+}
+
+let state = loadState();
+
+function saveState() {
+    try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        const el = document.getElementById('pb-saved');
+        el.classList.add('pb-show');
+        setTimeout(() => el.classList.remove('pb-show'), 1200);
+    } catch (e) { /* privat läge m.m. — ignorera */ }
+}
+
+/* ===== Rendering till sidan ===== */
+function renderDoc() {
+    const full = buildDocumentHtml(state.type, state.lang, state.person);
+    const inner = full.split('<body>')[1].replace(/<\/body>\s*<\/html>\s*$/, '');
+    document.getElementById('pb-doc').innerHTML = inner;
+}
+
+function rebuildTypeSelect() {
+    const sel = document.getElementById('pb-type');
+    const t = T[state.lang];
+    sel.innerHTML = DOC_TYPES.map(dt =>
+        '<option value="' + dt + '"' + (dt === state.type ? ' selected' : '') + '>' +
+        escapeHtml(t.purposes[dt]) + ' (' + dt.replace('pb_', '').replace(/_/g, ' ') + ')</option>').join('');
+}
+
+/* ===== Modal ===== */
+const FIELDS = [
+    ['pnr', 'Personnummer'], ['name', 'Namn'],
+    ['addr1', 'Bostadsadress rad 1'], ['addr2', 'Bostadsadress rad 2'],
+    ['regDate', 'Folkbokförd (datum)', 'date'], ['date', 'Utskriftsdatum', 'date'],
+    ['lan', 'Län'], ['kommun', 'Kommun'], ['parish', 'Församling'],
+    ['marriageDate', 'Gift (datum)', 'date'], ['maidenName', 'Namn som ogift'],
+    ['prevDate', 'Tidigare folkbokföring (datum)', 'date'], ['prevKommun', 'Tidigare kommun'], ['prevParish', 'Tidigare församling'],
+    ['hemortYear', 'Hemort år'], ['hemortLan', 'Hemort län'], ['hemortKommun', 'Hemort kommun'], ['hemortParish', 'Hemort församling'],
+    ['migrFrom', 'Flyttning från (datum)', 'date']
+];
+const L10N_FIELDS = [
+    ['citizenship', 'Medborgare i'], ['birthPlace', 'Födelseort'],
+    ['birthCountry', 'Födelseland'], ['residenceRight', 'Uppehållsrätt']
+];
+
+function buildModalFields() {
+    document.getElementById('pb-fields').innerHTML = FIELDS.map(f =>
+        '<label>' + f[1] + '<input type="' + (f[2] || 'text') + '" data-field="' + f[0] + '"></label>').join('');
+    let html = '<div></div><div class="pb-l10n-head">SV</div><div class="pb-l10n-head">EN</div><div class="pb-l10n-head">GA</div>';
+    for (const f of L10N_FIELDS) {
+        html += '<div>' + f[1] + '</div>' + ['sv', 'en', 'ga'].map(l =>
+            '<input type="text" data-l10n="' + f[0] + '" data-lang="' + l + '">').join('');
+    }
+    document.getElementById('pb-l10n').innerHTML = html;
+
+    document.querySelectorAll('[data-field]').forEach(inp => {
+        inp.value = state.person[inp.dataset.field] || '';
+        inp.addEventListener('input', () => {
+            state.person[inp.dataset.field] = inp.value;
+            saveState();
+        });
+    });
+    document.querySelectorAll('[data-l10n]').forEach(inp => {
+        inp.value = state.person[inp.dataset.l10n][inp.dataset.lang] || '';
+        inp.addEventListener('input', () => {
+            state.person[inp.dataset.l10n][inp.dataset.lang] = inp.value;
+            saveState();
+        });
+    });
+}
+
+function refreshModalValues() {
+    document.querySelectorAll('[data-field]').forEach(inp => {
+        inp.value = state.person[inp.dataset.field] || '';
+    });
+    document.querySelectorAll('[data-l10n]').forEach(inp => {
+        inp.value = state.person[inp.dataset.l10n][inp.dataset.lang] || '';
+    });
+}
+
+function openModal() { document.getElementById('pb-backdrop').classList.remove('pb-hidden'); }
+function closeModal() { document.getElementById('pb-backdrop').classList.add('pb-hidden'); }
+
+/* ===== Klistra in-parser ===== */
+const MONTHS = { jan: 1, feb: 2, mar: 3, apr: 4, maj: 5, may: 5, jun: 6, jul: 7, aug: 8, sep: 9, okt: 10, oct: 10, nov: 11, dec: 12 };
+const NATIONALITIES = [
+    [/svensk|swedish/i, { sv: 'Sverige', en: 'Sweden', ga: 'An tSualainn' }],
+    [/syrisk|syrian|syrien|syria/i, { sv: 'Syrien', en: 'Syria', ga: 'An tSiria' }]
+];
+
+/* VERSALER -> Versaler per ord ("ABRAO EREMAR" -> "Abrao Eremar") */
+function titleCase(s) {
+    return s.replace(/[\p{L}\p{M}]+/gu, w =>
+        w.length > 1 && w === w.toUpperCase() ? w[0] + w.slice(1).toLowerCase() : w);
+}
+
+/* Värde efter en etikett — på samma rad, annars nästa rad (pass-/ID-format) */
+function nextLineValue(lines, labelRe) {
+    for (let i = 0; i < lines.length; i++) {
+        if (labelRe.test(lines[i])) {
+            const rest = lines[i].replace(labelRe, '')
+                .replace(/^\d+[a-z]?\.\s*/, '')
+                .replace(/^[:\s/]+/, '')
+                .replace(/(surname|given names?|nationality|personal id.*|date of birth|place of birth)/i, '')
+                .replace(/^[:\s/]+/, '')
+                .trim();
+            if (rest && !/:$/.test(rest)) return rest;
+            for (let j = i + 1; j < lines.length; j++) {
+                if (lines[j]) return lines[j];
+            }
+        }
+    }
+    return '';
+}
+
+function parseBirthDate(raw) {
+    let m = raw.match(/(\d{4})-(\d{2})-(\d{2})/);
+    if (m) return m[1] + '-' + m[2] + '-' + m[3];
+    m = raw.match(/(\d{1,2})\s+([A-Za-z]{3})\D+(\d{2,4})(?!\d)/);
+    if (m) {
+        const mon = MONTHS[m[2].toLowerCase()];
+        if (mon) {
+            let y = parseInt(m[3], 10);
+            if (y < 100) y += (y <= new Date().getFullYear() % 100) ? 2000 : 1900;
+            return y + '-' + String(mon).padStart(2, '0') + '-' + m[1].padStart(2, '0');
+        }
+    }
+    return '';
+}
+
+/* Århundrade för kort personnummer: från födelseår om känt, annars +/- och dagens år */
+function expandPnr(yy, sep, dobYear) {
+    let century;
+    if (dobYear) {
+        century = Math.floor(dobYear / 100) * 100;
+        if (yy > dobYear % 100) century -= 100;
+    } else {
+        century = yy <= new Date().getFullYear() % 100 ? 2000 : 1900;
+    }
+    if (sep === '+') century -= 100;
+    return century + yy;
+}
+
+/* Inklistrad HTML (sidkälla, DevTools-kopia m.m.) -> text. Block-taggar blir
+   radbrytningar, så t.ex. <dt>Kommun</dt><dd>Huddinge kommun (0126)</dd>
+   blir etikett- och värderader som parsern redan förstår. */
+function htmlToText(html) {
+    let t = String(html);
+    t = t.replace(/<(script|style|noscript|svg|button)[\s\S]*?<\/\1>/gi, ' ');
+    t = t.replace(/<(?:br|\/div|\/p|\/li|\/tr|\/dt|\/dd|\/dl|\/section|\/h[1-6]|\/td|\/th)[^>]*>/gi, '\n');
+    t = t.replace(/<[^>]+>/g, ' ');
+    t = t.replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&lt;/g, '<')
+         .replace(/&gt;/g, '>').replace(/&quot;/g, '"')
+         .replace(/&#(\d+);/g, (m, n) => String.fromCharCode(Number(n)));
+    return t.split('\n').map(l => l.replace(/\s+/g, ' ').trim()).filter(Boolean).join('\n');
+}
+
+function parsePersonText(text) {
+    if (/<[a-z][^>]*>/i.test(text)) text = htmlToText(text);
+    const found = [];
+    const p = state.person;
+    const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+
+    /* Födelsedatum — används bara för århundradet i korta personnummer */
+    const dobRaw = nextLineValue(lines, /födelsedatum|date of birth|född|born/i);
+    const dob = dobRaw ? parseBirthDate(dobRaw) : '';
+    const dobYear = dob ? parseInt(dob.slice(0, 4), 10) : 0;
+
+    /* Personnummer — kort (YYMMDD-) eller långt (YYYYMMDD-) format */
+    const pnr = text.match(/(\d{6}|\d{8})\s*([-+ ])\s*(\d{4})/);
+    if (pnr) {
+        let full = pnr[1];
+        if (full.length === 6) {
+            full = String(expandPnr(parseInt(full.slice(0, 2), 10), pnr[2], dobYear)) + full.slice(2);
+        }
+        p.pnr = full + '-' + pnr[3];
+        found.push('personnummer');
+    }
+
+    const regd = text.match(/(?:Folkbokförd|Registered|Cláraithe)[:\s]*(\d{4}-\d{2}-\d{2})/i);
+    if (regd) { p.regDate = regd[1]; found.push('folkbokförd-datum'); }
+
+    const married = text.match(/(?<![oO])Gift[:\s]*(\d{4}-\d{2}-\d{2})|(?:Married|Pósta)[:\s]*(\d{4}-\d{2}-\d{2})/i);
+    if (married) { p.marriageDate = married[1] || married[2]; found.push('civilstånd-datum'); }
+
+    /* Civilstatus — "Ogift" (då döljs gift-datum och namn som ogift i dokumentet) */
+    const civil = nextLineValue(lines, /civilstatus|civilstånd|marital status|stádas sibhialta/i);
+    if (civil) {
+        if (/ogift|unmarried|neamhphósta/i.test(civil)) {
+            p.civil = 'ogift';
+            p.marriageDate = '';
+            p.maidenName = '';
+        } else if (/gift|married|pósta/i.test(civil)) {
+            p.civil = 'gift';
+        }
+        found.push('civilstatus');
+    }
+
+    /* Namn — Personnamn-rad, delat (Förnamn/Efternamn), Namn:-rad, annars heuristik */
+    const fullName = nextLineValue(lines, /personnamn/i);
+    const sur = fullName ? '' : nextLineValue(lines, /efternamn|surname/i);
+    const given = fullName ? '' : nextLineValue(lines, /förnamn|given names?/i);
+    if (fullName) {
+        p.name = titleCase(fullName);
+        found.push('namn');
+    } else if (sur || given) {
+        p.name = titleCase((given + ' ' + sur).trim());
+        found.push('namn');
+    } else {
+        const namedLine = text.match(/(?:Namn|Name|Ainm)[:\s]+([A-ZÅÄÖ][^\n]+)/);
+        if (namedLine) {
+            p.name = namedLine[1].trim();
+            found.push('namn');
+        } else {
+            for (const l of lines.slice(0, 25)) {
+                if (/^[A-ZÅÄÖ][\p{L}\p{M}'-]+( [A-ZÅÄÖ][\p{L}\p{M}'-]+)+$/u.test(l) && !/\d/.test(l)) {
+                    p.name = l;
+                    found.push('namn');
+                    break;
+                }
+            }
+        }
+    }
+
+    /* Nationalitet -> Medborgare i (mappa landet per språk) */
+    const nat = nextLineValue(lines, /nationalitet|nationality|medborgarskap|citizenship/i);
+    if (nat) {
+        let mapped = null;
+        for (const pair of NATIONALITIES) {
+            if (pair[0].test(nat)) { mapped = pair[1]; break; }
+        }
+        if (!mapped) {
+            const v = titleCase(nat);
+            mapped = { sv: v, en: v, ga: v };
+        }
+        p.citizenship = mapped;
+        found.push('nationalitet');
+    }
+
+    /* Födelseort */
+    const pob = nextLineValue(lines, /födelseort|place of birth/i);
+    if (pob) {
+        const v = titleCase(pob);
+        p.birthPlace = { sv: v, en: v, ga: v };
+        found.push('födelseort');
+    }
+
+    /* Adress — etiketter (merinfo: Gatuadress/Postnummer/Postort), annars regex-fallback */
+    const gata = nextLineValue(lines, /gatuadress|street address/i);
+    const postnr = nextLineValue(lines, /postnummer|postal code|postcode/i);
+    const postort = nextLineValue(lines, /postort/i);
+    if (gata) { p.addr1 = gata; found.push('gatuadress'); }
+    if (postnr || postort) {
+        p.addr2 = (postnr + ' ' + postort).trim();
+        found.push('postadress');
+    } else {
+        for (let i = 0; i < lines.length; i++) {
+            const m = lines[i].match(/^(\d{3})\s?(\d{2})\s+([A-ZÅÄÖ][\p{L}\p{M}' -]+)$/u);
+            if (m) {
+                p.addr2 = m[1] + ' ' + m[2] + ' ' + m[3].trim();
+                found.push('postadress');
+                if (i > 0 && !gata) { p.addr1 = lines[i - 1]; found.push('gatuadress'); }
+                break;
+            }
+        }
+    }
+
+    /* Kommun/län — t.ex. merinfos "Huddinge kommun (0126)" / "Stockholms län (01)" */
+    const kommunM = text.match(/([A-ZÅÄÖ][\p{L}\p{M}' -]+?) kommun\s*\((\d{4})\)/u);
+    if (kommunM) {
+        p.kommun = kommunM[1].trim();
+        p.hemortKommun = kommunM[2].slice(2) + ' ' + p.kommun;
+        found.push('kommun');
+    }
+    const lanM = text.match(/([A-ZÅÄÖ][\p{L}\p{M}' -]+?) län\s*\((\d{2})\)/u);
+    if (lanM) {
+        p.lan = lanM[1].trim().replace(/s$/, '');
+        p.hemortLan = lanM[2] + ' ' + p.lan;
+        found.push('län');
+    }
+
+    return found;
+}
+
+function showParseStatus(found) {
+    const el = document.getElementById('pb-parse-status');
+    if (found.length) {
+        el.className = 'pb-status pb-ok';
+        el.textContent = 'Hittade: ' + found.join(', ') + ' — kontrollera fälten nedan.';
+    } else {
+        el.className = 'pb-status pb-err';
+        el.textContent = 'Hittade inga uppgifter att tolka.';
+    }
+}
+
+/* Tom person — utgångsläge vid ny tolkning, så inga uppgifter från
+   förra personen (t.ex. standardpersonens) blandas in */
+function emptyPerson() {
+    return {
+        pnr: '', name: '', addr1: '', addr2: '',
+        regDate: '', lan: '', kommun: '', parish: '---',
+        marriageDate: '', maidenName: '', civil: '',
+        prevDate: '', prevKommun: '', prevParish: '---',
+        hemortYear: String(new Date().getFullYear()), hemortLan: '', hemortKommun: '', hemortParish: '---',
+        migrFrom: '', date: new Date().toISOString().slice(0, 10),
+        citizenship: { sv: '', en: '', ga: '' }, birthPlace: { sv: '', en: '', ga: '' },
+        birthCountry: { sv: '', en: '', ga: '' },
+        residenceRight: { sv: 'Nej', en: 'No', ga: 'Níl' }
+    };
+}
+
+function runParser(text) {
+    const before = state.person;
+    state.person = emptyPerson();
+    const found = parsePersonText(text);
+    if (!found.length) state.person = before; /* inget hittades — behåll det gamla */
+    refreshModalValues();
+    saveState();
+    showParseStatus(found);
+}
+
+/* ===== URL-import =====
+   Körs verktyget via Flask-appen (starta.sh) går hämtningen via servern,
+   som även klarar enklare Cloudflare-skydd (headless Chromium).
+   Annars: direktförsök + offentliga CORS-proxies. Sista utväg: klistra in text. */
+const PROXIES = [
+    u => 'https://corsproxy.io/?url=' + encodeURIComponent(u),
+    u => 'https://api.allorigins.win/raw?url=' + encodeURIComponent(u),
+    u => 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(u)
+];
+
+function looksLikeChallenge(html) {
+    return /just a moment|checking your browser|cf-chl|attention required|cloudflare/i.test(html);
+}
+
+async function fetchAndParse() {
+    const url = document.getElementById('pb-url').value.trim();
+    const status = document.getElementById('pb-fetch-status');
+    if (!url) {
+        status.className = 'pb-status pb-err';
+        status.textContent = 'Ange en URL först.';
+        return;
+    }
+    const attempts = [];
+    if (location.protocol.indexOf('http') === 0) {
+        attempts.push({ wrap: u => '/fetch?url=' + encodeURIComponent(u), json: true, label: 'servern' });
+    }
+    attempts.push({ wrap: u => u, json: false, label: 'direkt anslutning' });
+    PROXIES.forEach((px, i) => attempts.push({ wrap: px, json: false, label: 'proxy ' + (i + 1) }));
+    let blocked = false;
+    for (const att of attempts) {
+        status.className = 'pb-status';
+        status.textContent = 'Hämtar via ' + att.label + '…';
+        try {
+            const ctrl = new AbortController();
+            const timer = setTimeout(() => ctrl.abort(), 45000); /* servern kan köra headless Chromium */
+            const res = await fetch(att.wrap(url), { signal: ctrl.signal });
+            clearTimeout(timer);
+            let text;
+            if (att.json) {
+                const data = await res.json();
+                if (!data.ok) {
+                    if (/skyddad/i.test(data.error || '')) blocked = true;
+                    throw new Error(data.error || 'fel');
+                }
+                text = String(data.text || '').trim();
+            } else {
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const htmlText = await res.text();
+                if (looksLikeChallenge(htmlText)) { blocked = true; throw new Error('skyddad sida'); }
+                const doc = new DOMParser().parseFromString(htmlText, 'text/html');
+                text = doc.body ? doc.body.innerText.trim() : '';
+            }
+            if (text.length < 50) throw new Error('tomt svar');
+            document.getElementById('pb-paste').value = text;
+            status.className = 'pb-status pb-ok';
+            status.textContent = 'Hämtat — tolkar texten…';
+            runParser(text);
+            return;
+        } catch (e) { /* prova nästa väg */ }
+    }
+    status.className = 'pb-status pb-err';
+    status.textContent = blocked
+        ? 'Sidan är skyddad (Cloudflare) och kan inte hämtas automatiskt. Öppna sidan själv, markera allt (Cmd+A), kopiera (Cmd+C) och klistra in i rutan ovan.'
+        : 'Kunde inte hämta sidan. Öppna den själv, markera allt (Cmd+A), kopiera (Cmd+C) och klistra in i rutan ovan.';
+}
+
+/* ===== Init ===== */
+function init() {
+    document.getElementById('pb-doc-css').textContent = DOC_CSS;
+
+    buildModalFields();
+    rebuildTypeSelect();
+    document.getElementById('pb-lang').value = state.lang;
+
+    document.getElementById('pb-type').addEventListener('change', e => {
+        state.type = e.target.value;
+        saveState();
+        renderDoc();
+    });
+    document.getElementById('pb-lang').addEventListener('change', e => {
+        state.lang = e.target.value;
+        saveState();
+        rebuildTypeSelect();
+        renderDoc();
+    });
+    document.getElementById('pb-open').addEventListener('click', openModal);
+    document.getElementById('pb-apply').addEventListener('click', () => {
+        closeModal();
+        rebuildTypeSelect();
+        renderDoc();
+    });
+    document.getElementById('pb-print').addEventListener('click', () => window.print());
+    document.getElementById('pb-clear').addEventListener('click', () => {
+        state.person = emptyPerson();
+        refreshModalValues();
+        saveState();
+    });
+    document.getElementById('pb-parse').addEventListener('click', () => {
+        runParser(document.getElementById('pb-paste').value);
+    });
+    document.getElementById('pb-fetch').addEventListener('click', fetchAndParse);
+    document.getElementById('pb-paste').addEventListener('paste', () => {
+        setTimeout(() => runParser(document.getElementById('pb-paste').value), 0);
+    });
+
+    renderDoc();
+    openModal();
+}
+
+init();
+</script>
+</body>
+</html>

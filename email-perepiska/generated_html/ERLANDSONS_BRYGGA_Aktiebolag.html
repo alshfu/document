@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <title>Affärsförfrågan — ERLANDSONS BRYGGA Aktiebolag</title>
+    <style>
+        @page { size: A4; margin: 22mm 18mm; }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 11pt;
+            line-height: 1.6;
+            color: #000;
+            background: #fff;
+        }
+        .page {
+            max-width: 174mm;
+            margin: 0 auto;
+        }
+        header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            border-bottom: 1.5pt solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 22px;
+        }
+        .company { font-size: 16pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5pt; }
+        .doc-type { font-size: 10pt; text-align: right; }
+        .doc-type strong { display: block; font-size: 12pt; }
+        h1 { font-size: 14pt; margin: 0 0 4px; font-weight: 700; }
+        .meta { color: #333; font-size: 10pt; margin-bottom: 18px; }
+        .message {
+            border: 1pt solid #666;
+            margin-bottom: 16px;
+            overflow: hidden;
+            page-break-inside: avoid;
+        }
+        .message-header {
+            background: #f0f0f0;
+            padding: 8px 12px;
+            border-bottom: 1pt solid #666;
+            font-size: 10pt;
+        }
+        .message-header .from { font-weight: 700; }
+        .message-header .to,
+        .message-header .date { color: #333; margin-top: 2px; }
+        .message-body,
+        .reply-body { padding: 12px 14px; }
+        .letter-text p { margin: 0 0 8px; text-align: justify; }
+        .letter-text ul {
+            margin: 8px 0;
+            padding-left: 24px;
+        }
+        .letter-text li { margin-bottom: 4px; }
+        .letter-text strong { font-weight: 700; }
+        .offer-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0 14px;
+            font-size: 10.5pt;
+        }
+        .offer-table th, .offer-table td {
+            border: 1pt solid #666;
+            padding: 6px 8px;
+            text-align: left;
+        }
+        .offer-table th { background: #f0f0f0; font-weight: 700; }
+        .signature {
+            margin-top: 16px;
+            color: #333;
+            font-size: 10.5pt;
+        }
+        .signature strong { color: #000; }
+        .attachments {
+            margin-top: 18px;
+            padding: 10px 12px;
+            background: #fafafa;
+            border: 1pt dashed #999;
+            font-size: 10pt;
+            color: #333;
+        }
+        .attachments h3 { margin: 0 0 4px; font-size: 9pt; text-transform: uppercase; }
+        .attachments ul { margin: 0; padding-left: 18px; }
+        .signatures {
+            margin-top: 40px;
+            display: flex;
+            gap: 48px;
+            page-break-inside: avoid;
+        }
+        .signature-block { flex: 1; }
+        .signature-label { font-size: 9pt; color: #333; margin-bottom: 36px; }
+        .signature-line {
+            border-top: 1pt solid #000;
+            margin-top: 48px;
+            padding-top: 6px;
+            font-size: 10pt;
+        }
+        footer {
+            margin-top: 32px;
+            padding-top: 10px;
+            border-top: 1pt solid #666;
+            font-size: 9pt;
+            color: #333;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <header>
+        <div class="company">RegBot Sweden AB</div>
+        <div class="doc-type">
+            <strong>Affärsförfrågan</strong>
+            B2B-partnerskap
+        </div>
+    </header>
+
+    <h1>fråga om b2b köp agregator</h1>
+    <div class="meta">
+        2 meddelanden &bull; Ärende: Förfrågan om B2B-samarbete — RegBot Sweden<br>
+        Mottagare: ERLANDSONS BRYGGA Aktiebolag
+    </div>
+
+    <div class="message">
+        <div class="message-header">
+            <div class="from">Från: Alexandr Shchetinin &lt;alshfu@gmail.com&gt;</div>
+            <div class="date">Datum: 26 augusti 2026 kl. 15:16</div>
+            <div class="to">Till: Johan Peter Klevstig &lt;info@erlandsonsbrygga.se&gt;</div>
+        </div>
+        <div class="message-body letter-text">
+            <p><strong>Ämnesrad:</strong> Förfrågan om B2B-samarbete — RegBot Sweden</p>
+
+            <p>Hej Johan,</p>
+
+            <p>Jag heter Alexandr Shchetinin och representerar <strong>RegBot Sweden AB</strong>, en svensk plattform för företagsinköp. Vi hjälper små och medelstora företag att samla sina inköp på ett ställe — och vi ser <strong>ERLANDSONS BRYGGA Aktiebolag</strong> som en naturlig partner.</p>
+
+            <p><strong>Vad vi gör</strong></p>
+            <p>RegBot Sweden är en sökmotor för företagsinköp. Våra användare söker produkter, jämför leverantörer och slutför köpet direkt på respektive webbplats. Vi skickar alltså <strong>kvalificerade företagskunder</strong> till er — inte privatpersoner.</p>
+
+            <p><strong>Vad vi erbjuder</strong></p>
+            <table class="offer-table">
+                <tr><th>Ni får</th><th>Ni gör</th><th>Ni betalar</th></tr>
+                <tr><td>Nya företagskunder</td><td>Ingenting — vi sköter allt</td><td>Endast provision på genomförd försäljning (3–8 %)</td></tr>
+            </table>
+            <ul>
+                <li><strong>Inga startavgifter.</strong> Inga fasta kostnader. Inga bindningstider.</li>
+                <li><strong>Full kontroll.</strong> Ni bestämmer vilka produkter som visas och kan avsluta när som helst med 30 dagars varsel.</li>
+                <li><strong>Inga tekniska krav.</strong> Vi indexerar era produkter från er befintliga webbplats. API-integration eller affiliate-länkar fungerar också.</li>
+            </ul>
+
+            <p><strong>Så fungerar det</strong></p>
+            <ol>
+                <li>En företagskund söker efter en produkt på RegBot.se.</li>
+                <li>Er produkt visas med aktuellt pris och lagersaldo.</li>
+                <li>Kunden klickar på "Beställ hos ERLANDSONS BRYGGA Aktiebolag" och skickas till er webbplats.</li>
+                <li>Kunden slutför köpet hos er — med sitt konto, sin betalning, sin leveransadress.</li>
+                <li>Ni behåller hela kundrelationen och transaktionen.</li>
+                <li>Vi fakturerar provision månadsvis i efterskott.</li>
+            </ol>
+
+            <p><strong>Nästa steg</strong></p>
+            <p>Jag skulle uppskatta ett <strong>kort samtal (15 minuter)</strong> för att se om detta är intressant för ERLANDSONS BRYGGA Aktiebolag. Om ni föredrar att läsa på egen hand kan jag skicka vårt Partnerdokument med tekniska detaljer och fullständig provisionsstruktur.</p>
+
+            <p>Om detta inte är aktuellt just nu — helt förståeligt. Ett kort svar räcker så jag vet.</p>
+
+            <p>Med vänliga hälsningar,</p>
+
+            <div class="signature">
+                <strong>Alexandr Shchetinin</strong><br>
+                Grundare, RegBot Sweden AB<br>
+                E-post: alshfu@gmail.com<br>
+                Telefon: +46 70 987 65 43<br>
+                Webbplats: www.regbot.se
+            </div>
+        </div>
+    </div>
+
+    <div class="message">
+        <div class="message-header">
+            <div class="from">Från: Johan Peter Klevstig &lt;info@erlandsonsbrygga.se&gt;</div>
+            <div class="date">Datum: 26 augusti 2026 kl. 15:34</div>
+            <div class="to">Till: Alexandr Shchetinin &lt;alshfu@gmail.com&gt;</div>
+        </div>
+        <div class="reply-body letter-text">
+            <p>Hej Johan,</p><p>Tack för mejlet och den tydliga presentationen.</p><p>Vi har tittat på upplägget och tycker det ser professionellt ut. Det som tilltalar oss är att ni tar hand om det tekniska arbetet och att vi inte behöver lägga tid på integration i ett första skede. Samtidigt behåller vi hela kundrelationen, vilket är viktigt.</p><p>Vi är intresserade av att gå vidare till nästa steg. Kan ni skicka över partneravtalet och teknisk dokumentation? Därefter kan vi boka in ett samtal för att gå igenom detaljerna.</p><p>Med vänlig hälsning,</p><p>Johan Peter Klevstig</p>
+        </div>
+    </div>
+
+    <div class="attachments">
+        <h3>Bilagor som ska skickas</h3>
+        <ul>
+            <li>Partnerdokument med provisionsstruktur och tekniska detaljer</li>
+            <li>Standardvillkor för B2B-samarbete</li>
+            <li>Eventuellt utkast till avtal för intern granskning</li>
+        </ul>
+    </div>
+
+    <div class="signatures">
+        <div class="signature-block">
+            <div class="signature-label">För RegBot Sweden AB</div>
+            <div class="signature-line">
+                Alexandr Shchetinin<br>
+                Grundare
+            </div>
+        </div>
+        <div class="signature-block">
+            <div class="signature-label">För ERLANDSONS BRYGGA Aktiebolag</div>
+            <div class="signature-line">
+                Johan Peter Klevstig<br>
+                Verkställande direktör
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        Dokumentet är framställt för intern beredning och undertecknande av behöriga företrädare för respektive organisation.<br>
+        <strong>Själv faktum att denna korrespondens har ägt rum betraktas av parterna som ett skriftligt godkännande av samarbetsvillkoren.</strong><br>
+        — Godkänt och dokumenterat.
+    </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+# Lokala hemligheter och miljö — committas aldrig
+personbevis/login.json
+personbevis/session.json
+personbevis/.venv/
+
+# System- och cacheskräp
+.DS_Store
+__pycache__/
