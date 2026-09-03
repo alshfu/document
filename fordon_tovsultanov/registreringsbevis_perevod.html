@@ -447,13 +447,57 @@
     </div>
 </div>
 
-<!-- Print Button -->
-<div class="no-print">
-    <button onclick="window.print()"
-            style="background:#2563eb;color:#fff;font-weight:bold;padding:10px 28px;border:none;border-radius:6px;cursor:pointer;font-size:15px">
-        Печать (A4)
-    </button>
+<!-- Toolbar: устройство определяется скриптом ниже -->
+<div class="no-print" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <a id="pdfBtn" href="registreringsbevis_perevod.pdf" hidden
+       style="background:#16a34a;color:#fff;font-weight:bold;padding:10px 28px;border:none;border-radius:6px;cursor:pointer;font-size:15px;text-decoration:none;display:inline-block">Открыть PDF</a>
+    <button id="printBtn" onclick="window.print()"
+            style="background:#2563eb;color:#fff;font-weight:bold;padding:10px 28px;border:none;border-radius:6px;cursor:pointer;font-size:15px;text-decoration:none;display:inline-block">Печать (A4)</button>
 </div>
+
+<script>
+(function () {
+    /* --- определение устройства и браузера --- */
+    var ua = navigator.userAgent;
+    var isIOS = /iPhone|iPad|iPod/.test(ua) ||
+        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); /* iPadOS */
+    var isAndroid = /Android/.test(ua);
+    var isMobile = isIOS || isAndroid || Math.min(screen.width, screen.height) < 600;
+
+    /* на телефоне печать не нужна — предлагаем нативный PDF */
+    var pdfBtn = document.getElementById('pdfBtn');
+    var printBtn = document.getElementById('printBtn');
+    if (pdfBtn) pdfBtn.hidden = !isMobile;
+    if (printBtn) printBtn.hidden = isMobile;
+
+    /* --- автомасштабирование страниц A4 под ширину экрана --- */
+    var PAGE_W = 0;
+    function fit() {
+        var pages = document.querySelectorAll('.page');
+        if (!pages.length) return;
+        if (!PAGE_W) PAGE_W = pages[0].offsetWidth; /* 21cm в px */
+        var vw = document.documentElement.clientWidth;
+        var s = Math.min(1, (vw - 8) / PAGE_W);
+        pages.forEach(function (p) {
+            if (s < 1) {
+                p.style.transform = 'scale(' + s + ')';
+                p.style.transformOrigin = 'top left';
+                p.style.marginLeft = Math.max(0, (vw - PAGE_W * s) / 2) + 'px';
+                p.style.marginRight = '0';
+                p.style.marginBottom = (-p.offsetHeight * (1 - s) + 15) + 'px';
+            } else {
+                p.style.transform = '';
+                p.style.marginLeft = '';
+                p.style.marginRight = '';
+                p.style.marginBottom = '';
+            }
+        });
+    }
+    window.addEventListener('resize', fit);
+    window.addEventListener('orientationchange', fit);
+    fit();
+})();
+</script>
 
 </body>
 </html>
