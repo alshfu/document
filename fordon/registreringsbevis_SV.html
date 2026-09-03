@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registreringsbevis TMR Bygg & Renovering AB</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Courier New", Courier, monospace;
+            font-size: 12px;
+            line-height: 1.4;
+            background: #e5e5e5;
+            color: #000;
+        }
+
+        .page {
+            width: 21cm;
+            min-height: 29.7cm;
+            margin: 0.5cm auto;
+            padding: 1.4cm 1.6cm;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ---- watermark ---- */
+        .wm {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* ---- translation note ---- */
+        .trans-note {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 10.5px;
+            font-style: italic;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        /* ---- header ---- */
+        .hdr {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .logo-block {
+            font-family: Arial, Helvetica, sans-serif;
+            padding-top: 6px;
+        }
+
+        .logo-line {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-name {
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: .2px;
+        }
+
+        .logo-addr {
+            font-size: 8.5px;
+            margin-top: 4px;
+            padding-left: 44px;
+            line-height: 1.5;
+        }
+
+        .hdr-right {
+            width: 58%;
+        }
+
+        .hdr-title {
+            font-family: "Times New Roman", Times, serif;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .hdr-title h1 {
+            font-size: 17px;
+            font-weight: bold;
+            letter-spacing: .3px;
+            display: inline-block;
+        }
+
+        .hdr-title .pgn {
+            font-size: 11px;
+            position: absolute;
+            right: 0;
+            top: 2px;
+            font-weight: normal;
+        }
+
+        .hdr-title p {
+            font-size: 11.5px;
+            font-weight: bold;
+            margin-top: 3px;
+        }
+
+        table.regbox {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+        }
+
+        table.regbox td {
+            border: 1px solid #000;
+            padding: 2px 6px 3px;
+            width: 50%;
+        }
+
+        table.regbox .lbl {
+            display: block;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 7.5px;
+            line-height: 1.3;
+        }
+
+        /* ---- company info block ---- */
+        .info {
+            display: flex;
+            margin-bottom: 26px;
+        }
+
+        .info .labels {
+            width: 30%;
+            padding-top: 4px;
+        }
+
+        .info .labels div {
+            margin-bottom: 4px;
+        }
+
+        .info .boxes {
+            width: 70%;
+        }
+
+        .info .box {
+            border: 1px solid #000;
+            padding: 4px 10px;
+        }
+
+        .info .box + .box {
+            border-top: none;
+        }
+
+        /* ---- monospace body ---- */
+        .mono {
+            white-space: pre-wrap;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 12px;
+        }
+
+        .mono b {
+            font-weight: bold;
+        }
+
+        .footer-note {
+            margin-top: 18px;
+        }
+
+        .no-print {
+            text-align: center;
+            padding: 20px;
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                background: #fff;
+            }
+
+            .page {
+                width: auto;
+                min-height: 29.6cm;
+                margin: 0;
+                padding: 1.4cm 1.6cm;
+                box-shadow: none;
+                page-break-after: always;
+            }
+
+            .page:last-child {
+                page-break-after: auto;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            .wm {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<div class="page">
+    <svg class="wm" width="560" height="560" viewBox="0 0 560 560">
+        <defs>
+            <path id="arcTop" d="M 80 280 A 200 200 0 1 1 480 280"/>
+            <path id="arcBottom" d="M 100 280 A 180 180 0 1 0 460 280"/>
+        </defs>
+        <g fill="#c9c9c9" opacity="0.55">
+            <text font-family="Arial, sans-serif" font-size="26" letter-spacing="10">
+                <textPath href="#arcTop" startOffset="8%">SWEDISH COMPANIES</textPath>
+            </text>
+            <text font-family="Arial, sans-serif" font-size="26" letter-spacing="9">
+                <textPath href="#arcBottom" startOffset="12%">REGISTRATION OFFICE</textPath>
+            </text>
+            <g font-size="150" font-family="serif">
+                <text x="130" y="270">&#9819;</text>
+                <text x="290" y="270">&#9819;</text>
+                <text x="210" y="400">&#9819;</text>
+            </g>
+        </g>
+    </svg>
+
+    <div class="content">
+        <div class="hdr">
+            <div class="logo-block">
+                <div class="logo-line">
+                    <svg width="36" height="36" viewBox="0 0 36 36">
+                        <g fill="#3a3a3a">
+                            <circle cx="13" cy="6" r="3.1"/>
+                            <circle cx="23" cy="6" r="3.1"/>
+                            <circle cx="8" cy="14" r="3.1"/>
+                            <circle cx="18" cy="14" r="3.1"/>
+                            <circle cx="28" cy="14" r="3.1"/>
+                            <circle cx="13" cy="22" r="3.1"/>
+                            <circle cx="23" cy="22" r="3.1"/>
+                            <circle cx="8" cy="30" r="3.1"/>
+                            <circle cx="18" cy="30" r="3.1"/>
+                            <circle cx="28" cy="30" r="3.1"/>
+                        </g>
+                    </svg>
+                    <span class="logo-name">Bolagsverket</span>
+                </div>
+                <div class="logo-addr">
+                    851 81 Sundsvall<br>
+                    0771-670 670<br>
+                    www.bolagsverket.se
+                </div>
+            </div>
+
+            <div class="hdr-right">
+                <div class="hdr-title">
+                    <h1>REGISTRERINGSBEVIS</h1>
+                    <span class="pgn">1 (2)</span>
+                    <p>AKTIEBOLAG</p>
+                </div>
+                <table class="regbox">
+                    <tr>
+                        <td colspan="2"><span class="lbl">Organisationsnummer</span>559017-1137</td>
+                    </tr>
+                    <tr>
+                        <td><span class="lbl">Objektets registreringsdatum</span>2015-06-11</td>
+                        <td><span class="lbl">Företagsnamnets registreringsdatum</span>2025-03-17</td>
+                    </tr>
+                    <tr>
+                        <td><span class="lbl">Dokumentet nedladdat</span>2026-07-26</td>
+                        <td><span class="lbl">Dokumentet visar senaste registreringen</span>2026-03-09</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="info">
+            <div class="labels">
+                <div>Org.nummer:</div>
+                <div style="margin-top:6px">Företagsnamn:</div>
+                <div style="margin-top:2px">Adress:</div>
+                <div style="margin-top:30px">Säte:</div>
+                <div>Registreringslän:</div>
+                <div>Anmärkning:</div>
+            </div>
+            <div class="boxes">
+                <div class="box">559017-1137</div>
+                <div class="box">TMR Bygg &amp; Renovering AB<br><br>Ekbacken 3 A<br>374 50 ASARUM<br><br>Blekinge län, Karlshamn kommun<br><br>&nbsp;
+                </div>
+            </div>
+        </div>
+
+        <div class="mono"><b>Detta är ett privat aktiebolag.</b>
+
+<b>Bildat datum</b>
+2015-06-09
+
+<b>Sammanställning av aktiekapital</b>
+
+Aktiekapital:              50.000 SEK
+Lägst.......:              50.000 SEK
+Högst.......:             200.000 SEK
+
+Antal aktier:                 500
+Lägst.......:                 500
+Högst.......:               2.000
+
+<b>STYRELSELEDAMOT, VERKSTÄLLANDE DIREKTÖR</b>
+060916-9537 Tovsultanov, Magomed, BODEKULLSVÄGEN 1 LGH 1003,
+            374 35 KARLSHAMN
+
+<b>STYRELSESUPPLEANTER</b>
+020612-4448 Tovsultanova, Myalhazni, BODEKULLSVÄGEN 1 LGH 1201,
+            374 35 KARLSHAMN
+
+<b>Firmateckning</b>
+Firman tecknas av styrelsen
+Firman tecknas var för sig av
+       ledamoten
+       suppleanten
+
+<b>Föreskrift om antal styrelseledamöter/styrelsesuppleanter</b>
+Styrelsen skall bestå av lägst 1 och högst 10 ledamöter
+med lägst 1 och högst 10 suppleanter.</div>
+    </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page">
+    <svg class="wm" width="560" height="560" viewBox="0 0 560 560">
+        <defs>
+            <path id="arcTop2" d="M 80 280 A 200 200 0 1 1 480 280"/>
+            <path id="arcBottom2" d="M 100 280 A 180 180 0 1 0 460 280"/>
+        </defs>
+        <g fill="#c9c9c9" opacity="0.55">
+            <text font-family="Arial, sans-serif" font-size="26" letter-spacing="10">
+                <textPath href="#arcTop2" startOffset="8%">SWEDISH COMPANIES</textPath>
+            </text>
+            <text font-family="Arial, sans-serif" font-size="26" letter-spacing="9">
+                <textPath href="#arcBottom2" startOffset="12%">REGISTRATION OFFICE</textPath>
+            </text>
+            <g font-size="150" font-family="serif">
+                <text x="130" y="270">&#9819;</text>
+                <text x="290" y="270">&#9819;</text>
+                <text x="210" y="400">&#9819;</text>
+            </g>
+        </g>
+    </svg>
+
+    <div class="content">
+        <div class="hdr">
+            <div class="logo-block">
+                <div class="logo-line">
+                    <svg width="36" height="36" viewBox="0 0 36 36">
+                        <g fill="#3a3a3a">
+                            <circle cx="13" cy="6" r="3.1"/>
+                            <circle cx="23" cy="6" r="3.1"/>
+                            <circle cx="8" cy="14" r="3.1"/>
+                            <circle cx="18" cy="14" r="3.1"/>
+                            <circle cx="28" cy="14" r="3.1"/>
+                            <circle cx="13" cy="22" r="3.1"/>
+                            <circle cx="23" cy="22" r="3.1"/>
+                            <circle cx="8" cy="30" r="3.1"/>
+                            <circle cx="18" cy="30" r="3.1"/>
+                            <circle cx="28" cy="30" r="3.1"/>
+                        </g>
+                    </svg>
+                    <span class="logo-name">Bolagsverket</span>
+                </div>
+                <div class="logo-addr">
+                    851 81 Sundsvall<br>
+                    0771-670 670<br>
+                    www.bolagsverket.se
+                </div>
+            </div>
+
+            <div class="hdr-right">
+                <div class="hdr-title">
+                    <h1>REGISTRERINGSBEVIS</h1>
+                    <span class="pgn">2 (2)</span>
+                    <p>AKTIEBOLAG</p>
+                </div>
+                <table class="regbox">
+                    <tr>
+                        <td colspan="2"><span class="lbl">Organisationsnummer</span>559017-1137</td>
+                    </tr>
+                    <tr>
+                        <td><span class="lbl">Objektets registreringsdatum</span>2015-06-11</td>
+                        <td><span class="lbl">Företagsnamnets registreringsdatum</span>2025-03-17</td>
+                    </tr>
+                    <tr>
+                        <td><span class="lbl">Dokumentet nedladdat</span>2026-07-26</td>
+                        <td><span class="lbl">Dokumentet visar senaste registreringen</span>2026-03-09</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="mono"><b>Bolagsordning</b>
+Datum för senaste ändringen: 2025-02-18
+
+<b>FÖRBEHÅLL/AVVIKELSER/VILLKOR I BOLAGSORDNINGEN</b>
+Bestämmelse att företaget inte behöver ha revisor
+
+<b>VERKSAMHET</b>
+Bolaget skall bedriva verksamhet inom byggnationer av
+fastigheter inom nyproduktion samt ROT-arbeten, bolaget skall
+även utföra ventilations montage. Bolaget ska bedriva personal
+bemanning inom byggsektorn. Samt för sin verksamhet äga och
+förvalta fast och lös egendom och även som driva handel med
+aktier och andra värdepapper samt därmed förenlig verksamhet.
+
+<b>Räkenskapsår</b>
+0601 - 0531
+
+<b>Kallelse</b>
+Kallelse sker genom brev, brev med posten eller e-post.
+
+<b>Tidigare företagsnamn</b>
+2018-08-29 LMR Bygg &amp; Ventilation i Örebro AB
+2015-06-11 LMR Ventilation i Örebro AB
+
+Registreringsbeviset är skapat av Bolagsverket.</div>
+    </div>
+</div>
+
+<!-- Toolbar: устройство определяется скриптом ниже -->
+<div class="no-print" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <a id="pdfBtn" href="registreringsbevis_SV.pdf" hidden
+       style="background:#16a34a;color:#fff;font-weight:bold;padding:10px 28px;border:none;border-radius:6px;cursor:pointer;font-size:15px;text-decoration:none;display:inline-block">Öppna PDF</a>
+    <button id="printBtn" onclick="window.print()"
+            style="background:#2563eb;color:#fff;font-weight:bold;padding:10px 28px;border:none;border-radius:6px;cursor:pointer;font-size:15px;text-decoration:none;display:inline-block">Skriv ut (A4)</button>
+</div>
+
+<script>
+(function () {
+    /* --- определение устройства и браузера --- */
+    var ua = navigator.userAgent;
+    var isIOS = /iPhone|iPad|iPod/.test(ua) ||
+        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); /* iPadOS */
+    var isAndroid = /Android/.test(ua);
+    var isMobile = isIOS || isAndroid || Math.min(screen.width, screen.height) < 600;
+
+    /* на телефоне печать не нужна — предлагаем нативный PDF */
+    var pdfBtn = document.getElementById('pdfBtn');
+    var printBtn = document.getElementById('printBtn');
+    if (pdfBtn) pdfBtn.hidden = !isMobile;
+    if (printBtn) printBtn.hidden = isMobile;
+
+    /* --- автомасштабирование страниц A4 под ширину экрана --- */
+    var PAGE_W = 0;
+    function fit() {
+        var pages = document.querySelectorAll('.page');
+        if (!pages.length) return;
+        if (!PAGE_W) PAGE_W = pages[0].offsetWidth; /* 21cm в px */
+        var vw = document.documentElement.clientWidth;
+        var s = Math.min(1, (vw - 8) / PAGE_W);
+        pages.forEach(function (p) {
+            if (s < 1) {
+                p.style.transform = 'scale(' + s + ')';
+                p.style.transformOrigin = 'top left';
+                p.style.marginLeft = Math.max(0, (vw - PAGE_W * s) / 2) + 'px';
+                p.style.marginRight = '0';
+                p.style.marginBottom = (-p.offsetHeight * (1 - s) + 15) + 'px';
+            } else {
+                p.style.transform = '';
+                p.style.marginLeft = '';
+                p.style.marginRight = '';
+                p.style.marginBottom = '';
+            }
+        });
+    }
+    window.addEventListener('resize', fit);
+    window.addEventListener('orientationchange', fit);
+    fit();
+})();
+</script>
+
+</body>
+</html>
