@@ -1,0 +1,186 @@
+html, body { margin:0; padding:0; background:#fff; color:#000; }
+.page {
+  width: 210mm;
+  height: 297mm;
+  margin: 10px auto;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,.25);
+  page-break-after: always;
+}
+.page:last-child { page-break-after: auto; }
+
+/* Nordea */
+.bank-nordea {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 9pt;
+  padding: 12mm 10mm 10mm;
+}
+.bank-nordea .header { display: flex; justify-content: space-between; }
+.bank-nordea .created { text-align: right; font-size: 8pt; padding-top: 2mm; }
+.bank-nordea h2.section {
+  color: #0000A0; font-size: 10pt; font-weight: normal; margin: 7mm 0 2mm;
+}
+.bank-nordea .rule { border-bottom: 1px solid #000; margin-bottom: 4mm; }
+.bank-nordea .summary { display: flex; justify-content: space-between; }
+.bank-nordea .summary .col { width: 48%; }
+.bank-nordea .summary h3 {
+  color: #0000A0; font-size: 9.5pt; font-weight: normal; margin-bottom: 1.5mm;
+}
+.bank-nordea .summary table { width: 100%; border-collapse: collapse; }
+.bank-nordea .summary td { padding: 0.4mm 0; vertical-align: top; }
+.bank-nordea .summary td.lbl { width: 38%; }
+.bank-nordea .summary .col.right td.val { text-align: right; }
+.bank-nordea h2.trans-heading {
+  color: #0000A0; font-size: 10.5pt; font-weight: normal;
+  margin: 6mm 0 1.5mm; padding-bottom: 1.5mm; border-bottom: 1px solid #000;
+}
+.bank-nordea table.trans {
+  width: 100%; border-collapse: collapse; font-size: 8pt; line-height: 1.15;
+}
+.bank-nordea table.trans th {
+  background: #e4e4e4; font-weight: bold; text-align: left;
+  padding: 1.1mm 1.5mm; font-size: 8.5pt;
+}
+.bank-nordea table.trans th.num,
+.bank-nordea table.trans td.num { text-align: right; }
+.bank-nordea table.trans td {
+  padding: 0.45mm 1.5mm; border-bottom: 0.4pt solid #cfcfcf;
+}
+.bank-nordea table.trans tr.odd td { background: #f4f4f4; }
+.bank-nordea table.trans td.month {
+  color: #0000A0; font-size: 9pt; border-bottom: none;
+  background: #fff !important; padding-top: 1.2mm;
+}
+.bank-nordea col.c-date { width: 16%; }
+.bank-nordea col.c-name { width: 44%; }
+.bank-nordea col.c-amount { width: 18%; }
+.bank-nordea col.c-saldo { width: 22%; }
+.bank-nordea table.balances {
+  width: 100%; border-collapse: collapse; font-size: 9pt; margin-top: 2mm;
+}
+.bank-nordea table.balances td {
+  padding: 1.4mm 0; border-bottom: 0.4pt solid #cfcfcf;
+}
+.bank-nordea table.balances td.val { text-align: right; }
+.bank-nordea .footer {
+  position: absolute; bottom: 9mm; left: 10mm; right: 10mm; font-size: 8pt;
+}
+.bank-nordea .footer .pageno { position: absolute; right: 0; bottom: 0; }
+.bank-nordea .footer .note { margin-top: 1.5mm; font-size: 7pt; color: #666; }
+.bank-nordea .wave {
+  position: absolute; right: 0; bottom: 0; width: 95mm; height: 90mm;
+  z-index: 0; pointer-events: none;
+}
+.bank-nordea .content { position: relative; z-index: 1; }
+
+/* Swedbank */
+.bank-swedbank {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  padding: 12mm;
+}
+.bank-swedbank .top {
+  display: flex; justify-content: space-between; align-items: flex-start;
+}
+.bank-swedbank .head-right { min-width: 340px; }
+.bank-swedbank .title { font-size: 19px; }
+.bank-swedbank .meta {
+  display: flex; justify-content: space-between; font-size: 10px; margin-top: 2px;
+}
+.bank-swedbank .acct { margin-top: 18px; font-size: 11px; line-height: 1.6; }
+.bank-swedbank .acct .k { display: inline-block; width: 120px; color: #333; }
+.bank-swedbank .export { margin-top: 12px; font-size: 11px; line-height: 1.45; }
+.bank-swedbank .export .h { color: #333; }
+.bank-swedbank table.tx {
+  width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 9px;
+}
+.bank-swedbank table.tx th {
+  text-align: left; vertical-align: bottom; border-bottom: 1px solid #999;
+  padding: 3px 3px 6px;
+}
+.bank-swedbank table.tx th.r,
+.bank-swedbank table.tx td.r { text-align: right; }
+.bank-swedbank table.tx td { padding: 1px 3px; white-space: nowrap; }
+.bank-swedbank table.tx tr.sum td {
+  font-weight: bold; border-top: 1px solid #999; padding-top: 4px;
+}
+.bank-swedbank .foot {
+  position: absolute; left: 12mm; right: 12mm; bottom: 8mm;
+  font-size: 8px; color: #555;
+}
+
+/* Revolut */
+.bank-revolut {
+  font-family: Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #191c1f;
+  padding: 0;
+}
+.bank-revolut header {
+  position: absolute; left: 39.7pt; right: 39.7pt; top: 0; height: 120pt;
+}
+.bank-revolut .logo {
+  position: absolute; left: 0; top: 73.4pt; width: 95pt; height: 21pt;
+}
+.bank-revolut .hdr-r { position: absolute; right: 0; top: 66pt; text-align: right; }
+.bank-revolut .title { font-size: 20.6pt; line-height: 24pt; }
+.bank-revolut .gen, .bank-revolut .bank { font-size: 8.2pt; line-height: 12.4pt; }
+.bank-revolut main {
+  position: absolute; left: 39.7pt; right: 39.7pt; top: 130pt; bottom: 110pt; overflow: hidden;
+}
+.bank-revolut .who { position: relative; min-height: 90px; }
+.bank-revolut .name { font-size: 12.4pt; line-height: 19px; margin-top: 8px; }
+.bank-revolut .addr { font-size: 8.2pt; line-height: 12.4pt; margin-top: 8pt; }
+.bank-revolut .acct {
+  position: absolute; right: 0; top: 8pt; font-size: 8.2pt; line-height: 12.4pt; text-align: left;
+}
+.bank-revolut .acct .k { display: inline-block; width: 28pt; }
+.bank-revolut h2 {
+  font-size: 12.4pt; font-weight: 400; margin: 0; padding: 16px 0 10px; line-height: 19px;
+}
+.bank-revolut .note { font-size: 7pt; line-height: 10px; margin: 0 0 8px; color: #444; }
+.bank-revolut table.tx {
+  width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 8.2pt;
+}
+.bank-revolut table.tx th {
+  font-weight: 400; text-align: left; padding: 8px 3pt 2px;
+  border-bottom: 1px solid #191c1f; line-height: 12px;
+}
+.bank-revolut table.tx td {
+  vertical-align: top; padding: 8px 3pt 2px;
+  border-bottom: 1px solid #191c1f; line-height: 12px;
+}
+.bank-revolut table.tx td.bal { text-align: right; }
+.bank-revolut table.tx th:nth-child(1),
+.bank-revolut table.tx td.date { width: 82pt; }
+.bank-revolut table.tx th:nth-child(2),
+.bank-revolut table.tx td.desc { width: 210pt; }
+.bank-revolut footer {
+  position: absolute; left: 39.7pt; right: 39.7pt; bottom: 0; height: 80pt; font-size: 8.2pt;
+}
+.bank-revolut .copy { position: absolute; left: 0; top: 40pt; color: #666; font-size: 7pt; }
+.bank-revolut .pageno { position: absolute; right: 0; top: 40pt; }
+.bank-revolut .wm {
+  position: absolute; inset: 0; z-index: 5; pointer-events: none; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: space-around; align-items: center;
+  top: 0; left: 0; transform: none;
+}
+.bank-revolut .wm span {
+  transform: rotate(-30deg); font-size: 42pt; font-weight: 700; letter-spacing: 4pt;
+  text-transform: uppercase; color: rgba(200, 30, 30, .13); white-space: nowrap;
+}
+
+@media print {
+  @page { size: A4; margin: 0; }
+  { background: none !important; padding: 0 !important; }
+  .page {
+    margin: 0 !important; box-shadow: none !important;
+    transform: none !important; page-break-after: always;
+  }
+  .page:last-child { page-break-after: auto; }
+}
+
+.page { margin:0 !important; box-shadow:none !important; transform:none !important; }
+.page { page-break-after: always; break-after: page; }
+.page:last-child { page-break-after: auto; break-after: auto; }
