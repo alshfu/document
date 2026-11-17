@@ -265,20 +265,33 @@
 '      <div class="frow"><div class="fl"><b>4.3</b> Förnybar el</div><div class="fbox"></div></div>' +
 '      <div class="frow"><div class="fl"><b>4.4</b> Gåva</div><div class="fbox"></div></div>' +
 '      <div class="frow"><div class="fl"><b>4.5</b> Installation av grön teknik</div><div class="fbox"></div></div>' +
+'      <div class="fhead">5 Underlag för fastighetsavgift</div>' +
+'      <div class="frow"><div class="fl"><b>5.1</b> Småhus/ägarlägenhet 0,75 %</div><div class="fbox"></div></div>' +
+'      <div class="fhead">6 Underlag för fastighetsskatt</div>' +
+'      <div class="frow"><div class="fl"><b>6.1</b> Småhus/ägarlägenhet: tomtmark, byggnad under uppförande 1,0 %</div><div class="fbox"></div></div>' +
 '    </div>' +
 '    <div class="fcol">' +
-'      <div class="fhead">7 Inkomster – Kapital</div>' +
+'      <div class="fhead">7 Inkomster – Kapital <span class="fh-note">Ange beloppet i hela kronor</span></div>' +
 '      <div class="frow"><div class="fl"><b>7.1</b> Schablonintäkter</div><div class="fbox"></div></div>' +
 '      <div class="frow"><div class="fl"><b>7.2</b> Ränteinkomster, utdelningar m.m.</div><div class="fbox"></div></div>' +
 '      <div class="frow"><div class="fl"><b>7.3</b> Överskott vid uthyrning av privatbostad</div><div class="fbox"></div></div>' +
 '      <div class="frow"><div class="fl"><b>7.4</b> Vinst på fondandelar m.m.</div><div class="fbox"></div></div>' +
-'      <div class="fhead">8 Avdrag – Kapital</div>' +
+'      <div class="frow"><div class="fl"><b>7.5</b> Vinst på onoterade fondandelar m.m.</div><div class="fbox"></div></div>' +
+'      <div class="frow"><div class="fl"><b>7.6</b> Vinst från bilaga K5 och K6</div><div class="fbox"></div></div>' +
+'      <div class="frow"><div class="fl"><b>7.7</b> Vinst från bilaga K7 och K8</div><div class="fbox"></div></div>' +
+'      <div class="fhead">8 Avdrag – Kapital <span class="fh-note">Ange beloppet i hela kronor</span></div>' +
 '      <div class="frow"><div class="fl"><b>8.1</b> Ränteutgifter på lån med säkerhet</div><div class="fbox"></div></div>' +
+'      <div class="frow"><div class="fl"><b>8.3</b> Förlust på fondandelar m.m.</div><div class="fbox"></div></div>' +
+'      <div class="frow"><div class="fl"><b>8.4</b> Förlust på onoterade fondandelar</div><div class="fbox"></div></div>' +
+'      <div class="frow"><div class="fl"><b>8.5</b> Förlust från bilaga K5 och K6</div><div class="fbox"></div></div>' +
+'      <div class="frow"><div class="fl"><b>8.6</b> Förlust från bilaga K7 och K8</div><div class="fbox"></div></div>' +
+'      <div class="frow"><div class="fl"><b>8.7</b> Investeraravdrag från bilaga K11</div><div class="fbox"></div></div>' +
 '      <div class="frow"><div class="fl"><b>8.8</b> Ränteutgifter på lån utan säkerhet</div><div class="fbox' +
         (tax.rantor ? ' filled">' + F(tax.rantor) : '">') + '</div></div>' +
 '      <div class="fhead">9 Utländsk försäkring – Avkastningsskatt</div>' +
 '      <div class="frow"><div class="fl"><b>9.1</b> Skatteunderlag för kapitalförsäkring</div><div class="fbox"></div></div>' +
 '      <div class="frow"><div class="fl"><b>9.2</b> Skatteunderlag för pensionsförsäkring</div><div class="fbox"></div></div>' +
+'      <div class="fbarcode"><div class="fcode">INK1-1-35-2025P4</div><div class="bars"></div></div>' +
 '    </div>' +
 '  </div>' +
 '  <div class="sideid">SKV 2000 35 sv 00 05 &nbsp; Inkomstdeklaration enligt SFS 2011:1244</div>' +
@@ -293,8 +306,13 @@
 '  <div class="fcols">' +
 '    <div class="fcol">' +
 '      <div class="fhead">10 Näringsverksamhet</div>' +
-'      <div class="frow"><div class="fl"><b>10.1</b> Överskott av aktiv näringsverksamhet</div><div class="fbox"></div></div>' +
-'      <div class="frow"><div class="fl"><b>10.2</b> Underskott av aktiv näringsverksamhet</div><div class="fbox"></div></div>' +
+'      <div class="frow"><div class="fl"><b>10.1</b> Överskott av aktiv näringsverksamhet</div><div class="fbox2"><span>Belopp från<br>NE</span><span>Belopp från<br>N3A</span></div></div>' +
+'      <div class="frow"><div class="fl"><b>10.2</b> Underskott av aktiv näringsverksamhet</div><div class="fbox2"><span>Belopp från<br>NE</span><span>Belopp från<br>N3A</span></div></div>' +
+'      <div class="frow"><div class="fl"><b>10.3</b> Överskott av passiv näringsverksamhet</div><div class="fbox2"><span>Belopp från<br>NE</span><span>Belopp från<br>N3A</span></div></div>' +
+'      <div class="frow"><div class="fl"><b>10.4</b> Underskott av passiv näringsverksamhet</div><div class="fbox2"><span>Belopp från<br>NE</span><span>Belopp från<br>N3A</span></div></div>' +
+'      <div class="frow"><div class="fl"><b>10.5</b> Inkomster där uppdragsgivaren ska betala socialavgifter</div><div class="fbox2"><span>Brutto-<br>inkomst</span><span>Kostnader</span></div></div>' +
+'      <div class="frow"><div class="fl"><b>10.6</b> Underlag för särskild löneskatt på pensionskostnader</div><div class="fbox2"><span>Egen</span><span>Anställdas</span></div></div>' +
+'      <div class="frow"><div class="fl"><b>10.7</b> Underlag för avkastningsskatt: balansräknade pensionsavsättningar</div><div class="fbox"></div></div>' +
 '      <div class="fhead">11 Räntefördelning</div>' +
 '      <div class="frow"><div class="fl"><b>11.1</b> Positiv räntefördelning</div><div class="fbox"></div></div>' +
 '      <div class="frow"><div class="fl"><b>11.2</b> Negativ räntefördelning</div><div class="fbox"></div></div>' +
@@ -303,9 +321,15 @@
 '      <div class="frow"><div class="fl"><b>12.2</b> Minskning av expansionsfond</div><div class="fbox"></div></div>' +
 '    </div>' +
 '    <div class="fcol">' +
+'      <div class="fhead">13 Näringsverksamhet i stödregion</div>' +
+'      <div class="frow"><div class="fl"><b>13.1</b> Regional nedsättning av egenavgifter</div><div class="fbox"></div></div>' +
 '      <div class="fhead">14 Allmänna avdrag (näringsverksamhet)</div>' +
 '      <div class="frow"><div class="fl"><b>14.1</b> Underskott av aktiv näringsverksamhet</div><div class="fbox"></div></div>' +
 '      <div class="fchk"><span class="cb"></span> Kryssa här om din näringsverksamhet har upphört under 2025.</div>' +
+'      <div class="fhead">15 Underlag för skattereduktion</div>' +
+'      <div class="frow"><div class="fl"><b>15.1</b> Medel avsatta till expansionsfond</div><div class="fbox"></div></div>' +
+'      <div class="fhead">16 Underlag för särskild löneskatt på pensionskostnader</div>' +
+'      <div class="frow"><div class="fl"><b>16.1</b> Pensionskostnader</div><div class="fbox"></div></div>' +
 '    </div>' +
 '  </div>' +
 '  <div class="fhead2">17 Övriga upplysningar</div>' +
@@ -318,6 +342,7 @@
 '    <div class="fbox-half sig"><b>18 Underskrift</b><div class="sigline"></div><div class="fi">Underskrift</div></div>' +
 '    <div class="fbox-half sig"><div class="fi" style="margin-top:14px">Telefonnummer (frivilligt)</div><div class="sigline"></div></div>' +
 '  </div>' +
+'  <div class="fbarcode" style="margin-top:6px"><div class="fcode">INK1-2-35-2025P4</div><div class="bars"></div></div>' +
 '  <div class="sideid">SKV 2000 35 sv 00 05 &nbsp; Samråd enligt SFS 1982:668 har skett med Näringslivets Regelnämnd.</div>' +
 '</div>');
 
