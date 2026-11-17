@@ -18,32 +18,51 @@
     var lines = String(text || '').split(/\r?\n/).map(function (l) {
       return l.trim();
     }).filter(Boolean);
-    var name = lines[0] || 'ANDERSSON,ANNA';
-    var address = '';
-    var pnr = '';
-    for (var i = 1; i < lines.length; i++) {
-      if (/(\d{6}|\d{8})\s*[-+]?\s*\d{4}/.test(lines[i]) || /^\d{12}$/.test(lines[i].replace(/\D/g, ''))) {
-        var m = lines[i].replace(/\D/g, '');
-        if (m.length === 12) pnr = m.slice(0, 8) + '-' + m.slice(8);
-        else pnr = lines[i];
-      } else {
-        address += (address ? ', ' : '') + lines[i];
-      }
-    }
-    return { name: name, address: address, pnr: pnr };
+    if (!lines.length) return { name: '', address: '' };
+    var name = lines[0];
+    var address = lines.slice(1).join(', ');
+    return { name: name, address: address };
   }
 
   function bankDefaults(bank) {
     if (bank === 'swedbank') {
-      return { clearing: '8327', account: '8327-9,123 456 789-0', bic: 'SWEDSESS',
-        iban: 'SE4680000832791234567890' };
+      return {
+        clearing: '8327', account: '8327-9,123 456 789-0',
+        bic: 'SWEDSESS', iban: 'SE4680000832791234567890'
+      };
     }
     if (bank === 'revolut') {
-      return { clearing: '', account: 'Revolut SEK', bic: 'EVIULT2VXXX',
-        iban: 'LT123250012345678901' };
+      return {
+        clearing: '', account: 'Revolut SEK',
+        bic: 'EVIULT2VXXX', iban: 'LT123250012345678901'
+      };
     }
-    return { clearing: '3023', account: '3023 00 12345', bic: 'NDEASESS',
-      iban: 'SE1830000000030230012345' };
+    return {
+      clearing: '3023', account: '3023 00 12345',
+      bic: 'NDEASESS', iban: 'SE1830000000030230012345'
+    };
+  }
+
+  function applyBank(bank) {
+    $('bank').value = bank;
+    var defs = bankDefaults(bank);
+    $('account').value = defs.account;
+    $('clearing').value = defs.clearing;
+    $('bic').value = defs.bic;
+    $('iban').value = defs.iban;
+    document.querySelectorAll('#banks button').forEach(function (b) {
+      b.classList.toggle('active', b.getAttribute('data-bank') === bank);
+    });
+  }
+
+  function applyMonths(n) {
+    n = parseInt(n, 10) || 3;
+    $('months').value = String(n);
+    $('from').value = monthsAgo(n);
+    $('to').value = isoToday();
+    document.querySelectorAll('#periods button').forEach(function (b) {
+      b.classList.toggle('active', b.getAttribute('data-months') === String(n));
+    });
   }
 
   function fitPreview() {
@@ -59,71 +78,55 @@
     });
   }
 
-  function buildConfig() {
-    var from = BankSynth.parseDateString($('from').value);
-    var to = BankSynth.parseDateString($('to').value);
-    var income = parseFloat($('income').value) || 0;
-    var spend = parseFloat($('spend').value) || 0;
-    var day = parseInt($('payday').value, 10) || 25;
-    var startBalance = parseFloat($('startBalance').value) || 0;
-    var seed = parseInt($('seed').value, 10) || 1;
-    var desc = ($('salaryDesc').value || 'Lön').trim();
-
-    if (!from || !to || from > to) {
-      return { err: 'Kontrollera periodens datum.' };
-    }
-    if (income <= 0) {
-      return { err: 'Inkomst per månad måste vara större än 0.' };
-    }
-
-    // Approximate monthly spend via perMonth card count heuristic
-    var perMonth = 22;
-    if (spend > 0 && income > 0) {
-      perMonth = Math.max(12, Math.min(45, Math.round(spend / 700)));
-    }
-
-    return {
-      from: from,
-      to: to,
-      income: BankSynth.roundKronor(income),
-      day: day,
-      desc: desc,
-      startBalance: BankSynth.roundKronor(startBalance),
-      perMonth: perMonth,
-      seed: seed,
-      preSalary: 2000,
-      fixedCosts: [],
-      swish: true,
-      incomes: [{ amount: BankSynth.roundKronor(income), day: day, desc: desc }]
-    };
-  }
-
   function generate() {
     try {
       $('error').classList.remove('show');
       var personInfo = parsePerson($('paste').value);
-      var bank = $('bank').value;
-      var defs = bankDefaults(bank);
-      if (!$('account').dataset.touched) $('account').value = defs.account;
-      if (!$('clearing').dataset.touched) $('clearing').value = defs.clearing;
-      if (!$('bic').dataset.touched) $('bic').value = defs.bic;
-      if (!$('iban').dataset.touched) $('iban').value = defs.iban;
-
-      var config = buildConfig();
-      if (config.err) {
-        $('error').textContent = config.err;
+      if (!personInfo.name) {
+        $('error').textContent = 'Skriv namn (och gärna adress).';
         $('error').classList.add('show');
         return;
       }
+
+      var income = parseFloat($('income').value) || 0;
+      var spend = parseFloat($('spend').value) || 0;
+      if (income <= 0) {
+        $('error').textContent = 'Ange inkomst per månad.';
+        $('error').classList.add('show');
+        return;
+      }
+
+      applyMonths($('months').value);
+      var bank = $('bank').value;
+      applyBank(bank);
+
+      var from = BankSynth.parseDateString($('from').value);
+      var to = BankSynth.parseDateString($('to').value);
+      var perMonth = spend > 0 ? Math.max(12, Math.min(45, Math.round(spend / 700))) : 22;
+
+      var config = {
+        from: from,
+        to: to,
+        income: BankSynth.roundKronor(income),
+        day: 25,
+        desc: 'Lön',
+        startBalance: BankSynth.roundKronor(Math.max(2000, Math.round(income * 0.15))),
+        perMonth: perMonth,
+        seed: 42,
+        preSalary: 2000,
+        fixedCosts: [],
+        swish: true,
+        incomes: [{ amount: BankSynth.roundKronor(income), day: 25, desc: 'Lön' }]
+      };
 
       var result = BankSynth.generate(config);
       var person = {
         name: personInfo.name,
         address: personInfo.address,
-        account: $('account').value.trim(),
-        clearing: $('clearing').value.trim(),
-        iban: $('iban').value.trim(),
-        bic: $('bic').value.trim()
+        account: $('account').value,
+        clearing: $('clearing').value,
+        iban: $('iban').value,
+        bic: $('bic').value
       };
 
       lastHtml = BankRender.render(bank, person, config, result);
@@ -132,8 +135,7 @@
       $('preview-wrap').removeAttribute('hidden');
       $('btn-print').disabled = false;
       $('preview-label').textContent =
-        person.name + ' · ' + bank + ' · ' + result.rows.length + ' rader · saldo ' +
-        BankSynth.formatSek(result.finalBalance);
+        person.name + ' · ' + bank + ' · ' + BankSynth.formatSek(result.finalBalance);
       requestAnimationFrame(function () {
         fitPreview();
         $('preview-wrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -146,31 +148,18 @@
   }
 
   function loadExample() {
-    $('paste').value = 'Anna Andersson\n198001011234\nStorgatan 1\n111 22 Stockholm';
-    $('bank').value = 'nordea';
-    $('from').value = monthsAgo(3);
-    $('to').value = isoToday();
+    $('paste').value = 'Anna Andersson\nStorgatan 1\n111 22 Stockholm';
+    applyBank('nordea');
+    applyMonths(3);
     $('income').value = '32000';
     $('spend').value = '18000';
-    $('startBalance').value = '4500';
-    $('payday').value = '25';
-    $('salaryDesc').value = 'Lön';
-    $('seed').value = '42';
-    var defs = bankDefaults('nordea');
-    $('account').value = defs.account;
-    $('clearing').value = defs.clearing;
-    $('bic').value = defs.bic;
-    $('iban').value = defs.iban;
-    ['account', 'clearing', 'bic', 'iban'].forEach(function (id) {
-      delete $(id).dataset.touched;
-    });
     generate();
   }
 
   function printBlankett() {
     if (!lastHtml) return;
     var base = location.href.replace(/[#?].*$/, '').replace(/\/[^/]*$/, '/');
-    fetch(base + 'print.css?v=1', { cache: 'no-store' })
+    fetch(base + 'print.css?v=2', { cache: 'no-store' })
       .then(function (r) { return r.text(); })
       .then(function (css) {
         var html = '<!DOCTYPE html><html lang="sv"><head><meta charset="utf-8">' +
@@ -189,23 +178,26 @@
         win.document.write(html);
         win.document.close();
       })
-      .catch(function (e) {
+      .catch(function () {
         $('error').textContent = 'Kunde inte ladda print.css';
         $('error').classList.add('show');
       });
   }
 
-  function onBankChange() {
-    var defs = bankDefaults($('bank').value);
-    if (!$('account').dataset.touched) $('account').value = defs.account;
-    if (!$('clearing').dataset.touched) $('clearing').value = defs.clearing;
-    if (!$('bic').dataset.touched) $('bic').value = defs.bic;
-    if (!$('iban').dataset.touched) $('iban').value = defs.iban;
-  }
-
   document.addEventListener('DOMContentLoaded', function () {
-    if (!$('from').value) $('from').value = monthsAgo(3);
-    if (!$('to').value) $('to').value = isoToday();
+    applyBank('nordea');
+    applyMonths(3);
+
+    document.querySelectorAll('#banks button').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        applyBank(btn.getAttribute('data-bank'));
+      });
+    });
+    document.querySelectorAll('#periods button').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        applyMonths(btn.getAttribute('data-months'));
+      });
+    });
 
     $('btn-generate').addEventListener('click', generate);
     $('btn-generate-dock').addEventListener('click', generate);
@@ -214,14 +206,8 @@
     $('btn-top').addEventListener('click', function () {
       $('app-ui').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
-    $('bank').addEventListener('change', onBankChange);
-    ['account', 'clearing', 'bic', 'iban'].forEach(function (id) {
-      $(id).addEventListener('input', function () { $(id).dataset.touched = '1'; });
-    });
     window.addEventListener('resize', fitPreview);
 
-    if (/(?:^|[?&])demo=1(?:&|$)/.test(location.search)) {
-      loadExample();
-    }
+    if (/(?:^|[?&])demo=1(?:&|$)/.test(location.search)) loadExample();
   });
 })();
