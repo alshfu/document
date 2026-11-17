@@ -127,92 +127,66 @@
     fitPreviewScale();
   }
 
-  function isMobile() {
-    return window.matchMedia('(max-width: 820px)').matches ||
-      /iPhone|iPad|iPod|Android/i.test(navigator.userAgent || '');
+  function cleanPageHtml(pageEl) {
+    var clone = pageEl.cloneNode(true);
+    clone.style.cssText = '';
+    clone.querySelectorAll('[style]').forEach(function (el) {
+      // keep only intentional filled look; drop print prep inline sizes
+      if (el.classList.contains('fbox') || el.classList.contains('fbox2')) return;
+      el.removeAttribute('style');
+    });
+    return clone.outerHTML;
   }
 
-  /** Clean A4 document in a hidden iframe — reliable on mobile Safari/Chrome. */
-  function printViaIframe() {
+  function buildPrintHtml(cssText, bodyHtml) {
+    var base = location.href.replace(/[#?].*$/, '').replace(/\/[^/]*$/, '/');
+    return '<!DOCTYPE html><html lang="sv"><head><meta charset="utf-8">' +
+      '<base href="' + base + '">' +
+      '<title>Inkomstdeklaration</title>' +
+      '<style>' + cssText + '</style>' +
+      '</head><body>' + bodyHtml +
+      '<script>window.onload=function(){setTimeout(function(){window.focus();window.print();},200);};<\/script>' +
+      '</body></html>';
+  }
+
+  /** Open a real print window with inlined CSS — works on iOS/Android/desktop. */
+  function printBlankett() {
     var pages = $('preview').querySelectorAll('.page');
     if (!pages.length) return;
 
-    var old = document.getElementById('print-frame');
-    if (old) old.remove();
-
-    var cssLinks = Array.prototype.map.call(
-      document.querySelectorAll('link[rel="stylesheet"]'),
-      function (l) { return l.href; }
-    );
-    var css = cssLinks.map(function (href) {
-      return '<link rel="stylesheet" href="' + href + '">';
-    }).join('');
-
-    var bodyHtml = Array.prototype.map.call(pages, function (p) {
-      return p.outerHTML;
-    }).join('\n');
-
-    var frame = document.createElement('iframe');
-    frame.id = 'print-frame';
-    frame.setAttribute('aria-hidden', 'true');
-    frame.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0;opacity:0;pointer-events:none';
-    document.body.appendChild(frame);
-
-    var doc = frame.contentDocument || frame.contentWindow.document;
-    doc.open();
-    var base = location.href.replace(/[#?].*$/, '').replace(/\/[^/]*$/, '/');
-    doc.write(
-      '<!DOCTYPE html><html lang="sv"><head><meta charset="utf-8">' +
-      '<base href="' + base + '">' +
-      '<meta name="viewport" content="width=device-width">' +
-      css +
-      '<style>' +
-      'html,body{margin:0;padding:0;background:#fff;}' +
-      '@page{size:A4;margin:0;}' +
-      '.page{transform:none!important;margin:0!important;box-shadow:none!important;' +
-      'width:210mm!important;height:297mm!important;max-height:297mm!important;' +
-      'overflow:hidden!important;page-break-after:always;break-after:page;' +
-      'page-break-inside:avoid;break-inside:avoid;}' +
-      '.page.form{padding:8mm 10mm!important;}' +
-      '.page:last-of-type{page-break-after:auto;break-after:auto;}' +
-      '.page>.stamp{display:none!important;}' +
-      '.form{background:#f8f1c4!important;print-color-adjust:exact;-webkit-print-color-adjust:exact;}' +
-      '.bars,.fcircle{print-color-adjust:exact;-webkit-print-color-adjust:exact;}' +
-      '</style></head><body>' + bodyHtml + '</body></html>'
-    );
-    doc.close();
-
-    var win = frame.contentWindow;
-    var done = false;
-    function cleanup() {
-      if (done) return;
-      done = true;
-      setTimeout(function () {
-        if (frame.parentNode) frame.parentNode.removeChild(frame);
-        restoreAfterPrint();
-      }, 500);
-    }
-    win.addEventListener('afterprint', cleanup);
-    // Wait for styles/images
-    setTimeout(function () {
-      try { win.focus(); win.print(); } catch (e) { cleanup(); }
-      // Fallback if afterprint never fires (some Android WebViews)
-      setTimeout(cleanup, 3000);
-    }, 250);
-  }
-
-  function printBlankett() {
-    if (!$('preview').querySelector('.page')) return;
     preparePrint();
-    if (isMobile()) {
-      printViaIframe();
-      return;
-    }
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
-        window.print();
+    var bodyHtml = Array.prototype.map.call(pages, cleanPageHtml).join('\n');
+    var base = location.href.replace(/[#?].*$/, '').replace(/\/[^/]*$/, '/');
+    var cssUrl = base + 'print.css?v=3';
+
+    function openWithCss(cssText) {
+      var html = buildPrintHtml(cssText, bodyHtml);
+      var win = window.open('', '_blank');
+      if (!win) {
+        // Popup blocked — fallback to same-tab blob
+        var blob = new Blob([html], { type: 'text/html' });
+        var url = URL.createObjectURL(blob);
+        location.href = url;
+        restoreAfterPrint();
+        return;
+      }
+      win.document.open();
+      win.document.write(html);
+      win.document.close();
+      win.addEventListener('afterprint', function () {
+        try { win.close(); } catch (e) {}
+        restoreAfterPrint();
       });
-    });
+      setTimeout(restoreAfterPrint, 4000);
+    }
+
+    fetch(cssUrl, { cache: 'no-store' })
+      .then(function (r) { return r.text(); })
+      .then(openWithCss)
+      .catch(function () {
+        // Absolute last resort: link stylesheet
+        openWithCss('@import url("' + cssUrl + '");');
+      });
   }
 
   function wrapPages(html) {
