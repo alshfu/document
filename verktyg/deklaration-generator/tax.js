@@ -171,7 +171,7 @@
       return l.trim();
     }).filter(Boolean);
     if (lines.length < 4) {
-      return { error: 'Нужно минимум 4 строки: имя, personnummer, адрес, доход' };
+      return { error: 'Minst 4 rader behövs: namn, personnummer, adress, inkomst' };
     }
     var name = lines[0];
     var pnr = formatPersonnummer(lines[1]);
@@ -183,12 +183,12 @@
       }
     }
     if (amountIdx < 2) {
-      return { error: 'Не найден доход (последняя строка с числом)' };
+      return { error: 'Hittade ingen inkomst (sista raden med belopp)' };
     }
     var inkomst = parseAmount(lines[amountIdx]);
     var addrLines = lines.slice(2, amountIdx);
     if (!addrLines.length) {
-      return { error: 'Не найден адрес' };
+      return { error: 'Hittade ingen adress' };
     }
     var address = addrLines.join('\n');
     // Split "Street 12 City" / "Street 12, 123 45 City"

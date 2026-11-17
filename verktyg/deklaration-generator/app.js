@@ -15,7 +15,7 @@
     });
     var custom = document.createElement('option');
     custom.value = 'custom';
-    custom.textContent = 'Свой вариант…';
+    custom.textContent = 'Egen kommun…';
     sel.appendChild(custom);
   }
 
@@ -119,7 +119,7 @@
     }
     if (!isFinite(data.taxInput.kommunalSats) || !isFinite(data.taxInput.begravningSats)) {
       $('error').hidden = false;
-      $('error').textContent = 'Проверьте kommunalskattesats / begravningsavgift';
+      $('error').textContent = 'Kontrollera kommunalskattesats / begravningsavgift';
       return;
     }
     $('error').hidden = true;

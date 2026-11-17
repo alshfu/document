@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="sv">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -14,16 +14,16 @@
 <div id="app-ui">
   <header class="top">
     <h1>Deklaration</h1>
-    <p class="lead">Вставь данные → Generera → PDF</p>
+    <p class="lead">Klistra in uppgifter → Generera → PDF</p>
   </header>
 
   <section class="panel">
-    <label for="paste">Имя, personnummer, адрес, доход</label>
+    <label for="paste">Namn, personnummer, adress, inkomst</label>
     <textarea id="paste" rows="5" enterkeyhint="done" placeholder="Nils Rauner
 200708053293
 Tulegatan 20 Stockholm
 195 000"></textarea>
-    <p class="hint">4 строки. Personnummer — с дефисом или без.</p>
+    <p class="hint">4 rader. Personnummer med eller utan bindestreck.</p>
   </section>
 
   <section class="panel">
@@ -32,7 +32,7 @@ Tulegatan 20 Stockholm
       <select id="kommun"></select>
     </div>
     <div class="field">
-      <label for="kalla">Доход</label>
+      <label for="kalla">Inkomstkälla</label>
       <select id="kalla">
         <option value="lon">Lön (jobbskatteavdrag)</option>
         <option value="fk">Försäkringskassan</option>
@@ -42,7 +42,7 @@ Tulegatan 20 Stockholm
     <button type="button" class="btn-primary btn-block" id="btn-generate-main">Generera</button>
 
     <details class="more" id="more">
-      <summary>Ещё настройки</summary>
+      <summary>Fler inställningar</summary>
       <div class="more-body">
         <div class="field">
           <label for="kommunNamn">Namn på kommun</label>
@@ -60,7 +60,7 @@ Tulegatan 20 Stockholm
         </div>
         <div class="field-row">
           <div class="field">
-            <label for="akassa">A-kassa / год</label>
+            <label for="akassa">A-kassa / år</label>
             <input id="akassa" value="0" inputmode="numeric">
           </div>
           <div class="field">
@@ -69,8 +69,8 @@ Tulegatan 20 Stockholm
           </div>
         </div>
         <div class="field">
-          <label for="avdragen">Preliminär skatt (пусто = авто)</label>
-          <input id="avdragen" value="" placeholder="авто" inputmode="numeric">
+          <label for="avdragen">Preliminär skatt (tom = auto)</label>
+          <input id="avdragen" value="" placeholder="auto" inputmode="numeric">
         </div>
       </div>
     </details>
@@ -84,14 +84,14 @@ Tulegatan 20 Stockholm
 
 <div id="preview-wrap" hidden>
   <div class="preview-bar">
-    <span id="preview-label">Бланк</span>
-    <button type="button" class="btn-text" id="btn-top">К форме</button>
+    <span id="preview-label">Blankett</span>
+    <button type="button" class="btn-text" id="btn-top">Till formuläret</button>
   </div>
   <div id="preview"></div>
 </div>
 
-<nav class="dock" aria-label="Действия">
-  <button type="button" class="btn-secondary" id="btn-example">Пример</button>
+<nav class="dock" aria-label="Åtgärder">
+  <button type="button" class="btn-secondary" id="btn-example">Exempel</button>
   <button type="button" class="btn-primary" id="btn-generate">Generera</button>
   <button type="button" class="btn-print" id="btn-print" disabled>PDF</button>
 </nav>
