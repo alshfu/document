@@ -100,30 +100,49 @@
   }
 
   function generate() {
-    $('error').classList.remove('show');
-    var parsed = parsePaste($('paste').value);
-    if (parsed.error) {
-      $('error').textContent = parsed.error;
-      $('error').classList.add('show');
-      return;
-    }
-    // Sync visible address fields
-    if (parsed.adress1) $('adress1').value = parsed.adress1;
-    if (parsed.adress2) $('adress2').value = parsed.adress2;
-    if (parsed.kommun && !$('sate').value) {
-      $('sate').value = (parsed.lan ? parsed.lan + ', ' : '') + parsed.kommun + (parsed.kommun.indexOf('kommun') >= 0 ? '' : ' kommun');
-    }
+    try {
+      $('error').classList.remove('show');
+      var raw = ($('paste').value || '').trim();
+      if (!raw) {
+        $('error').textContent = 'Klistra in företagsnamn, org.nr och adress först.';
+        $('error').classList.add('show');
+        return;
+      }
+      var parsed = parsePaste(raw);
+      if (parsed.error) {
+        $('error').textContent = parsed.error;
+        $('error').classList.add('show');
+        return;
+      }
+      if (parsed.adress1) $('adress1').value = parsed.adress1;
+      if (parsed.adress2) $('adress2').value = parsed.adress2;
+      if (parsed.kommun && !$('sate').value.trim()) {
+        var k = parsed.kommun;
+        $('sate').value = (parsed.lan ? parsed.lan + ', ' : '') + k +
+          (/kommun/i.test(k) ? '' : ' kommun');
+      }
 
-    var data = readForm(parsed);
-    lastData = data;
-    $('preview').innerHTML = RegistreringsbevisRender.render(data);
-    $('preview-wrap').hidden = false;
-    $('btn-print').disabled = false;
-    $('preview-label').textContent = data.namn + ' · ' + data.orgnr;
-    requestAnimationFrame(function () {
-      fitPreview();
-      $('preview-wrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
+      var data = readForm(parsed);
+      if (!data.namn || !data.orgnr) {
+        $('error').textContent = 'Kunde inte läsa namn eller organisationsnummer.';
+        $('error').classList.add('show');
+        return;
+      }
+      lastData = data;
+      $('preview').innerHTML = RegistreringsbevisRender.render(data);
+      $('preview-wrap').hidden = false;
+      $('preview-wrap').removeAttribute('hidden');
+      $('btn-print').disabled = false;
+      $('preview-label').textContent = data.namn + ' · ' + data.orgnr;
+      requestAnimationFrame(function () {
+        fitPreview();
+        $('preview-wrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    } catch (err) {
+      console.error(err);
+      $('error').textContent = 'Fel vid generering: ' + (err && err.message ? err.message : err);
+      $('error').classList.add('show');
+    }
   }
 
   function loadExample() {

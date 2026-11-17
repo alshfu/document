@@ -1,208 +1,171 @@
-* {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+/* Document styles — scoped to #preview so they never break the app UI */
 
-        body {
-            font-family: "Courier New", Courier, monospace;
-            font-size: 12px;
-            line-height: 1.4;
-            background: #e5e5e5;
-            color: #000;
-        }
+#preview {
+  background: #888;
+  padding: 12px 0 28px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #000;
+}
 
-        .page {
-            width: 21cm;
-            min-height: 29.7cm;
-            margin: 0.5cm auto;
-            padding: 1.4cm 1.6cm;
-            background: #fff;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, .25);
-            position: relative;
-            overflow: hidden;
-        }
+#preview .page {
+  width: 21cm;
+  min-height: 29.7cm;
+  height: 29.7cm;
+  margin: 10px auto;
+  padding: 1.4cm 1.6cm;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .25);
+  position: relative;
+  overflow: hidden;
+}
 
-        .content {
-            position: relative;
-            z-index: 2;
-        }
+#preview .content { position: relative; z-index: 2; }
 
-        /* ---- watermark ---- */
-        .wm {
-            position: absolute;
-            top: 30%;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1;
-            pointer-events: none;
-        }
+#preview .wm {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  pointer-events: none;
+}
 
-        /* ---- header ---- */
-        .hdr {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 24px;
-        }
+#preview .hdr {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
 
-        .logo-block {
-            font-family: Arial, Helvetica, sans-serif;
-            padding-top: 6px;
-        }
+#preview .logo-block {
+  font-family: Arial, Helvetica, sans-serif;
+  padding-top: 6px;
+}
 
-        .logo-line {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+#preview .logo-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
-        .logo-name {
-            font-size: 22px;
-            font-weight: bold;
-            letter-spacing: .2px;
-        }
+#preview .logo-name {
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: .2px;
+}
 
-        .logo-addr {
-            font-size: 8.5px;
-            margin-top: 4px;
-            padding-left: 44px;
-            line-height: 1.5;
-        }
+#preview .logo-addr {
+  font-size: 8.5px;
+  margin-top: 4px;
+  padding-left: 44px;
+  line-height: 1.5;
+}
 
-        .hdr-right {
-            width: 58%;
-        }
+#preview .hdr-right { width: 58%; }
 
-        .hdr-title {
-            font-family: "Times New Roman", Times, serif;
-            margin-bottom: 10px;
-            position: relative;
-        }
+#preview .hdr-title {
+  font-family: "Times New Roman", Times, serif;
+  margin-bottom: 10px;
+  position: relative;
+}
 
-        .hdr-title h1 {
-            font-size: 17px;
-            font-weight: bold;
-            letter-spacing: .3px;
-            display: inline-block;
-        }
+#preview .hdr-title h1 {
+  font-size: 17px;
+  font-weight: bold;
+  letter-spacing: .3px;
+  display: inline-block;
+}
 
-        .hdr-title .pgn {
-            font-size: 11px;
-            position: absolute;
-            right: 0;
-            top: 2px;
-            font-weight: normal;
-        }
+#preview .hdr-title .pgn {
+  font-size: 11px;
+  position: absolute;
+  right: 0;
+  top: 2px;
+  font-weight: normal;
+}
 
-        .hdr-title p {
-            font-size: 11.5px;
-            font-weight: bold;
-            margin-top: 3px;
-        }
+#preview .hdr-title p {
+  font-size: 11.5px;
+  font-weight: bold;
+  margin-top: 3px;
+}
 
-        table.regbox {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 11px;
-        }
+#preview table.regbox {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
 
-        table.regbox td {
-            border: 1px solid #000;
-            padding: 2px 6px 3px;
-            width: 50%;
-        }
+#preview table.regbox td {
+  border: 1px solid #000;
+  padding: 2px 6px 3px;
+  width: 50%;
+}
 
-        table.regbox .lbl {
-            display: block;
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 7.5px;
-            line-height: 1.3;
-        }
+#preview table.regbox .lbl {
+  display: block;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 7.5px;
+  line-height: 1.3;
+}
 
-        /* ---- company info block ---- */
-        .info {
-            display: flex;
-            margin-bottom: 26px;
-        }
+#preview .info {
+  display: flex;
+  margin-bottom: 26px;
+}
 
-        .info .labels {
-            width: 30%;
-            padding-top: 4px;
-        }
+#preview .info .labels {
+  width: 30%;
+  padding-top: 4px;
+}
 
-        .info .labels div {
-            margin-bottom: 4px;
-        }
+#preview .info .labels div { margin-bottom: 4px; }
 
-        .info .boxes {
-            width: 70%;
-        }
+#preview .info .boxes { width: 70%; }
 
-        .info .box {
-            border: 1px solid #000;
-            padding: 4px 10px;
-        }
+#preview .info .box {
+  border: 1px solid #000;
+  padding: 4px 10px;
+}
 
-        .info .box + .box {
-            border-top: none;
-        }
+#preview .info .box + .box { border-top: none; }
 
-        /* ---- monospace body ---- */
-        .mono {
-            white-space: pre-wrap;
-            font-family: "Courier New", Courier, monospace;
-            font-size: 12px;
-        }
+#preview .mono {
+  white-space: pre-wrap;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 12px;
+}
 
-        .mono b {
-            font-weight: bold;
-        }
+#preview .mono b { font-weight: bold; }
 
-        .footer-note {
-            margin-top: 18px;
-        }
+#preview .footer-note { margin-top: 18px; }
 
-        .no-print {
-            text-align: center;
-            padding: 20px;
-        }
-
-        @media print {
-            @page {
-                size: A4;
-                margin: 0;
-            }
-
-            body {
-                background: #fff;
-            }
-
-            .page {
-                width: auto;
-                min-height: 29.6cm;
-                margin: 0;
-                padding: 1.4cm 1.6cm;
-                box-shadow: none;
-                page-break-after: always;
-            }
-
-            .page:last-child {
-                page-break-after: auto;
-            }
-
-            .no-print {
-                display: none !important;
-            }
-
-            .wm {
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-        }
-
-/* Generator preview host */
-#preview { background:#888; padding:12px 0 28px; }
-#preview .page { margin:10px auto; }
 @media print {
-  #preview { background:none; padding:0; }
+  @page { size: A4; margin: 0; }
+  #preview {
+    background: none !important;
+    padding: 0 !important;
+  }
+  #preview .page {
+    width: 210mm !important;
+    min-height: 297mm !important;
+    height: 297mm !important;
+    margin: 0 !important;
+    padding: 1.4cm 1.6cm !important;
+    box-shadow: none !important;
+    page-break-after: always;
+    break-after: page;
+    transform: none !important;
+  }
+  #preview .page:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+  #preview .wm {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
 }
