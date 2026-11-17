@@ -34,3 +34,4 @@
 ## Примечание
 
 Генератор выписок создаёт **синтетические тестовые данные** и не должен использоваться как реальная банковская выписка.
+| `verktyg/bank-statement-generator/` | Generator för bankutdrag (Nordea/Swedbank/Revolut). GitHub Pages. |

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0f1419">
+  <title>Bankutdrag</title>
+  <link rel="stylesheet" href="ui.css?v=1">
+  <link rel="stylesheet" href="doc.css?v=1">
+</head>
+<body>
+
+<div id="app-ui">
+  <header class="top">
+    <h1>Bankutdrag</h1>
+    <p class="lead">Person · bank · period · inkomst/utgifter → Generera → PDF</p>
+  </header>
+
+  <section class="panel">
+    <label for="paste">Namn, personnummer, adress</label>
+    <textarea id="paste" rows="4" placeholder="Anna Andersson
+198001011234
+Storgatan 1
+111 22 Stockholm"></textarea>
+    <p class="hint">Minst namn. Adress radvis. Personnummer valfritt.</p>
+  </section>
+
+  <section class="panel">
+    <div class="field">
+      <label for="bank">Bank / mall</label>
+      <select id="bank">
+        <option value="nordea">Nordea</option>
+        <option value="swedbank">Swedbank</option>
+        <option value="revolut">Revolut</option>
+      </select>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label for="from">Period från</label>
+        <input id="from" type="date">
+      </div>
+      <div class="field">
+        <label for="to">Period till</label>
+        <input id="to" type="date">
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label for="income">Inkomst / månad (SEK)</label>
+        <input id="income" type="number" value="32000" inputmode="numeric">
+      </div>
+      <div class="field">
+        <label for="spend">Utgifter / månad ca (SEK)</label>
+        <input id="spend" type="number" value="18000" inputmode="numeric">
+      </div>
+    </div>
+    <button type="button" class="btn-block" id="btn-generate">Generera</button>
+
+    <details class="more">
+      <summary>Fler uppgifter</summary>
+      <div class="field">
+        <label for="account">Kontonummer</label>
+        <input id="account" value="3023 00 12345">
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="clearing">Clearing</label>
+          <input id="clearing" value="3023">
+        </div>
+        <div class="field">
+          <label for="bic">BIC</label>
+          <input id="bic" value="NDEASESS">
+        </div>
+      </div>
+      <div class="field">
+        <label for="iban">IBAN</label>
+        <input id="iban" value="SE1830000000030230012345">
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="startBalance">Ingående saldo</label>
+          <input id="startBalance" type="number" value="4500">
+        </div>
+        <div class="field">
+          <label for="payday">Lönedag (1–31)</label>
+          <input id="payday" type="number" value="25" min="1" max="31">
+        </div>
+      </div>
+      <div class="field">
+        <label for="salaryDesc">Inkomstbeskrivning</label>
+        <input id="salaryDesc" value="Lön">
+      </div>
+      <div class="field">
+        <label for="seed">Slumpfrö (samma frö = samma utdrag)</label>
+        <input id="seed" type="number" value="42">
+      </div>
+    </details>
+  </section>
+
+  <div id="error"></div>
+</div>
+
+<div id="preview-wrap" hidden>
+  <div class="preview-bar">
+    <span id="preview-label">Utdrag</span>
+    <button type="button" class="btn-text" id="btn-top">Till formuläret</button>
+  </div>
+  <div id="preview"></div>
+</div>
+
+<nav class="dock" aria-label="Åtgärder">
+  <button type="button" class="btn-secondary" id="btn-example">Exempel</button>
+  <button type="button" class="btn-primary" id="btn-generate-dock">Generera</button>
+  <button type="button" class="btn-print" id="btn-print" disabled>PDF</button>
+</nav>
+
+<script src="synth.js?v=1"></script>
+<script src="render.js?v=1"></script>
+<script src="app.js?v=1"></script>
+</body>
+</html>
