@@ -76,6 +76,7 @@
   }
 
   function fitPreviewScale() {
+    if (document.body.classList.contains('is-printing')) return;
     var preview = $('preview');
     if (!preview) return;
     var page = preview.querySelector('.page');
@@ -87,6 +88,125 @@
     preview.style.setProperty('--preview-scale', String(scale));
     preview.querySelectorAll('.page-slot').forEach(function (slot) {
       slot.style.height = (pageH * scale) + 'px';
+    });
+  }
+
+  /** Strip mobile preview scaling so A4 pages print 1:1. */
+  function preparePrint() {
+    document.body.classList.add('is-printing');
+    var preview = $('preview');
+    if (preview) {
+      preview.style.setProperty('--preview-scale', '1');
+      preview.querySelectorAll('.page-slot').forEach(function (slot) {
+        slot.style.height = '';
+        slot.style.overflow = 'visible';
+      });
+      preview.querySelectorAll('.page').forEach(function (page) {
+        page.style.transform = 'none';
+        page.style.width = '210mm';
+        page.style.height = '297mm';
+        page.style.margin = '0';
+      });
+    }
+  }
+
+  function restoreAfterPrint() {
+    document.body.classList.remove('is-printing');
+    var preview = $('preview');
+    if (preview) {
+      preview.querySelectorAll('.page').forEach(function (page) {
+        page.style.transform = '';
+        page.style.width = '';
+        page.style.height = '';
+        page.style.margin = '';
+      });
+      preview.querySelectorAll('.page-slot').forEach(function (slot) {
+        slot.style.overflow = '';
+      });
+    }
+    fitPreviewScale();
+  }
+
+  function isMobile() {
+    return window.matchMedia('(max-width: 820px)').matches ||
+      /iPhone|iPad|iPod|Android/i.test(navigator.userAgent || '');
+  }
+
+  /** Clean A4 document in a hidden iframe — reliable on mobile Safari/Chrome. */
+  function printViaIframe() {
+    var pages = $('preview').querySelectorAll('.page');
+    if (!pages.length) return;
+
+    var old = document.getElementById('print-frame');
+    if (old) old.remove();
+
+    var cssLinks = Array.prototype.map.call(
+      document.querySelectorAll('link[rel="stylesheet"]'),
+      function (l) { return l.href; }
+    );
+    var css = cssLinks.map(function (href) {
+      return '<link rel="stylesheet" href="' + href + '">';
+    }).join('');
+
+    var bodyHtml = Array.prototype.map.call(pages, function (p) {
+      return p.outerHTML;
+    }).join('\n');
+
+    var frame = document.createElement('iframe');
+    frame.id = 'print-frame';
+    frame.setAttribute('aria-hidden', 'true');
+    frame.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0;opacity:0;pointer-events:none';
+    document.body.appendChild(frame);
+
+    var doc = frame.contentDocument || frame.contentWindow.document;
+    doc.open();
+    var base = location.href.replace(/[#?].*$/, '').replace(/\/[^/]*$/, '/');
+    doc.write(
+      '<!DOCTYPE html><html lang="sv"><head><meta charset="utf-8">' +
+      '<base href="' + base + '">' +
+      '<meta name="viewport" content="width=device-width">' +
+      css +
+      '<style>' +
+      'html,body{margin:0;padding:0;background:#fff;}' +
+      '.page{transform:none!important;margin:0!important;box-shadow:none!important;' +
+      'width:210mm!important;height:297mm!important;page-break-after:always;break-after:page;}' +
+      '.page:last-of-type{page-break-after:auto;break-after:auto;}' +
+      '.page>.stamp{display:none!important;}' +
+      '@page{size:A4;margin:0;}' +
+      '</style></head><body>' + bodyHtml + '</body></html>'
+    );
+    doc.close();
+
+    var win = frame.contentWindow;
+    var done = false;
+    function cleanup() {
+      if (done) return;
+      done = true;
+      setTimeout(function () {
+        if (frame.parentNode) frame.parentNode.removeChild(frame);
+        restoreAfterPrint();
+      }, 500);
+    }
+    win.addEventListener('afterprint', cleanup);
+    // Wait for styles/images
+    setTimeout(function () {
+      try { win.focus(); win.print(); } catch (e) { cleanup(); }
+      // Fallback if afterprint never fires (some Android WebViews)
+      setTimeout(cleanup, 3000);
+    }, 250);
+  }
+
+  function printBlankett() {
+    if (!$('preview').querySelector('.page')) return;
+    preparePrint();
+    if (isMobile()) {
+      printViaIframe();
+      return;
+    }
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        window.print();
+      });
     });
   }
 
@@ -162,7 +282,7 @@
     var mainBtn = $('btn-generate-main');
     if (mainBtn) mainBtn.addEventListener('click', generate);
     $('btn-example').addEventListener('click', loadExample);
-    $('btn-print').addEventListener('click', function () { window.print(); });
+    $('btn-print').addEventListener('click', printBlankett);
     $('btn-top').addEventListener('click', function () {
       $('app-ui').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
@@ -173,8 +293,21 @@
     window.addEventListener('orientationchange', function () {
       setTimeout(fitPreviewScale, 200);
     });
+    window.addEventListener('beforeprint', preparePrint);
+    window.addEventListener('afterprint', restoreAfterPrint);
+    // iOS Safari sometimes skips afterprint
+    var mq = window.matchMedia && window.matchMedia('print');
+    if (mq) {
+      var onMq = function (e) {
+        if (e.matches) preparePrint();
+        else restoreAfterPrint();
+      };
+      if (mq.addEventListener) mq.addEventListener('change', onMq);
+      else if (mq.addListener) mq.addListener(onMq);
+    }
     if (/(?:^|[?&])demo=1(?:&|$)/.test(location.search)) {
       loadExample();
     }
   });
 })();
+
