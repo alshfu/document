@@ -262,12 +262,33 @@ select {
 
 @media print {
   #app-ui, .dock, .preview-bar, #error, #summary { display: none !important; }
-  body { padding: 0 !important; background: none !important; }
+  body {
+    padding: 0 !important;
+    background: #fff !important;
+  }
   #preview-wrap { display: block !important; }
+  #preview {
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+  #preview .page-slot {
+    display: block !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+    overflow: visible !important;
+  }
   #preview .page {
     transform: none !important;
     margin: 0 !important;
     width: 210mm !important;
     height: 297mm !important;
+  }
+  /* Mobile Safari sometimes keeps screen media; force unscaled print */
+  body.is-printing #preview {
+    --preview-scale: 1 !important;
+  }
+  body.is-printing #preview .page {
+    transform: none !important;
   }
 }
