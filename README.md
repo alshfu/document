@@ -8,6 +8,7 @@
 |------|----------|
 | `Transaktion_generator.html` + `Transaktion_generator.js` | Генератор синтетических банковских выписок в стиле Swedbank. Открыть `Transaktion_generator.html`, задать параметры и нажать **Generera**. |
 | `Inkomstdeklaration_calculator.html` + `Inkomstdeklaration_calculator.js` | Калькулятор для шведской налоговой декларации (Inkomstdeklaration 1). |
+| `verktyg/deklaration-generator/` | Генератор Inkomstdeklaration 1: вставка имени/PN/адреса/дохода → расчёт → бланк. Работает на GitHub Pages. |
 | `table.html` + `table-calc.js` | Редактируемая таблица с автоматическим пересчётом остатка по колонке «Сумма». |
 | `transaktion_rus_qa.html` | Пояснения к транзакциям на русском (для запросов банка). |
 | `на перевод /RU/` | Переводы документов на русский язык, включая выписку Swedbank. |

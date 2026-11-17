@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0f1419">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Inkomstdeklaration</title>
+  <link rel="stylesheet" href="doc.css">
+  <link rel="stylesheet" href="ui.css">
+</head>
+<body>
+
+<div id="app-ui">
+  <header class="top">
+    <h1>Deklaration</h1>
+    <p class="lead">Вставь данные → Generera → PDF</p>
+  </header>
+
+  <section class="panel">
+    <label for="paste">Имя, personnummer, адрес, доход</label>
+    <textarea id="paste" rows="5" enterkeyhint="done" placeholder="Nils Rauner
+200708053293
+Tulegatan 20 Stockholm
+195 000"></textarea>
+    <p class="hint">4 строки. Personnummer — с дефисом или без.</p>
+  </section>
+
+  <section class="panel">
+    <div class="field">
+      <label for="kommun">Kommun</label>
+      <select id="kommun"></select>
+    </div>
+    <div class="field">
+      <label for="kalla">Доход</label>
+      <select id="kalla">
+        <option value="lon">Lön (jobbskatteavdrag)</option>
+        <option value="fk">Försäkringskassan</option>
+      </select>
+    </div>
+
+    <button type="button" class="btn-primary btn-block" id="btn-generate-main">Generera</button>
+
+    <details class="more" id="more">
+      <summary>Ещё настройки</summary>
+      <div class="more-body">
+        <div class="field">
+          <label for="kommunNamn">Namn på kommun</label>
+          <input id="kommunNamn" value="Stockholm" autocomplete="address-level2">
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="kommunalSats">Kommunal %</label>
+            <input id="kommunalSats" value="30,60" inputmode="decimal">
+          </div>
+          <div class="field">
+            <label for="begravningSats">Begravning %</label>
+            <input id="begravningSats" value="0,07" inputmode="decimal">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="akassa">A-kassa / год</label>
+            <input id="akassa" value="0" inputmode="numeric">
+          </div>
+          <div class="field">
+            <label for="rantor">Ränta utan säkerhet</label>
+            <input id="rantor" value="0" inputmode="numeric">
+          </div>
+        </div>
+        <div class="field">
+          <label for="avdragen">Preliminär skatt (пусто = авто)</label>
+          <input id="avdragen" value="" placeholder="авто" inputmode="numeric">
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <div id="error" hidden></div>
+  <div id="summary" hidden></div>
+
+  <div class="spacer"></div>
+</div>
+
+<div id="preview-wrap" hidden>
+  <div class="preview-bar">
+    <span id="preview-label">Бланк</span>
+    <button type="button" class="btn-text" id="btn-top">К форме</button>
+  </div>
+  <div id="preview"></div>
+</div>
+
+<nav class="dock" aria-label="Действия">
+  <button type="button" class="btn-secondary" id="btn-example">Пример</button>
+  <button type="button" class="btn-primary" id="btn-generate">Generera</button>
+  <button type="button" class="btn-print" id="btn-print" disabled>PDF</button>
+</nav>
+
+<script src="tax.js"></script>
+<script src="render.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
