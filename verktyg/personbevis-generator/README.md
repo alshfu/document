@@ -28,5 +28,5 @@ Välj ändamål (Adress, Pass, Studier …) och språk (SV/EN/GA).
 ## Filer
 
 - `index.html`, `ui.css`, `shell.js`
-- `_core.js` (render + parser)
+- `core.js` (render + parser)
 - `logo.js` (inbäddad Skatteverket-logga)
