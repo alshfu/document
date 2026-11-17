@@ -168,11 +168,16 @@
       css +
       '<style>' +
       'html,body{margin:0;padding:0;background:#fff;}' +
+      '@page{size:A4;margin:0;}' +
       '.page{transform:none!important;margin:0!important;box-shadow:none!important;' +
-      'width:210mm!important;height:297mm!important;page-break-after:always;break-after:page;}' +
+      'width:210mm!important;height:297mm!important;max-height:297mm!important;' +
+      'overflow:hidden!important;page-break-after:always;break-after:page;' +
+      'page-break-inside:avoid;break-inside:avoid;}' +
+      '.page.form{padding:8mm 10mm!important;}' +
       '.page:last-of-type{page-break-after:auto;break-after:auto;}' +
       '.page>.stamp{display:none!important;}' +
-      '@page{size:A4;margin:0;}' +
+      '.form{background:#f8f1c4!important;print-color-adjust:exact;-webkit-print-color-adjust:exact;}' +
+      '.bars,.fcircle{print-color-adjust:exact;-webkit-print-color-adjust:exact;}' +
       '</style></head><body>' + bodyHtml + '</body></html>'
     );
     doc.close();
