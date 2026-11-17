@@ -7,7 +7,7 @@
   function stamp(n) {
     return '<!-- stamp-page:start --><div class="stamp" role="note">' +
       'DEMOVERSION · ENDAST FÖR UTBILDNING · EJ GILTIG HANDLING<br>' +
-      '<small>ДЕМО · Только для обучения · Sida ' + n + ' av 7</small>' +
+      '<small>DEMO · Endast för utbildning · Sida ' + n + ' av 7</small>' +
       '</div><!-- stamp-page:end -->';
   }
 

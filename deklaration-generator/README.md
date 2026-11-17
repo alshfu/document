@@ -1,23 +1,23 @@
 # Inkomstdeklaration generator
 
-Статический генератор **Inkomstdeklaration 1** (inkomstår 2025 / deklaration 2026).
+Statisk generator för **Inkomstdeklaration 1** (inkomstår 2025 / deklaration 2026).
 
-Вставляешь 4 строки → считаются skatt / skattereduktioner → собирается бланк из 7 страниц → печать в PDF.
+Klistra in 4 rader → skatt/skattereduktioner beräknas → blankett (7 sidor) → skriv ut till PDF.
 
-Работает **без сервера** — можно открыть локально или выложить на **GitHub Pages**.
+Fungerar **utan server** — öppna lokalt eller publicera på **GitHub Pages**.
 
-## Быстрый старт
+## Snabbstart
 
-1. Открой `index.html` в браузере  
-   или подними локальный сервер из этой папки:
+1. Öppna `index.html` i webbläsaren  
+   eller starta lokal server i den här mappen:
    ```bash
    python3 -m http.server 8080
    # http://127.0.0.1:8080/
    ```
-2. Вставь данные, нажми **Generera**.
-3. **Skriv ut / PDF** → системный диалог печати.
+2. Klistra in uppgifter och tryck **Generera**.
+3. **PDF** → systemets utskriftsdialog.
 
-### Формат вставки
+### Format
 
 ```
 Nils Rauner
@@ -28,11 +28,9 @@ Tulegatan 20 Stockholm
 
 ## GitHub Pages
 
-1. Положи содержимое этой папки в репозиторий (корень или `/docs` / `/verktyg/deklaration-generator`).
-2. Settings → Pages → Source: Deploy from a branch → `/` или `/docs`.
-3. Открой `https://<user>.github.io/<repo>/` (или путь к папке).
+Live: https://alshfu.github.io/document/deklaration-generator/
 
-Файлы, которые нужны на Pages:
+Filer som behövs:
 
 - `index.html`
 - `tax.js`
@@ -42,18 +40,18 @@ Tulegatan 20 Stockholm
 - `ui.css`
 - `skatteverket_logo.svg`
 
-На телефоне: крупный ввод, нижняя панель Generera/PDF, доп. настройки свёрнуты, бланк масштабируется под ширину экрана.
+På mobil: stort inmatningsfält, docka med Generera/PDF, fler inställningar ihopfällda, blanketten skalas till skärmbredden.
 
-## Настройки
+## Inställningar
 
-| Поле | Описание |
-|------|----------|
-| Kommun | Preset (Stockholm, Botkyrka, Nacka, Järfälla) или свои % |
-| Källa | `Lön` → jobbskatteavdrag; `Försäkringskassan` → без JSA |
-| A-kassa | Годовой взнос → skattereduktion 25 % |
-| Ränteutgifter | Lån utan säkerhet (в 2025 вычитается 50 %) |
-| Preliminär skatt | Пусто = авто (методика skattetabell) |
+| Fält | Beskrivning |
+|------|-------------|
+| Kommun | Förinställning (Stockholm, Botkyrka, Nacka, Järfälla) eller egen % |
+| Inkomstkälla | `Lön` → jobbskatteavdrag; `Försäkringskassan` → utan JSA |
+| A-kassa | Årsavgift → skattereduktion 25 % |
+| Ränteutgifter | Lån utan säkerhet (2025: 50 % avdragsgillt) |
+| Preliminär skatt | Tom = auto (skattetabell-metod) |
 
-## Важно
+## Viktigt
 
-Это **демо / учебный** инструмент. Бланк помечен `DEMOVERSION`. Не используй как официальную подачу в Skatteverket.
+Detta är ett **demo-/utbildningsverktyg**. Blanketten märks `DEMOVERSION`. Använd den inte som officiell inlämning till Skatteverket.
